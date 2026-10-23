@@ -1,0 +1,57 @@
+- iframe [active] [id="iframe_window"] [name="iframe_window"]:
+  - generic: 训练模型构建
+  - tablist:
+    - 'generic "icon: left"':
+    - 'generic "icon: right"':
+    - tab "训练策略设置" [selected]
+    - tab "机器人G1信息"
+  - tabpanel:
+    - 'generic "icon: check"':
+    - generic: 观察值空间
+    - 'generic "icon: check"':
+    - generic: 动作空间
+    - 'generic "icon: check"':
+    - generic: 奖励值
+    - 'generic "icon: check"':
+    - generic: 重置条件
+    - generic: "5"
+    - generic: 训练参数
+    - generic: 训练最大步数
+    - combobox:
+      - generic "2000W"
+      - 'generic "icon: down"':
+    - generic: 学习率
+    - combobox:
+      - generic "0.0001"
+      - 'generic "icon: down"':
+    - generic: 熵正则化系数
+    - combobox:
+      - generic "0.005"
+      - 'generic "icon: down"':
+    - generic: 批量大小
+    - combobox:
+      - generic "2048"
+      - 'generic "icon: down"':
+    - generic: 神经网络深度
+    - combobox:
+      - generic "3"
+      - 'generic "icon: down"':
+    - generic: 每层神经元数量
+    - combobox:
+      - generic "512"
+      - 'generic "icon: down"':
+    - generic: 奖励衰减因子
+    - combobox:
+      - generic "0.995"
+      - 'generic "icon: down"':
+    - generic: 单次交互最大步数
+    - combobox [active]:
+      - generic "1000"
+      - 'generic "icon: down"':
+    - generic: 返回
+    - generic: 上一步
+    - generic: 提交
+  - listbox:
+    - option "500"
+    - option "1000" [selected]
+    - option "2000"

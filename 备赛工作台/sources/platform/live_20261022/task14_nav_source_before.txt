@@ -1,0 +1,156 @@
+ROS节点编写
+提交
+星海图R1节点宇树G1节点配置文件和其他资源
+	
+节点名
+	
+节点用途
+	
+操作
+
+	master_node_r1.py	与各个节点通信主逻辑控制功能实现	
+新增函数复制内容查看源码
+
+	nav_node_r1.py	与Nav2通信的导航功能实现	
+新增函数复制内容查看源码
+
+	
+函数名
+	
+函数用途
+	
+操作
+
+
+init
+	
+各种初始化功能
+	
+编辑功能查看源码
+
+
+nav_target_message_callback
+（未完成）
+	
+接收目标航点并启动导航
+	
+编辑功能删除函数查看源码
+
+
+nav_finish_callback
+	
+导航完成后通知主控
+	
+编辑功能删除函数查看源码
+
+	vision_node_r1.py	目标/颜色检测、抓取位姿估计等视觉检测功能实现	
+新增函数复制内容查看源码
+
+	arm_node_r1.py	机械臂控制功能实现	
+新增函数复制内容查看源码
+	
+节点名
+	
+节点用途
+	
+操作
+
+	master_node_g1.py	与各个节点通信主逻辑控制功能实现	
+新增函数复制内容查看源码
+
+	nav_node_g1.py	与Nav2通信的导航功能实现	
+新增函数复制内容查看源码
+
+	vision_node_g1.py	目标/颜色检测、抓取位姿估计等视觉检测功能实现	
+新增函数复制内容查看源码
+
+	arm_node_g1.py	机械臂控制功能实现	
+新增函数复制内容查看源码
+文件名
+	
+用途
+	
+针对机器人
+	
+操作
+
+r1.launch	星海图R1启动配置文件	星海图R1	查看
+g1.launch	宇树G1启动配置文件	宇树G1	查看
+map.yaml、map.pgm	室内环境栅格地图	通用	查看
+waypoints.yaml	地图航点配置	通用	查看
+walk.rknn	走路强化学习模型	通用	查看
+yolo.pt	视觉检测模型	通用	查看
+graspnet.tar	6d抓取位姿估计模型	通用	查看
+hand_eye_r1.yaml	星海图R1头部相机手眼标定文件	星海图R1	查看
+hand_eye_g1.yaml	宇树G1头部相机手眼标定文件	宇树G1	查看
+源码
+import rclpy   
+import cv2  
+from rclpy.node import Node 
+from rclpy.action import ActionClient 
+from geometry_msgs.msg import PoseStamped, Twist 
+from sensor_msgs.msg import PointCloud2,Image 
+from std_msgs.msg import Int32, Bool,String, Float32MultiArray 
+import math 
+import Talk  
+import serial 
+import threading 
+import numpy as np 
+import time 
+import transforms3d 
+import torch 
+from graspnet import GraspNet 
+from rknnlite.api import RKNNLite 
+from moveit_py import MoveItPy 
+from moveit_msgs.msg import MoveItErrorCodes 
+from nav2_msgs.action import NavigateToPose 
+from tf2_ros import StaticTransformBroadcaster 
+from tf2 import quaternion_from_euler 
+import tf2_ros 
+from tf2_geometry_msgs import do_transform_pose 
+import yaml 
+from ultralytics import YOLO 
+ 
+class MinimalNode(Node): 
+     #节点初始化函数 
+     def __init__(self): 
+          super().__init__('minimal_node')  # 节点名称 
+          self.get_logger().info('Minimal node has been started.') 
+          self.bridge = CvBridge()  #初始化图像格式转化工具 
+           
+          
+          # 声明路点文件路径参数 
+          self.declare_parameter('waypoints_file', './waypoints.yaml')   
+          # 获取参数值 
+          waypoints_file = self.get_parameter('waypoints_file').value   
+           
+          # 打开YAML文件，加载路点数据 
+          with open(waypoints_file, 'r') as f:                       
+               self.waypoints = yaml.safe_load(f)['waypoints']       
+          #创建一个发布者
+          self.is_Finish_pub = self.create_publisher(Bool, 'is_Finish', 10)
+          #创建一个订阅者
+          self.Navigation_Address_pub = self.create_subscription(String, 'Navigation_Address', self.callback, 10)
+ 
+       
+     
+
+     def nav_target_message_callback(self, msg):
+          #变量赋值
+          self.nav_navigation_name = msg.Navigation_Address
+     def nav_finish_callback(self):
+ 
+ 
+def main(args=None): 
+     rclpy.init(args=args) 
+     node = MinimalNode() 
+     try: 
+          rclpy.spin(node) 
+     except KeyboardInterrupt: 
+          node.get_logger().info('Node interrupted by user.') 
+     finally: 
+          node.destroy_node() 
+          rclpy.shutdown() 
+ 
+if __name__ == '__main__': 
+     main()

@@ -1,0 +1,46 @@
+{
+    "pose_estimate": {
+        "outputs": "攀爬",
+        "match": 1,
+        "frames": [
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50,
+            55,
+            60,
+            70,
+            75,
+            80,
+            85,
+            90
+        ],
+        "position_conditions": [
+            {
+                "id": 1,
+                "result": true
+            }
+        ],
+        "distance_conditions": [
+            {
+                "id": 1,
+                "result": true
+            },
+            {
+                "id": 2,
+                "result": true
+            }
+        ],
+        "angle_conditions": [
+            {
+                "id": 1,
+                "result": true
+            }
+        ]
+    },
+    "error": null
+}

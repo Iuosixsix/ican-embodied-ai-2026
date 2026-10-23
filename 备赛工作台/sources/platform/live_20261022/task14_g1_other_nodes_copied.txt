@@ -1,0 +1,161 @@
+ROS节点编写
+提交
+星海图R1节点宇树G1节点配置文件和其他资源
+	
+节点名
+	
+节点用途
+	
+操作
+
+	master_node_r1.py	与各个节点通信主逻辑控制功能实现	
+新增函数复制内容查看源码
+
+	nav_node_r1.py	与Nav2通信的导航功能实现	
+新增函数复制内容查看源码
+
+	vision_node_r1.py	目标/颜色检测、抓取位姿估计等视觉检测功能实现	
+新增函数复制内容查看源码
+
+	arm_node_r1.py	机械臂控制功能实现	
+新增函数复制内容查看源码
+	
+节点名
+	
+节点用途
+	
+操作
+
+	master_node_g1.py	与各个节点通信主逻辑控制功能实现	
+新增函数复制内容查看源码
+
+	nav_node_g1.py	与Nav2通信的导航功能实现	
+新增函数复制内容查看源码
+
+	
+函数名
+	
+函数用途
+	
+操作
+
+
+init
+	
+各种初始化功能
+	
+编辑功能删除函数查看源码
+
+
+nav_target_message_callback
+	
+接收目标航点并启动导航
+	
+编辑功能删除函数查看源码
+
+
+nav_finish_callback
+	
+导航完成后通知主控
+	
+编辑功能删除函数查看源码
+
+	vision_node_g1.py	目标/颜色检测、抓取位姿估计等视觉检测功能实现	
+新增函数复制内容查看源码
+
+	
+函数名
+	
+函数用途
+	
+操作
+
+
+init
+	
+各种初始化功能
+	
+编辑功能删除函数查看源码
+
+
+get_camera_rgb_callback
+	
+缓存彩色图像
+	
+编辑功能删除函数查看源码
+
+
+get_camera_depth_callback
+	
+缓存深度图像
+	
+编辑功能删除函数查看源码
+
+
+vision_detect_request_callback
+	
+按物体或颜色请求定位并响应
+	
+编辑功能删除函数查看源码
+
+	arm_node_g1.py	机械臂控制功能实现	
+新增函数复制内容查看源码
+
+	
+函数名
+	
+函数用途
+	
+操作
+
+
+init
+	
+各种初始化功能
+	
+编辑功能删除函数查看源码
+
+
+grab_message_callback
+	
+接收物体点云并规划抓取
+	
+编辑功能删除函数查看源码
+
+
+deploy_message_callback
+	
+接收基座位姿并规划放置
+	
+编辑功能删除函数查看源码
+
+
+grab_finish_callback
+	
+机械臂到位后闭合夹爪并通知完成
+	
+编辑功能删除函数查看源码
+
+
+deploy_finish_callback
+	
+机械臂到位后张开夹爪并通知完成
+	
+编辑功能删除函数查看源码
+文件名
+	
+用途
+	
+针对机器人
+	
+操作
+
+r1.launch	星海图R1启动配置文件	星海图R1	查看
+g1.launch	宇树G1启动配置文件	宇树G1	查看
+map.yaml、map.pgm	室内环境栅格地图	通用	查看
+waypoints.yaml	地图航点配置	通用	查看
+walk.rknn	走路强化学习模型	通用	查看
+yolo.pt	视觉检测模型	通用	查看
+graspnet.tar	6d抓取位姿估计模型	通用	查看
+hand_eye_r1.yaml	星海图R1头部相机手眼标定文件	星海图R1	查看
+hand_eye_g1.yaml	宇树G1头部相机手眼标定文件	宇树G1	查看

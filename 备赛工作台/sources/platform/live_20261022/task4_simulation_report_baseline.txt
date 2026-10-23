@@ -1,0 +1,56 @@
+仿真报告
+拍摄到的图片
+	
+处理后图片
+	
+结果
+
+
+	
+	
+{ "class": "开心", "conf": 0.37, "error": null }
+
+
+	
+	
+{ "class": "悲伤", "conf": 0.27, "error": null }
+
+
+	
+	
+{ "class": "平静", "conf": 0.23, "error": null }
+
+
+	
+	
+{ "class": "生气", "conf": 0.24, "error": null }
+
+
+	
+	
+{ "class": "开心", "conf": 0.37, "error": null }
+
+
+	
+	
+{ "class": "悲伤", "conf": 0.15, "error": null }
+
+
+	
+	
+{ "class": "害怕", "conf": 0.23, "error": null }
+
+
+	
+	
+{ "class": "悲伤", "conf": 0.25, "error": null }
+
+
+	
+	
+{ "class": "吃惊", "conf": 0.17, "error": null }
+
+
+	
+	
+{ "class": "平静", "conf": 0.1, "error": null }

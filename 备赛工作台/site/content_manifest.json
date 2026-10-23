@@ -1,0 +1,116 @@
+{
+  "output": "备赛工作台/site/content.json",
+  "tasks": 14,
+  "articles": 15,
+  "quizzes": 30,
+  "meetings": 4,
+  "segments": 337,
+  "official_requirements_tasks": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14
+  ],
+  "live_lab_tasks": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14
+  ],
+  "explicit_live_status_tasks": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14
+  ],
+  "local_links_checked": 625,
+  "content_sha256": "16ea3c37aabccaef09370a2243737919a067798709bbc25386e4aee81c32c950",
+  "input_markdown": [
+    {
+      "path": "备赛工作台/00_从这里开始.md",
+      "sha256": "514c2d3c33fd7689cd4e5700269d396f9ae71c0d99063cb3059c153d553c41f6"
+    },
+    {
+      "path": "备赛工作台/11_速通版完整学习路线.md",
+      "sha256": "eade2d86619d4d0152b37fffbb937720fbb1f613b7911d5ce5ce3584d3279e6a"
+    },
+    {
+      "path": "备赛工作台/13_正式赛题推断与备赛重点.md",
+      "sha256": "631cd287751942de0334e5b4e48bbfd0b6401199fc6cdfa8b779ba933d7b3ad1"
+    },
+    {
+      "path": "备赛工作台/12_全任务实测与排错手册.md",
+      "sha256": "af2e65c745b1a2d4ea754fb15dea99d74cb14aaaeedbd05c027528c8ec4c6796"
+    },
+    {
+      "path": "备赛工作台/01_官方规则梳理.md",
+      "sha256": "b002950348ee9d2d67d40fa20bd72a7a70506d6017d477cb12fb108bd363d9cb"
+    },
+    {
+      "path": "备赛工作台/07_零基础第一课与ROS速查.md",
+      "sha256": "b0a1abb5b8f721eab31e722d02d1d38dbb86861c1723dd3be87a1ce655b2a5cb"
+    },
+    {
+      "path": "备赛工作台/05_两天冲刺与三人分工.md",
+      "sha256": "b259faea589d26ec1cf7c0a24550a1134d7668b0e68424388e65e0c710eba22e"
+    },
+    {
+      "path": "备赛工作台/10_官方任务要求与评分.md",
+      "sha256": "58ba8a4fdd842e8ca651f25a628cf85166f6c17bede60ae9305e60b542dd6fde"
+    },
+    {
+      "path": "备赛工作台/02_任务1-12练习攻略.md",
+      "sha256": "223c553db84bb506631d9bc0c2527bb3c061aae0d1f439fe266ec775ce5d9415"
+    },
+    {
+      "path": "备赛工作台/03_任务14实战攻略.md",
+      "sha256": "4b05d02f556d77818845a31748646980b184efe09253c3040e59fc6bc8ed1e3e"
+    },
+    {
+      "path": "备赛工作台/04_培训要点与时间索引.md",
+      "sha256": "b2e1080567ae3031a55b3bcf50383536abb2c001e8a895bfad45a4ae9f6a9574"
+    },
+    {
+      "path": "备赛工作台/06_闭卷自测与错题本.md",
+      "sha256": "32cb3da7b966d548b98064c46ed2195b82afe77143031948ce661881d6684702"
+    },
+    {
+      "path": "备赛工作台/08_实操记录.md",
+      "sha256": "09db673a4d7cbcb684a341dd38fda6eb8d4767a0017cf61618942fb3c43e1501"
+    },
+    {
+      "path": "备赛工作台/09_学习站使用与续接说明.md",
+      "sha256": "79849cd57d8ac8fdf79862c26fc64486580e893fa68db256464234b1b0122cef"
+    }
+  ]
+}

@@ -1,0 +1,513 @@
+模型构建
+实例分割数据集实例分割模型抓取位姿数据集抓取位姿估计模型
+新建
+模型权重文件
+	
+文件大小
+	
+训练数据集
+	
+创建时间
+	
+状态
+	
+操作
+
+T12_seg13_1022	38.684MB	T12_五类13图_基线_1022	10/22/2026 5:57:10 PM	已完成	
+查看复制删除
+1
+模型验证结果
+该模型，precision : 0.995 recall : 0.944 f1_score : 0.969 mAP : 0.976，下面是对应的“训练&验证”和“验证集准确度”图表，以及对应模型训练的源码
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*- 
+""" 
+YOLO11 Segmentation Training Script with Custom Data Augmentation 
+ 
+This script provides comprehensive training capabilities for YOLO11 segmentation models 
+with multiple data augmentation strategies and hyperparameter configurations. 
+ 
+Supported augmentation strategies: 
+- aug1: (随机缩放+裁剪)+随机旋转+HSV变换+随机遮挡 
+- aug2: CutMix+Mixup+随机旋转+HSV变换   
+- aug3: 随机平移+随机翻转+颜色抖动 
+- aug4: 通道变换+颜色抖动+Mosaic+(随机缩放+裁剪) 
+ 
+Author: Generated for YOLO11 segmentation training 
+""" 
+ 
+import argparse 
+import time 
+import random 
+import cv2 
+import numpy as np 
+import torch 
+from typing import Dict, Any 
+from copy import deepcopy 
+ 
+from ultralytics import YOLO 
+from ultralytics.data.augment import BaseTransform 
+from ultralytics.utils import LOGGER 
+ 
+ 
+class RandomErasing(BaseTransform): 
+    """ 
+    随机遮挡数据增强 
+     
+    Args: 
+        prob (float): 执行随机遮挡的概率 
+        min_box_size (int): 最小遮挡框大小 
+        max_box_size (int): 最大遮挡框大小 
+    """ 
+     
+    def __init__(self, prob=0.3, min_box_size=20, max_box_size=60): 
+        super().__init__() 
+        self.prob = prob 
+        self.min_box_size = min_box_size 
+        self.max_box_size = max_box_size 
+     
+    def __call__(self, labels): 
+        """应用随机遮挡增强""" 
+        if random.random() > self.prob: 
+            return labels 
+             
+        img = labels['img'] 
+        h, w = img.shape[:2] 
+         
+        # 随机生成遮挡框大小和位置 
+        box_size = random.randint(self.min_box_size, self.max_box_size) 
+         
+        # 确保遮挡框不超出图像边界 
+        if box_size >= min(h, w): 
+            return labels 
+             
+        x = random.randint(0, w - box_size) 
+        y = random.randint(0, h - box_size) 
+         
+        # 应用遮挡（用随机颜色或灰色填充） 
+        erase_color = np.random.randint(0, 256, 3, dtype=img.dtype) 
+        img[y:y+box_size, x:x+box_size] = erase_color 
+         
+        labels['img'] = img 
+        return labels 
+ 
+ 
+class ColorJitterCustom(BaseTransform): 
+    """ 
+    自定义颜色抖动增强 
+     
+    Args: 
+        brightness_factor (float): 亮度变化范围 (±factor) 
+        contrast_factor (float): 对比度变化范围 (±factor)   
+        saturation_factor (float): 饱和度变化范围 (±factor) 
+        prob (float): 执行颜色抖动的概率 
+    """ 
+     
+    def __init__(self, brightness_factor=0.05, contrast_factor=0.05,  
+                 saturation_factor=0.05, prob=1.0): 
+        super().__init__() 
+        self.brightness_factor = brightness_factor 
+        self.contrast_factor = contrast_factor 
+        self.saturation_factor = saturation_factor 
+        self.prob = prob 
+     
+    def __call__(self, labels): 
+        """应用颜色抖动增强""" 
+        if random.random() > self.prob: 
+            return labels 
+             
+        img = labels['img'] 
+         
+        # 亮度调整 
+        if self.brightness_factor > 0: 
+            brightness_delta = random.uniform(-self.brightness_factor, self.brightness_factor) 
+            img = np.clip(img * (1 + brightness_delta), 0, 255).astype(np.uint8) 
+         
+        # 对比度调整 
+        if self.contrast_factor > 0: 
+            contrast_delta = random.uniform(-self.contrast_factor, self.contrast_factor) 
+            mean = img.mean() 
+            img = np.clip((img - mean) * (1 + contrast_delta) + mean, 0, 255).astype(np.uint8) 
+         
+        # 饱和度调整（在HSV空间进行） 
+        if self.saturation_factor > 0: 
+            hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV) 
+            saturation_delta = random.uniform(-self.saturation_factor, self.saturation_factor) 
+            hsv[:, :, 1] = np.clip(hsv[:, :, 1] * (1 + saturation_delta), 0, 255) 
+            img = cv2.cvtColor(hsv, cv2.COLOR_HSV2BGR) 
+         
+        labels['img'] = img 
+        return labels 
+ 
+ 
+class ChannelShuffle(BaseTransform): 
+    """ 
+    通道变换增强 - RGB通道随机打乱 
+     
+    Args: 
+        prob (float): 执行通道变换的概率 
+    """ 
+     
+    def __init__(self, prob=1.0): 
+        super().__init__() 
+        self.prob = prob 
+     
+    def __call__(self, labels): 
+        """应用通道变换增强""" 
+        if random.random() > self.prob: 
+            return labels 
+             
+        img = labels['img'] 
+        # 随机打乱BGR通道 
+        channels = [img[:, :, i] for i in range(3)] 
+        random.shuffle(channels) 
+        img = np.stack(channels, axis=2) 
+         
+        labels['img'] = img 
+        return labels 
+ 
+ 
+def get_augmentation_params(aug_type: str) -> Dict[str, Any]: 
+    """ 
+    根据aug参数返回对应的数据增强参数 
+     
+    Args: 
+        aug_type (str): 数据增强类型 (aug1, aug2, aug3, aug4, none) 
+         
+    Returns: 
+        Dict[str, Any]: 数据增强参数字典 
+    """ 
+    augmentation_params = { 
+        'aug1': { 
+            # (随机缩放+裁剪)+随机旋转+HSV变换+随机遮挡 
+            'hsv_h': 0.015, 
+            'hsv_s': 0.7,  
+            'hsv_v': 0.4, 
+            'degrees': 15.0,  # ±15°旋转 
+            'scale': 0.2,     # [0.8,1.2]随机缩放 
+            'translate': 0.0, 
+            'shear': 0.0, 
+            'perspective': 0.0, 
+            'fliplr': 0.0, 
+            'flipud': 0.0, 
+            'mosaic': 0.0, 
+            'mixup': 0.0, 
+            'copy_paste': 0.0, 
+            'custom_erasing_prob': 0.3, 
+            'custom_erasing_min_size': 20, 
+            'custom_erasing_max_size': 60, 
+        }, 
+        'aug2': { 
+            # CutMix+Mixup+随机旋转+HSV变换 
+            'hsv_h': 0.03, 
+            'hsv_s': 0.9, 
+            'hsv_v': 0.6, 
+            'degrees': 5.0,   # ±5°旋转 
+            'scale': 0.0,     # 不单独使用缩放 
+            'translate': 0.0, 
+            'shear': 0.0, 
+            'perspective': 0.0, 
+            'fliplr': 0.0, 
+            'flipud': 0.0, 
+            'mosaic': 0.0, 
+            'mixup': 0.8,     # CutMix+Mixup 
+            'copy_paste': 0.0, 
+        }, 
+        'aug3': { 
+            # 随机平移+随机翻转+颜色抖动 
+            'hsv_h': 0.0, 
+            'hsv_s': 0.0, 
+            'hsv_v': 0.0, 
+            'degrees': 0.0, 
+            'scale': 0.0, 
+            'translate': 0.02,  # ±2%平移 
+            'shear': 0.0, 
+            'perspective': 0.0, 
+            'fliplr': 0.1,      # 水平翻转概率 
+            'flipud': 0.0, 
+            'mosaic': 0.0, 
+            'mixup': 0.0, 
+            'copy_paste': 0.0, 
+            'custom_color_jitter_prob': 1.0, 
+            'custom_color_jitter_brightness': 0.05,  # ±5% 
+            'custom_color_jitter_contrast': 0.05,    # ±5% 
+            'custom_color_jitter_saturation': 0.05,  # ±5% 
+        }, 
+        'aug4': { 
+            # 通道变换+颜色抖动+Mosaic+(随机缩放+裁剪) 
+            'hsv_h': 0.0, 
+            'hsv_s': 0.0, 
+            'hsv_v': 0.0, 
+            'degrees': 0.0, 
+            'scale': 0.6,     # [0.4,1.6]随机缩放 
+            'translate': 0.0, 
+            'shear': 0.0, 
+            'perspective': 0.0, 
+            'fliplr': 0.0, 
+            'flipud': 0.0, 
+            'mosaic': 1.0,    # Mosaic增强 
+            'mixup': 0.0, 
+            'copy_paste': 0.0, 
+            'custom_channel_shuffle_prob': 1.0, 
+            'custom_color_jitter_prob': 1.0, 
+            'custom_color_jitter_brightness': 0.4,   # ±40% 
+            'custom_color_jitter_contrast': 0.4,     # ±40% 
+            'custom_color_jitter_saturation': 0.4,   # ±40% 
+        }, 
+        'none': { 
+            # 无数据增强 
+            'hsv_h': 0.0, 
+            'hsv_s': 0.0, 
+            'hsv_v': 0.0, 
+            'degrees': 0.0, 
+            'scale': 0.0, 
+            'translate': 0.0, 
+            'shear': 0.0, 
+            'perspective': 0.0, 
+            'fliplr': 0.0, 
+            'flipud': 0.0, 
+            'mosaic': 0.0, 
+            'mixup': 0.0, 
+            'copy_paste': 0.0, 
+        } 
+    } 
+     
+    return augmentation_params.get(aug_type, augmentation_params['none']) 
+ 
+ 
+def create_custom_transforms(aug_params: Dict[str, Any]) -> list: 
+    """ 
+    创建自定义数据增强变换列表 
+     
+    Args: 
+        aug_params (Dict[str, Any]): 数据增强参数 
+         
+    Returns: 
+        list: 自定义变换列表 
+    """ 
+    custom_transforms = [] 
+     
+    # 随机遮挡 
+    if aug_params.get('custom_erasing_prob', 0) > 0: 
+        custom_transforms.append( 
+            RandomErasing( 
+                prob=aug_params.get('custom_erasing_prob', 0.3), 
+                min_box_size=aug_params.get('custom_erasing_min_size', 20), 
+                max_box_size=aug_params.get('custom_erasing_max_size', 60) 
+            ) 
+        ) 
+     
+    # 颜色抖动 
+    if aug_params.get('custom_color_jitter_prob', 0) > 0: 
+        custom_transforms.append( 
+            ColorJitterCustom( 
+                brightness_factor=aug_params.get('custom_color_jitter_brightness', 0.05), 
+                contrast_factor=aug_params.get('custom_color_jitter_contrast', 0.05), 
+                saturation_factor=aug_params.get('custom_color_jitter_saturation', 0.05), 
+                prob=aug_params.get('custom_color_jitter_prob', 1.0) 
+            ) 
+        ) 
+     
+    # 通道变换 
+    if aug_params.get('custom_channel_shuffle_prob', 0) > 0: 
+        custom_transforms.append( 
+            ChannelShuffle(prob=aug_params.get('custom_channel_shuffle_prob', 1.0)) 
+        ) 
+     
+    return custom_transforms 
+ 
+ 
+def train_yolo(args): 
+    """ 
+    使用YOLO内置方法进行分割训练 
+     
+    Args: 
+        args: 命令行参数 
+    """ 
+    print(f"开始YOLO分割训练，使用数据增强方案: {args.aug}") 
+    print(f"预训练权重尺寸: {args.yolo_size}, 优化器: {args.optimizer}, 学习率: {args.lr}") 
+    print(f"批次大小: {args.batch_size}, 工作进程: {args.num_workers}, 训练轮数: {args.epochs}") 
+     
+    # 构建模型路径 
+    if args.yolo_size == 'l': 
+        model_path = r"weights\yolo11l-seg.pt" 
+    elif args.yolo_size == 's': 
+        model_path = r"weights\yolo11s-seg.pt" 
+    elif args.yolo_size == 'm': 
+        model_path = r"weights\yolo11m-seg.pt" 
+    else: 
+        model_path = r"weights\yolo11s-seg.pt" 
+         
+    # 获取数据增强参数 
+    aug_params = get_augmentation_params(args.aug) 
+    print(f"数据增强参数: {aug_params}") 
+     
+    # 数据配置文件路径 
+    if args.data: 
+        data_path = args.data 
+    else: 
+        data_path = "ultralytics/cfg/datasets/data.yaml" 
+     
+    # 在创建模型前，尝试为 PyTorch 反序列化注册“安全全局”（适配 PyTorch 2.6+） 
+    def _allow_torch_unpickle_globals(): 
+        try: 
+            import torch.serialization as tser 
+        except Exception: 
+            return [] 
+        globs = [] 
+        try: 
+            from ultralytics.nn.tasks import SegmentationModel 
+            globs.append(SegmentationModel) 
+        except Exception: 
+            pass 
+        try: 
+            from torch.nn.modules.container import Sequential 
+            globs.append(Sequential) 
+        except Exception: 
+            pass 
+        try: 
+            if globs and hasattr(tser, "add_safe_globals"): 
+                tser.add_safe_globals(globs) 
+        except Exception: 
+            pass 
+        return globs 
+ 
+    _globs = _allow_torch_unpickle_globals() 
+    try: 
+        # 初始化YOLO分割模型 
+        model = YOLO(model=model_path, task='segment') 
+        print(f"成功加载模型: {model_path}") 
+    except Exception as e: 
+        print(f"模型加载失败: {e}") 
+        print("尝试使用安全上下文加载权重...") 
+        try: 
+            import torch.serialization as tser 
+            if _globs and hasattr(tser, "safe_globals"): 
+                with tser.safe_globals(_globs): 
+                    model = YOLO(model=model_path, task='segment') 
+            else: 
+                # 回退到 add_safe_globals 再次尝试 
+                if _globs and hasattr(tser, "add_safe_globals"): 
+                    tser.add_safe_globals(_globs) 
+                model = YOLO(model=model_path, task='segment') 
+            print(f"成功加载模型 (使用安全全局白名单): {model_path}") 
+        except Exception as e2: 
+            print(f"在线模型加载也失败: {e2}") 
+            print("请检查网络连接或手动下载预训练模型") 
+            return 
+     
+    # 设置学习率代码 
+    lrcode = {0.01: 1, 0.001: 2, 0.0001: 3}.get(args.lr, 4) 
+     
+    # 设置训练参数 
+    train_kwargs = { 
+        'data': data_path, 
+        'imgsz': 640, 
+        'epochs': args.epochs, 
+        'batch': args.batch_size, 
+        'workers': args.num_workers, 
+        'optimizer': args.optimizer.lower(), 
+        'lr0': args.lr, 
+        'save_period': 50, 
+        'project': 'runs/train', 
+        'name': f'yolo{args.yolo_size}_seg_{args.aug}_{args.optimizer.lower()}{lrcode}_batch{args.batch_size}', 
+        'exist_ok': True, 
+        'val': True, 
+        'plots': True, 
+        'save': True, 
+        'device': '0' if torch.cuda.is_available() else 'cpu', 
+        'amp': False, 
+        'patience': 50, 
+        'verbose': True, 
+    } 
+     
+    # 添加分割任务特定参数 
+    train_kwargs.update({ 
+        'overlap_mask': True, 
+        'mask_ratio': 4, 
+        'close_mosaic': aug_params.get('close_mosaic', 10), 
+    }) 
+     
+    # 添加数据增强参数（过滤自定义参数） 
+    aug_kwargs = {k: v for k, v in aug_params.items()  
+                  if not k.startswith('custom_') and v is not None} 
+    train_kwargs.update(aug_kwargs) 
+     
+    print(f"YOLO训练参数配置完成") 
+    print(f"训练设备: {train_kwargs['device']}") 
+    print(f"数据集配置: {data_path}") 
+     
+    # 开始训练 
+    start_time = time.time() 
+    try: 
+        model.train(**train_kwargs) 
+        end_time = time.time() 
+         
+        execution_time = end_time - start_time 
+        print(f"YOLO训练完成，执行时间: {execution_time:.2f} 秒") 
+         
+        # 保存最终权重 
+        if hasattr(args, 'weight_name') and args.weight_name: 
+            best_weights_path = f"runs/train/{train_kwargs['name']}/weights/best.pt" 
+            if hasattr(model, 'save'): 
+                model.save(args.weight_name) 
+            else: 
+                import shutil 
+                shutil.copy2(best_weights_path, args.weight_name) 
+            print(f"模型已保存到: {args.weight_name}") 
+             
+    except Exception as e: 
+        print(f"训练过程中出现错误: {e}") 
+        raise 
+ 
+ 
+def main(): 
+    """主函数""" 
+    parser = argparse.ArgumentParser(description='YOLO分割训练脚本') 
+     
+    # 超参数 
+    parser.add_argument('--epochs', type=int, default=100, choices=[50, 100, 150], 
+                        help='训练轮数') 
+    parser.add_argument('--batch_size', type=int, default=8, choices=[1, 4, 8, 16], 
+                        help='批次大小') 
+    parser.add_argument('--num_workers', type=int, default=1, choices=[0, 1, 4, 8], 
+                        help='数据加载工作进程数') 
+    parser.add_argument('--optimizer', type=str, default='sgd', choices=['SGD', 'Adam'], 
+                        help='优化器类型') 
+    parser.add_argument('--lr', type=float, default=0.001, choices=[0.01, 0.001, 0.0001], 
+                        help='学习率') 
+     
+    # 模型参数 
+    parser.add_argument('--yolo_size', type=str, default='s', choices=['s', 'm', 'l'], 
+                    help='预训练模型尺寸') 
+    parser.add_argument('--aug', type=str, default='aug1', choices=['aug1', 'aug2', 'aug3', 'aug4', 'none'], 
+                        help='数据增强策略') 
+    parser.add_argument('--data', type=str, default='ultralytics/cfg/datasets/data.yaml', 
+                        help='数据配置文件路径') 
+     
+    # 输出参数 
+    parser.add_argument('--weight_name', type=str, default='yolos_seg_aug1_sgd2_batch8_100.pt', 
+                        help='保存的模型权重文件名') 
+     
+    # 解析参数 
+    args = parser.parse_args() 
+     
+    # 打印配置信息 
+    print("=" * 60) 
+    print("YOLO11 分割训练配置") 
+    print("=" * 60) 
+    print(f"数据增强策略: {args.aug}") 
+    print(f"预训练权重尺寸: {args.yolo_size}") 
+    print(f"训练轮数: {args.epochs}") 
+    print(f"批次大小: {args.batch_size}") 
+    print(f"工作进程: {args.num_workers}") 
+    print(f"优化器: {args.optimizer}") 
+    print(f"学习率: {args.lr}") 
+    print(f"数据配置: {args.data}") 
+    print("=" * 60) 
+     
+    # 开始训练 
+    train_yolo(args) 
+ 
+ 
+if __name__ == "__main__": 
+    main() 

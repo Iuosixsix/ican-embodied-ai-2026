@@ -1,0 +1,60 @@
+  - generic: 源码
+  - generic: import rclpy
+  - generic: import cv2
+  - generic: from rclpy.node import Node
+  - generic: from rclpy.action import ActionClient
+  - generic: from geometry_msgs.msg import PoseStamped, Twist
+  - generic: from sensor_msgs.msg import PointCloud2,Image
+  - generic: from std_msgs.msg import Int32, Bool,String, Float32MultiArray
+  - generic: import math
+  - generic: import Talk
+  - generic: import serial
+  - generic: import threading
+  - generic: import numpy as np
+  - generic: import time
+  - generic: import transforms3d
+  - generic: import torch
+  - generic: from graspnet import GraspNet
+  - generic: from rknnlite.api import RKNNLite
+  - generic: from moveit_py import MoveItPy
+  - generic: from moveit_msgs.msg import MoveItErrorCodes
+  - generic: from nav2_msgs.action import NavigateToPose
+  - generic: from tf2_ros import StaticTransformBroadcaster
+  - generic: from tf2 import quaternion_from_euler
+  - generic: import tf2_ros
+  - generic: from tf2_geometry_msgs import do_transform_pose
+  - generic: import yaml
+  - generic: from ultralytics import YOLO
+  - generic: "def init(self):"
+  - generic: "#创建一个发布者"
+  - generic: self._deploy_pub = self.create_publisher(_grabMessage, '_deploy', 10)
+  - generic: "# _grabMessage.msg的内容如下"
+  - generic: bool Hand
+  - generic: pose Fpose
+  - generic: "#创建一个订阅者"
+  - generic: self.is_Finish_pub = self.create_subscription(Bool, 'is_Finish', self.callback, 10)
+  - generic: "#设置通信串口"
+  - generic: self.declare_parameter('serial_port', '/dev/ttyUSB0')
+  - generic: self.declare_parameter('baud_rate', 9600)
+  - generic: port = self.get_parameter('serial_port').value
+  - generic: baud = self.get_parameter('baud_rate').value
+  - generic: "#设置一个唤醒词并通过串口传给外部语音模块"
+  - generic: "try:"
+  - generic: self.ser = serial.Serial(port, baud, timeout=1)
+  - generic: "self.get_logger().info(f'Connected to {port}')"
+  - generic: "cmd = f\"WAKEUP:{'你好小星'}\\n\" # 对应学生设置的唤醒词"
+  - generic: self.ser.write(cmd.encode())
+  - generic: "except Exception as e:"
+  - generic: "self.get_logger().error(f'Serial error: {e}')"
+  - generic: raise
+  - generic: "#设置一个回调函数，在外部语音模块识别到唤醒词后被触发"
+  - generic: self.running = True
+  - generic: "self.thread = threading.Thread(target=self.serial_loop, daemon=True) # 对应回调函数"
+  - generic: self.thread.start()
+  - generic: "#创建一个发布者"
+  - generic: self.Navigation_Address_pub = self.create_publisher(String, 'Navigation_Address', 10)
+  - generic: "#创建一个发布者"
+  - generic: self._grab_pub = self.create_publisher(_grabMessage, '_grab', 10)
+  - generic: "# _grabMessage.msg的内容如下"
+  - generic: bool Hand
+  - generic: pointcloud Pcloud

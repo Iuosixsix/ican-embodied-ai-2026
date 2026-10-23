@@ -1,0 +1,85 @@
+{
+  "review_date": "2026-10-23",
+  "scope": "Existing local screenshots only; no live platform state verification",
+  "count": 13,
+  "files": [
+    {
+      "file": "task10_calibration_15.png",
+      "bytes": 185384,
+      "sha256": "ECBB58C81CD201C9555C48E6B6DC328D5EFE01999922B1A96D03B6ADD297D61D",
+      "observed_local_file_modified": "2026-10-22 17:35:41"
+    },
+    {
+      "file": "task10_calibration_generated.png",
+      "bytes": 147556,
+      "sha256": "4C379E90E091154B94B11C473F857BFDD2ED3B5A0ECA57C632ED5F93DAE6E454",
+      "observed_local_file_modified": "2026-10-22 17:36:16"
+    },
+    {
+      "file": "task10_calibration_no_record.png",
+      "bytes": 174816,
+      "sha256": "4F7BB3E73B44340A6323966E220338366848CA61CEED5F1269A92ED25A1A369C",
+      "observed_local_file_modified": "2026-10-22 17:23:42"
+    },
+    {
+      "file": "task10_home.png",
+      "bytes": 158377,
+      "sha256": "F586D29EE4774C6F4C54C6F511AB15D599708C0457D36187865A3C0E3294753E",
+      "observed_local_file_modified": "2026-10-22 17:20:46"
+    },
+    {
+      "file": "task10_model_blank.png",
+      "bytes": 90004,
+      "sha256": "5CD8E1BCB704210B209E7B15A39ED9064F299F959FB8BD3A087B718847E39BB5",
+      "observed_local_file_modified": "2026-10-22 17:37:10"
+    },
+    {
+      "file": "task11_model_blank.png",
+      "bytes": 90511,
+      "sha256": "E65779CBC78CA36F54322E674E2F6D06A9A0CE44D364AD4E676A0FBC7727E66D",
+      "observed_local_file_modified": "2026-10-22 17:31:38"
+    },
+    {
+      "file": "task12_dataset_13_saved.png",
+      "bytes": 62131,
+      "sha256": "5285259A41E231398E387FB3DEEB2780CE3E2FC12595962F34E455995D311A35",
+      "observed_local_file_modified": "2026-10-22 17:55:35"
+    },
+    {
+      "file": "task12_grasp_scene1_adjusted.png",
+      "bytes": 85288,
+      "sha256": "6DF62B54B671EE603E3A0352F6BDF90D35CE4A60DEAC126F355BAE1F3148CBCF",
+      "observed_local_file_modified": "2026-10-22 18:02:35"
+    },
+    {
+      "file": "task12_grasp_scene3_adjusted.png",
+      "bytes": 74147,
+      "sha256": "8BE97297EC65AE1176C3BDB7E9B8A132C6B7228355F875CFA1DDA7C0EA411BEC",
+      "observed_local_file_modified": "2026-10-22 18:06:38"
+    },
+    {
+      "file": "task12_grasp_scene4_adjusted.png",
+      "bytes": 84491,
+      "sha256": "866CBC30DB710168C5125CF141C8C2159EFB58018906BCC905D874DBFB800059",
+      "observed_local_file_modified": "2026-10-22 18:09:14"
+    },
+    {
+      "file": "task12_model_loaded.png",
+      "bytes": 58335,
+      "sha256": "42E76F14EC79CB7F52635B1945735F9791E1F88BE48B8514AB691AF220AA7901",
+      "observed_local_file_modified": "2026-10-22 17:33:01"
+    },
+    {
+      "file": "task12_sam_labels_sample.png",
+      "bytes": 167045,
+      "sha256": "4BF2A1FE946F63AB3DF7D01344D2E2AE3C11175086AC495A2399F5261B6DBAED",
+      "observed_local_file_modified": "2026-10-22 17:36:28"
+    },
+    {
+      "file": "task12_seg_training_config.png",
+      "bytes": 70769,
+      "sha256": "2AF2DC056D134B71C457A5CEBCEB2C7D0BAA2F8D8ADEF06661E197599DB07F69",
+      "observed_local_file_modified": "2026-10-22 17:57:04"
+    }
+  ]
+}

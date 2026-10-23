@@ -1,0 +1,182 @@
+检测算法设计
+算法流程构建训练数据构建视觉模型构建
+新建
+模型权重文件
+	
+文件大小
+	
+训练数据集
+	
+创建时间
+	
+状态
+	
+操作
+
+detect_yolo20_1023	96MB	detect20_fourclass_1023	10/23/2026 1:45:55 AM	已完成	
+查看量化复制删除
+1
+模型验证结果
+该模型，precision : 0.871 recall : 0.812 f1_score : 0.84 mAP : 0.843，下面是对应的“训练&验证”和“验证集准确度”图表，以及对应模型训练的源码
+import argparse
+import torch 
+import os 
+import sys 
+from ultralytics import YOLO 
+import time 
+from tqdm import tqdm 
+ 
+def get_augmentation_params(aug_type): 
+    """根据aug参数返回对应的数据增强参数""" 
+    augmentation_params = { 
+        'aug1': { 
+            'hsv_h': 0.015, 
+            'hsv_s': 0.7, 
+            'hsv_v': 0.4, 
+            'scale': 0.5, 
+            'fliplr': 0.5, 
+            'mosaic': 1.0, 
+            'close_mosaic': 10, 
+            'mixup': 0.0 
+        }, 
+        'aug2': { 
+            'hsv_h': 0.0, 
+            'hsv_s': 0.0, 
+            'hsv_v': 0.0, 
+            'fliplr': 0.0, 
+            'degrees': 30.0, 
+            'scale': 0.8, 
+            'shear': -30.0, 
+            'mosaic': 0.6, 
+            'close_mosaic': 10, 
+            'mixup': 0.0 
+        }, 
+        'aug3': { 
+            'hsv_h': 0.2, 
+            'hsv_s': 1.0, 
+            'hsv_v': 1.0, 
+            'fliplr': 0.6, 
+            'scale': 1.0, 
+            'bgr': 0.4, 
+            'mosaic': 0.0, 
+            'close_mosaic': 0, 
+            'mixup': 0.0 
+        }, 
+        'aug4': { 
+            'hsv_h': 0.0, 
+            'hsv_s': 0.0, 
+            'hsv_v': 0.0, 
+            'scale': 0.2, 
+            'fliplr': 0.0, 
+            'mosaic': 1.0, 
+            'close_mosaic': 10, 
+            'mixup': 0.4 
+        }, 
+        'none': { 
+            'hsv_h': 0.0, 
+            'hsv_s': 0.0, 
+            'hsv_v': 0.0, 
+            'fliplr': 0.0, 
+            'mosaic': 0.0, 
+            'close_mosaic': 0, 
+            'mixup': 0.0 
+        } 
+    } 
+     
+    return augmentation_params.get(aug_type, augmentation_params['none']) 
+ 
+def yolov11(model_size='l', pretrained=True, weights=None): 
+    """初始化YOLO模型""" 
+    if pretrained and weights is None: 
+        if model_size == 'l': 
+            model_path = r"yolov11\weights\yolo11l.pt" 
+        elif model_size == 's': 
+            model_path = r"yolov11\weights\yolo11s.pt" 
+        elif model_size == 'm': 
+            model_path = r"yolov11\weights\yolo11m.pt" 
+        elif model_size == 'n': 
+            model_path = r"yolov11\weights\yolo11n.pt" 
+        else: 
+            raise ValueError("Invalid model size. Choose from 'l', 's', 'm', or 'n'.") 
+    else: 
+        model_path = weights 
+     
+    # 初始化模型 
+    model = YOLO(model=model_path, task='detect') 
+    return model 
+ 
+def train_yolo(args): 
+    """使用YOLO内置方法进行训练""" 
+    print(f"开始YOLO训练，使用数据增强方案: {args.aug}") 
+     
+    # 获取数据增强参数 
+    aug_params = get_augmentation_params(args.aug) 
+     
+    # 指定模型文件的完整路径 
+    if args.yolo_size == 'l': 
+        model_path = r"yolov11\weights\yolo11l.pt" 
+    elif args.yolo_size == 's': 
+        model_path = r"yolov11\weights\yolo11s.pt" 
+    elif args.yolo_size == 'm': 
+        model_path = r"yolov11\weights\yolo11m.pt" 
+    elif args.yolo_size == 'n': 
+        model_path = r"yolov11\weights\yolo11n.pt" 
+    else: 
+        model_path = r"yolov11\weights\yolo11l.pt" 
+     
+    data_path = r"yolov11/ultralytics/cfg/datasets/data.yaml" 
+     
+    model = YOLO(model=model_path, task='detect') 
+     
+    # 设置训练参数 
+    train_kwargs = { 
+        'data': data_path, 
+        'imgsz': 640, 
+        'epochs': args.epochs, 
+        'batch': args.batch_size, 
+        'workers': args.num_workers, 
+        'optimizer': args.optimizer.lower(), 
+        'lr0': args.lr, 
+        'save_period': 50, 
+        'project': r'yolov11\runs\train', 
+        'name': f'yolo_{args.yolo_size}_{args.aug}_{args.optimizer.lower()}', 
+        'exist_ok': True, 
+    } 
+     
+    # 添加数据增强参数 
+    train_kwargs.update(aug_params) 
+     
+    # 设置设备 
+    if torch.cuda.is_available(): 
+        train_kwargs['device'] = '0' 
+    else: 
+        train_kwargs['device'] = 'cpu' 
+     
+    print(f"YOLO训练参数: {train_kwargs}") 
+     
+    # 开始训练 
+    start_time = time.time() 
+    model.train(**train_kwargs) 
+    end_time = time.time() 
+     
+    execution_time = end_time - start_time 
+    print(f"YOLO训练完成，执行时间: {execution_time:.2f} 秒") 
+     
+    # 保存最终权重 
+    if hasattr(args, 'weight_name') and args.weight_name: 
+        model.save(args.weight_name) 
+        print(f"模型已保存到: {args.weight_name}") 
+ 
+if __name__ == "__main__": 
+    parser = argparse.ArgumentParser(description='YOLO训练脚本') 
+    # 输入参数 
+    parser.add_argument('--epochs', type=int, default=150, help='训练轮数') 
+    parser.add_argument('--batch_size', type=int, default=1, help='批次大小') 
+    parser.add_argument('--num_workers', type=int, default=0, help='数据加载器工作进程数') 
+    parser.add_argument('--optimizer', type=str, default='sgd', help='优化器类型') 
+    parser.add_argument('--lr', type=float, default=0.001, help='学习率') 
+    parser.add_argument('--weight_name', type=str, default='yolol_aug1_sgd2.pt', help='保存的权重文件名') 
+    parser.add_argument('--yolo_size', type=str, default='l', help='YOLO模型大小 (l, s, m, n)') 
+    parser.add_argument('--aug', type=str, default='aug1', help='数据增强方案 (aug1, aug2, aug3, aug4, none)') 
+    opt = parser.parse_args() 
+    train_yolo(opt) 

@@ -1,0 +1,10 @@
+[
+  {
+    "level": "error",
+    "message": "TypeError: Cannot read properties of undefined (reading 'filter')\n    at [URL omitted]\n    at Array.map (<anonymous>)\n    at t.default ([URL omitted]\n    at oa ([URL omitted]\n    at Va ([URL omitted]\n    at Bc ([URL omitted]\n    at Os ([URL omitted]\n    at Ss ([URL omitted]\n    at Ms ([URL omitted]\n    at hs ([URL omitted]"
+  },
+  {
+    "level": "error",
+    "message": "TypeError: Cannot read properties of undefined (reading 'filter')\n    at [URL omitted]\n    at Array.map (<anonymous>)\n    at t.default ([URL omitted]\n    at oa ([URL omitted]\n    at Va ([URL omitted]\n    at Bc ([URL omitted]\n    at Os ([URL omitted]\n    at Ss ([URL omitted]\n    at Ms ([URL omitted]\n    at hs ([URL omitted]"
+  }
+]

@@ -1,0 +1,657 @@
+仿真报告
+下面是两个机器人执行任务的仿真结果
+机器人
+	
+任务
+	
+执行结果
+	
+说明
+
+
+星海图R1
+	
+到达一号桌
+	
+成功
+	
+
+
+拿到苹果
+	
+成功
+	
+
+
+到达二号桌
+	
+成功
+	
+
+
+拿到大象
+	
+成功
+	
+
+
+到达三号桌
+	
+成功
+	
+
+
+把苹果放到蓝色盒子
+	
+成功
+	
+
+
+把大象放到绿色盒子
+	
+成功
+	
+
+
+回到起点
+	
+成功
+	
+
+
+宇树G1
+	
+到达一号桌
+	
+成功
+	
+
+
+拿到香蕉
+	
+成功
+	
+
+
+到达二号桌
+	
+成功
+	
+
+
+拿到长颈鹿
+	
+失败
+	
+目标检测识别正确、6d位姿识别正确、机械臂移动位姿失败、夹爪闭合未抓到
+
+
+到达三号桌
+	
+成功
+	
+
+
+把香蕉放到红色盒子
+	
+成功
+	
+
+
+把长颈鹿放到黄色盒子
+	
+失败
+	
+颜色检测识别正确、机械臂移动位姿正确、夹爪释放道具未入盒
+
+
+回到起点
+	
+成功
+	
+下面是两个机器人所有节点函数的指令执行情况
+节点
+	
+函数执行
+	
+指令执行
+
+
+master_node_r1.py
+	
+nav_arm_finish_callback(执行)
+	
+条件判断(执行)
+变量赋值(执行)
+客户端请求(执行)
+发布话题(执行)
+文字转语音(执行)
+
+
+vision_detect_response_callback1(执行)
+	
+变量赋值(执行)
+发布话题(执行)
+
+
+vision_detect_response_callback2(执行)
+	
+变量赋值(执行)
+发布话题(执行)
+
+
+vision_detect_response_callback3(执行)
+	
+变量赋值(执行)
+发布话题(执行)
+
+
+vision_detect_response_callback4(执行)
+	
+变量赋值(执行)
+发布话题(执行)
+
+
+init(执行)
+	
+创建发布者(执行)
+创建订阅者(执行)
+设置唤醒词(执行)
+
+
+set_wakeup_keywords_callback(执行)
+	
+提取任务信息(执行)
+发布静态TF(执行)
+变量赋值(执行)
+发布话题(执行)
+
+
+nav_node_r1.py
+	
+init(执行)
+	
+初始化航点(执行)
+创建发布者(执行)
+创建订阅者(执行)
+
+
+nav_target_message_callback(执行)
+	
+变量赋值(执行)
+条件判断(执行)
+导航到航点(执行)
+
+
+nav_finish_callback(执行)
+	
+变量赋值(执行)
+发布话题(执行)
+
+
+vision_node_r1.py
+	
+init(执行)
+	
+创建订阅者(执行)
+创建服务端(执行)
+
+
+get_camera_rgb_callback(执行)
+	
+变量赋值(执行)
+
+
+get_camera_depth_callback(执行)
+	
+变量赋值(执行)
+
+
+vision_detect_request_callback(执行)
+	
+条件判断(执行)
+目标检测(执行)
+深度图转点云(执行)
+服务端响应(执行)
+颜色检测(执行)
+二维点转三维点(执行)
+TF坐标变换(执行)
+
+
+arm_node_r1.py
+	
+init(执行)
+	
+初始化规划组(执行)
+创建发布者(执行)
+创建订阅者(执行)
+
+
+grab_message_callback(执行)
+	
+变量赋值(执行)
+条件判断(执行)
+抓取位姿估计(执行)
+TF坐标变换(执行)
+机械臂移动(执行)
+
+
+deploy_message_callback(执行)
+	
+变量赋值(执行)
+条件判断(执行)
+机械臂移动(执行)
+
+
+grab_finish_callback(执行)
+	
+闭合夹爪(执行)
+发布话题(执行)
+
+
+deploy_finish_callback(执行)
+	
+张开夹爪(执行)
+发布话题(执行)
+
+
+master_node_g1.py
+	
+nav_arm_finish_callback(执行)
+	
+条件判断(执行)
+变量赋值(执行)
+客户端请求(执行)
+发布话题(执行)
+文字转语音(执行)
+
+
+vision_detect_response_callback1(执行)
+	
+变量赋值(执行)
+发布话题(执行)
+
+
+vision_detect_response_callback2(执行)
+	
+变量赋值(执行)
+发布话题(执行)
+
+
+vision_detect_response_callback3(执行)
+	
+变量赋值(执行)
+发布话题(执行)
+
+
+vision_detect_response_callback4(执行)
+	
+变量赋值(执行)
+发布话题(执行)
+
+
+init(执行)
+	
+创建发布者(执行)
+创建订阅者(执行)
+设置唤醒词(执行)
+
+
+set_wakeup_keywords_callback(执行)
+	
+提取任务信息(执行)
+发布静态TF(执行)
+变量赋值(执行)
+发布话题(执行)
+
+
+nav_node_g1.py
+	
+init(执行)
+	
+加载走路模型(执行)
+创建发布者(执行)
+初始化航点(执行)
+创建订阅者(执行)
+
+
+nav_target_message_callback(执行)
+	
+变量赋值(执行)
+条件判断(执行)
+导航到航点(执行)
+
+
+nav_finish_callback(执行)
+	
+变量赋值(执行)
+发布话题(执行)
+
+
+vision_node_g1.py
+	
+init(执行)
+	
+创建订阅者(执行)
+创建服务端(执行)
+
+
+get_camera_rgb_callback(执行)
+	
+变量赋值(执行)
+
+
+get_camera_depth_callback(执行)
+	
+变量赋值(执行)
+
+
+vision_detect_request_callback(执行)
+	
+条件判断(执行)
+目标检测(执行)
+深度图转点云(执行)
+服务端响应(执行)
+颜色检测(执行)
+二维点转三维点(执行)
+TF坐标变换(执行)
+
+
+arm_node_g1.py
+	
+init(执行)
+	
+初始化规划组(执行)
+创建发布者(执行)
+创建订阅者(执行)
+
+
+grab_message_callback(执行)
+	
+变量赋值(执行)
+条件判断(执行)
+抓取位姿估计(执行)
+TF坐标变换(执行)
+机械臂移动(执行)
+
+
+deploy_message_callback(执行)
+	
+变量赋值(执行)
+条件判断(执行)
+机械臂移动(执行)
+
+
+grab_finish_callback(执行)
+	
+闭合夹爪(执行)
+发布话题(执行)
+
+
+deploy_finish_callback(执行)
+	
+张开夹爪(执行)
+发布话题(执行)
+下面是函数执行过程
+8.085s   master_node_r1节点   init函数   设置唤醒词指令
+8.085s   master_node_r1节点   init函数   创建发布者指令
+8.085s   master_node_r1节点   init函数   创建发布者指令
+8.085s   master_node_r1节点   init函数   创建发布者指令
+8.085s   master_node_r1节点   init函数   创建订阅者指令
+8.085s   nav_node_r1节点   init函数   初始化航点指令
+8.085s   nav_node_r1节点   init函数   创建发布者指令
+8.085s   nav_node_r1节点   init函数   创建订阅者指令
+8.085s   vision_node_r1节点   init函数   创建订阅者指令
+8.085s   vision_node_r1节点   init函数   创建订阅者指令
+8.085s   vision_node_r1节点   init函数   创建服务端指令
+8.085s   arm_node_r1节点   init函数   初始化规划组指令
+8.085s   arm_node_r1节点   init函数   创建发布者指令
+8.085s   arm_node_r1节点   init函数   创建订阅者指令
+8.085s   arm_node_r1节点   init函数   创建订阅者指令
+8.086s   vision_node_r1节点   get_camera_rgb_callback函数   变量赋值指令
+8.086s   vision_node_r1节点   get_camera_rgb_callback函数   变量赋值指令
+8.086s   vision_node_r1节点   get_camera_rgb_callback函数   变量赋值指令
+8.086s   vision_node_r1节点   get_camera_rgb_callback函数   变量赋值指令
+8.086s   vision_node_r1节点   get_camera_depth_callback函数   变量赋值指令
+8.086s   vision_node_r1节点   get_camera_depth_callback函数   变量赋值指令
+8.086s   vision_node_r1节点   get_camera_depth_callback函数   变量赋值指令
+8.086s   vision_node_r1节点   get_camera_depth_callback函数   变量赋值指令
+8.318s   master_node_r1节点   set_wakeup_keywords_callback函数   提取任务信息指令
+8.318s   master_node_r1节点   set_wakeup_keywords_callback函数   发布静态TF指令
+8.318s   master_node_r1节点   set_wakeup_keywords_callback函数   变量赋值指令
+8.318s   master_node_r1节点   set_wakeup_keywords_callback函数   发布话题指令
+8.856s   nav_node_r1节点   nav_target_message_callback函数   变量赋值指令
+8.856s   nav_node_r1节点   nav_target_message_callback函数   条件判断指令
+8.856s   nav_node_r1节点   nav_target_message_callback函数   变量赋值指令
+8.856s   nav_node_r1节点   nav_target_message_callback函数   导航到航点指令
+14.538s   nav_node_r1节点   nav_finish_callback函数   变量赋值指令
+14.538s   nav_node_r1节点   nav_finish_callback函数   发布话题指令
+14.851s   master_node_r1节点   nav_arm_finish_callback函数   条件判断指令
+14.851s   master_node_r1节点   nav_arm_finish_callback函数   变量赋值指令
+14.851s   master_node_r1节点   nav_arm_finish_callback函数   客户端请求指令
+15.254s   vision_node_r1节点   vision_detect_request_callback函数   条件判断指令
+15.254s   vision_node_r1节点   vision_detect_request_callback函数   目标检测指令
+15.254s   vision_node_r1节点   vision_detect_request_callback函数   深度图转点云指令
+15.254s   vision_node_r1节点   vision_detect_request_callback函数   服务端响应指令
+19.923s   master_node_r1节点   vision_detect_response_callback1函数   变量赋值指令
+19.923s   master_node_r1节点   vision_detect_response_callback1函数   发布话题指令
+20.232s   arm_node_r1节点   grab_message_callback函数   变量赋值指令
+20.232s   arm_node_r1节点   grab_message_callback函数   条件判断指令
+20.232s   arm_node_r1节点   grab_message_callback函数   变量赋值指令
+20.232s   arm_node_r1节点   grab_message_callback函数   变量赋值指令
+20.232s   arm_node_r1节点   grab_message_callback函数   抓取位姿估计指令
+20.232s   arm_node_r1节点   grab_message_callback函数   TF坐标变换指令
+20.232s   arm_node_r1节点   grab_message_callback函数   机械臂移动指令
+29.372s   arm_node_r1节点   grab_finish_callback函数   闭合夹爪指令
+29.372s   arm_node_r1节点   grab_finish_callback函数   发布话题指令
+36.112s   master_node_r1节点   nav_arm_finish_callback函数   条件判断指令
+36.112s   master_node_r1节点   nav_arm_finish_callback函数   变量赋值指令
+36.112s   master_node_r1节点   nav_arm_finish_callback函数   发布话题指令
+36.522s   nav_node_r1节点   nav_target_message_callback函数   变量赋值指令
+36.522s   nav_node_r1节点   nav_target_message_callback函数   条件判断指令
+36.522s   nav_node_r1节点   nav_target_message_callback函数   变量赋值指令
+36.522s   nav_node_r1节点   nav_target_message_callback函数   导航到航点指令
+49.291s   nav_node_r1节点   nav_finish_callback函数   变量赋值指令
+49.291s   nav_node_r1节点   nav_finish_callback函数   发布话题指令
+49.599s   master_node_r1节点   nav_arm_finish_callback函数   条件判断指令
+49.599s   master_node_r1节点   nav_arm_finish_callback函数   变量赋值指令
+49.599s   master_node_r1节点   nav_arm_finish_callback函数   客户端请求指令
+50.002s   vision_node_r1节点   vision_detect_request_callback函数   条件判断指令
+50.002s   vision_node_r1节点   vision_detect_request_callback函数   目标检测指令
+50.002s   vision_node_r1节点   vision_detect_request_callback函数   深度图转点云指令
+50.002s   vision_node_r1节点   vision_detect_request_callback函数   服务端响应指令
+54.647s   master_node_r1节点   vision_detect_response_callback2函数   变量赋值指令
+54.647s   master_node_r1节点   vision_detect_response_callback2函数   发布话题指令
+54.955s   arm_node_r1节点   grab_message_callback函数   变量赋值指令
+54.955s   arm_node_r1节点   grab_message_callback函数   条件判断指令
+54.955s   arm_node_r1节点   grab_message_callback函数   变量赋值指令
+54.955s   arm_node_r1节点   grab_message_callback函数   变量赋值指令
+54.955s   arm_node_r1节点   grab_message_callback函数   抓取位姿估计指令
+54.955s   arm_node_r1节点   grab_message_callback函数   TF坐标变换指令
+54.955s   arm_node_r1节点   grab_message_callback函数   机械臂移动指令
+62.926s   arm_node_r1节点   grab_finish_callback函数   闭合夹爪指令
+62.926s   arm_node_r1节点   grab_finish_callback函数   发布话题指令
+68.582s   master_node_r1节点   nav_arm_finish_callback函数   条件判断指令
+68.582s   master_node_r1节点   nav_arm_finish_callback函数   变量赋值指令
+68.582s   master_node_r1节点   nav_arm_finish_callback函数   发布话题指令
+68.989s   nav_node_r1节点   nav_target_message_callback函数   变量赋值指令
+68.989s   nav_node_r1节点   nav_target_message_callback函数   条件判断指令
+68.989s   nav_node_r1节点   nav_target_message_callback函数   变量赋值指令
+68.989s   nav_node_r1节点   nav_target_message_callback函数   导航到航点指令
+79.942s   nav_node_r1节点   nav_finish_callback函数   变量赋值指令
+79.942s   nav_node_r1节点   nav_finish_callback函数   发布话题指令
+80.253s   master_node_r1节点   nav_arm_finish_callback函数   条件判断指令
+80.253s   master_node_r1节点   nav_arm_finish_callback函数   变量赋值指令
+80.253s   master_node_r1节点   nav_arm_finish_callback函数   客户端请求指令
+80.657s   vision_node_r1节点   vision_detect_request_callback函数   条件判断指令
+80.657s   vision_node_r1节点   vision_detect_request_callback函数   颜色检测指令
+80.657s   vision_node_r1节点   vision_detect_request_callback函数   二维点转三维点指令
+80.657s   vision_node_r1节点   vision_detect_request_callback函数   TF坐标变换指令
+80.657s   vision_node_r1节点   vision_detect_request_callback函数   服务端响应指令
+83.373s   master_node_r1节点   vision_detect_response_callback3函数   变量赋值指令
+83.373s   master_node_r1节点   vision_detect_response_callback3函数   发布话题指令
+83.676s   arm_node_r1节点   deploy_message_callback函数   变量赋值指令
+83.676s   arm_node_r1节点   deploy_message_callback函数   条件判断指令
+83.676s   arm_node_r1节点   deploy_message_callback函数   变量赋值指令
+83.676s   arm_node_r1节点   deploy_message_callback函数   变量赋值指令
+83.676s   arm_node_r1节点   deploy_message_callback函数   机械臂移动指令
+91.326s   arm_node_r1节点   deploy_finish_callback函数   张开夹爪指令
+91.326s   arm_node_r1节点   deploy_finish_callback函数   发布话题指令
+97.818s   master_node_r1节点   nav_arm_finish_callback函数   条件判断指令
+97.818s   master_node_r1节点   nav_arm_finish_callback函数   变量赋值指令
+97.818s   master_node_r1节点   nav_arm_finish_callback函数   客户端请求指令
+98.225s   vision_node_r1节点   vision_detect_request_callback函数   条件判断指令
+98.225s   vision_node_r1节点   vision_detect_request_callback函数   颜色检测指令
+98.225s   vision_node_r1节点   vision_detect_request_callback函数   二维点转三维点指令
+98.225s   vision_node_r1节点   vision_detect_request_callback函数   TF坐标变换指令
+98.225s   vision_node_r1节点   vision_detect_request_callback函数   服务端响应指令
+100.745s   master_node_r1节点   vision_detect_response_callback4函数   变量赋值指令
+100.745s   master_node_r1节点   vision_detect_response_callback4函数   发布话题指令
+101.052s   arm_node_r1节点   deploy_message_callback函数   变量赋值指令
+101.052s   arm_node_r1节点   deploy_message_callback函数   条件判断指令
+101.052s   arm_node_r1节点   deploy_message_callback函数   变量赋值指令
+101.052s   arm_node_r1节点   deploy_message_callback函数   变量赋值指令
+101.052s   arm_node_r1节点   deploy_message_callback函数   机械臂移动指令
+107.255s   arm_node_r1节点   deploy_finish_callback函数   张开夹爪指令
+107.255s   arm_node_r1节点   deploy_finish_callback函数   发布话题指令
+113.512s   master_node_r1节点   nav_arm_finish_callback函数   条件判断指令
+113.512s   master_node_r1节点   nav_arm_finish_callback函数   变量赋值指令
+113.512s   master_node_r1节点   nav_arm_finish_callback函数   发布话题指令
+113.923s   nav_node_r1节点   nav_target_message_callback函数   变量赋值指令
+113.923s   nav_node_r1节点   nav_target_message_callback函数   条件判断指令
+113.923s   nav_node_r1节点   nav_target_message_callback函数   变量赋值指令
+113.923s   nav_node_r1节点   nav_target_message_callback函数   导航到航点指令
+133.496s   nav_node_r1节点   nav_finish_callback函数   变量赋值指令
+133.496s   nav_node_r1节点   nav_finish_callback函数   发布话题指令
+133.811s   master_node_r1节点   nav_arm_finish_callback函数   条件判断指令
+133.811s   master_node_r1节点   nav_arm_finish_callback函数   文字转语音指令
+133.811s   master_node_r1节点   nav_arm_finish_callback函数   变量赋值指令
+146.614s   master_node_g1节点   init函数   设置唤醒词指令
+146.614s   master_node_g1节点   init函数   创建发布者指令
+146.614s   master_node_g1节点   init函数   创建发布者指令
+146.614s   master_node_g1节点   init函数   创建发布者指令
+146.614s   master_node_g1节点   init函数   创建订阅者指令
+146.614s   nav_node_g1节点   init函数   初始化航点指令
+146.614s   nav_node_g1节点   init函数   加载走路模型指令
+146.614s   nav_node_g1节点   init函数   创建发布者指令
+146.614s   nav_node_g1节点   init函数   创建订阅者指令
+146.614s   vision_node_g1节点   init函数   创建订阅者指令
+146.614s   vision_node_g1节点   init函数   创建订阅者指令
+146.614s   vision_node_g1节点   init函数   创建服务端指令
+146.614s   arm_node_g1节点   init函数   初始化规划组指令
+146.614s   arm_node_g1节点   init函数   创建发布者指令
+146.614s   arm_node_g1节点   init函数   创建订阅者指令
+146.614s   arm_node_g1节点   init函数   创建订阅者指令
+146.614s   vision_node_g1节点   get_camera_rgb_callback函数   变量赋值指令
+146.614s   vision_node_g1节点   get_camera_rgb_callback函数   变量赋值指令
+146.615s   vision_node_g1节点   get_camera_rgb_callback函数   变量赋值指令
+146.615s   vision_node_g1节点   get_camera_rgb_callback函数   变量赋值指令
+146.615s   vision_node_g1节点   get_camera_depth_callback函数   变量赋值指令
+146.615s   vision_node_g1节点   get_camera_depth_callback函数   变量赋值指令
+146.615s   vision_node_g1节点   get_camera_depth_callback函数   变量赋值指令
+146.615s   vision_node_g1节点   get_camera_depth_callback函数   变量赋值指令
+146.872s   master_node_g1节点   set_wakeup_keywords_callback函数   提取任务信息指令
+146.872s   master_node_g1节点   set_wakeup_keywords_callback函数   发布静态TF指令
+146.872s   master_node_g1节点   set_wakeup_keywords_callback函数   变量赋值指令
+146.872s   master_node_g1节点   set_wakeup_keywords_callback函数   发布话题指令
+147.461s   nav_node_g1节点   nav_target_message_callback函数   变量赋值指令
+147.461s   nav_node_g1节点   nav_target_message_callback函数   条件判断指令
+147.461s   nav_node_g1节点   nav_target_message_callback函数   变量赋值指令
+147.461s   nav_node_g1节点   nav_target_message_callback函数   导航到航点指令
+153.994s   nav_node_g1节点   nav_finish_callback函数   变量赋值指令
+153.994s   nav_node_g1节点   nav_finish_callback函数   发布话题指令
+154.297s   master_node_g1节点   nav_arm_finish_callback函数   条件判断指令
+154.297s   master_node_g1节点   nav_arm_finish_callback函数   变量赋值指令
+154.297s   master_node_g1节点   nav_arm_finish_callback函数   客户端请求指令
+154.702s   vision_node_g1节点   vision_detect_request_callback函数   条件判断指令
+154.702s   vision_node_g1节点   vision_detect_request_callback函数   目标检测指令
+154.702s   vision_node_g1节点   vision_detect_request_callback函数   深度图转点云指令
+154.702s   vision_node_g1节点   vision_detect_request_callback函数   服务端响应指令
+159.415s   master_node_g1节点   vision_detect_response_callback1函数   变量赋值指令
+159.415s   master_node_g1节点   vision_detect_response_callback1函数   发布话题指令
+159.728s   arm_node_g1节点   grab_message_callback函数   变量赋值指令
+159.728s   arm_node_g1节点   grab_message_callback函数   条件判断指令
+159.728s   arm_node_g1节点   grab_message_callback函数   变量赋值指令
+159.728s   arm_node_g1节点   grab_message_callback函数   变量赋值指令
+159.728s   arm_node_g1节点   grab_message_callback函数   抓取位姿估计指令
+159.728s   arm_node_g1节点   grab_message_callback函数   TF坐标变换指令
+159.728s   arm_node_g1节点   grab_message_callback函数   机械臂移动指令
+163.415s   arm_node_g1节点   grab_finish_callback函数   闭合夹爪指令
+163.415s   arm_node_g1节点   grab_finish_callback函数   发布话题指令
+168.312s   master_node_g1节点   nav_arm_finish_callback函数   条件判断指令
+168.312s   master_node_g1节点   nav_arm_finish_callback函数   变量赋值指令
+168.312s   master_node_g1节点   nav_arm_finish_callback函数   发布话题指令
+168.714s   nav_node_g1节点   nav_target_message_callback函数   变量赋值指令
+168.714s   nav_node_g1节点   nav_target_message_callback函数   条件判断指令
+168.714s   nav_node_g1节点   nav_target_message_callback函数   变量赋值指令
+168.714s   nav_node_g1节点   nav_target_message_callback函数   导航到航点指令
+181.707s   nav_node_g1节点   nav_finish_callback函数   变量赋值指令
+181.707s   nav_node_g1节点   nav_finish_callback函数   发布话题指令
+182.016s   master_node_g1节点   nav_arm_finish_callback函数   条件判断指令
+182.016s   master_node_g1节点   nav_arm_finish_callback函数   变量赋值指令
+182.016s   master_node_g1节点   nav_arm_finish_callback函数   客户端请求指令
+182.444s   vision_node_g1节点   vision_detect_request_callback函数   条件判断指令
+182.444s   vision_node_g1节点   vision_detect_request_callback函数   目标检测指令
+182.444s   vision_node_g1节点   vision_detect_request_callback函数   深度图转点云指令
+182.444s   vision_node_g1节点   vision_detect_request_callback函数   服务端响应指令
+187.133s   master_node_g1节点   vision_detect_response_callback2函数   变量赋值指令
+187.133s   master_node_g1节点   vision_detect_response_callback2函数   发布话题指令
+187.46s   arm_node_g1节点   grab_message_callback函数   变量赋值指令
+187.46s   arm_node_g1节点   grab_message_callback函数   条件判断指令
+187.46s   arm_node_g1节点   grab_message_callback函数   变量赋值指令
+187.46s   arm_node_g1节点   grab_message_callback函数   变量赋值指令
+187.46s   arm_node_g1节点   grab_message_callback函数   抓取位姿估计指令
+187.46s   arm_node_g1节点   grab_message_callback函数   TF坐标变换指令
+187.46s   arm_node_g1节点   grab_message_callback函数   机械臂移动指令
+197.707s   arm_node_g1节点   grab_finish_callback函数   闭合夹爪指令
+197.707s   arm_node_g1节点   grab_finish_callback函数   发布话题指令
+202.317s   master_node_g1节点   nav_arm_finish_callback函数   条件判断指令
+202.317s   master_node_g1节点   nav_arm_finish_callback函数   变量赋值指令
+202.317s   master_node_g1节点   nav_arm_finish_callback函数   发布话题指令
+202.73s   nav_node_g1节点   nav_target_message_callback函数   变量赋值指令
+202.73s   nav_node_g1节点   nav_target_message_callback函数   条件判断指令
+202.73s   nav_node_g1节点   nav_target_message_callback函数   变量赋值指令
+202.73s   nav_node_g1节点   nav_target_message_callback函数   导航到航点指令
+213.952s   nav_node_g1节点   nav_finish_callback函数   变量赋值指令
+213.952s   nav_node_g1节点   nav_finish_callback函数   发布话题指令
+214.264s   master_node_g1节点   nav_arm_finish_callback函数   条件判断指令
+214.264s   master_node_g1节点   nav_arm_finish_callback函数   变量赋值指令
+214.264s   master_node_g1节点   nav_arm_finish_callback函数   客户端请求指令
+214.671s   vision_node_g1节点   vision_detect_request_callback函数   条件判断指令
+214.671s   vision_node_g1节点   vision_detect_request_callback函数   颜色检测指令
+214.671s   vision_node_g1节点   vision_detect_request_callback函数   二维点转三维点指令
+214.671s   vision_node_g1节点   vision_detect_request_callback函数   TF坐标变换指令
+214.671s   vision_node_g1节点   vision_detect_request_callback函数   服务端响应指令
+217.15s   master_node_g1节点   vision_detect_response_callback3函数   变量赋值指令
+217.15s   master_node_g1节点   vision_detect_response_callback3函数   发布话题指令
+217.475s   arm_node_g1节点   deploy_message_callback函数   变量赋值指令
+217.475s   arm_node_g1节点   deploy_message_callback函数   条件判断指令
+217.475s   arm_node_g1节点   deploy_message_callback函数   变量赋值指令
+217.475s   arm_node_g1节点   deploy_message_callback函数   变量赋值指令
+217.475s   arm_node_g1节点   deploy_message_callback函数   机械臂移动指令
+220.317s   arm_node_g1节点   deploy_finish_callback函数   张开夹爪指令
+220.317s   arm_node_g1节点   deploy_finish_callback函数   发布话题指令
+226.119s   master_node_g1节点   nav_arm_finish_callback函数   条件判断指令
+226.119s   master_node_g1节点   nav_arm_finish_callback函数   变量赋值指令
+226.119s   master_node_g1节点   nav_arm_finish_callback函数   客户端请求指令
+226.534s   vision_node_g1节点   vision_detect_request_callback函数   条件判断指令
+226.534s   vision_node_g1节点   vision_detect_request_callback函数   颜色检测指令
+226.534s   vision_node_g1节点   vision_detect_request_callback函数   二维点转三维点指令
+226.534s   vision_node_g1节点   vision_detect_request_callback函数   TF坐标变换指令
+226.534s   vision_node_g1节点   vision_detect_request_callback函数   服务端响应指令
+229.018s   master_node_g1节点   vision_detect_response_callback4函数   变量赋值指令
+229.018s   master_node_g1节点   vision_detect_response_callback4函数   发布话题指令
+229.332s   arm_node_g1节点   deploy_message_callback函数   变量赋值指令
+229.332s   arm_node_g1节点   deploy_message_callback函数   条件判断指令
+229.332s   arm_node_g1节点   deploy_message_callback函数   变量赋值指令
+229.332s   arm_node_g1节点   deploy_message_callback函数   变量赋值指令
+229.332s   arm_node_g1节点   deploy_message_callback函数   机械臂移动指令
+230.85s   arm_node_g1节点   deploy_finish_callback函数   张开夹爪指令
+230.85s   arm_node_g1节点   deploy_finish_callback函数   发布话题指令
+236.082s   master_node_g1节点   nav_arm_finish_callback函数   条件判断指令
+236.082s   master_node_g1节点   nav_arm_finish_callback函数   变量赋值指令
+236.082s   master_node_g1节点   nav_arm_finish_callback函数   发布话题指令
+236.49s   nav_node_g1节点   nav_target_message_callback函数   变量赋值指令
+236.49s   nav_node_g1节点   nav_target_message_callback函数   条件判断指令
+236.49s   nav_node_g1节点   nav_target_message_callback函数   变量赋值指令
+236.49s   nav_node_g1节点   nav_target_message_callback函数   导航到航点指令

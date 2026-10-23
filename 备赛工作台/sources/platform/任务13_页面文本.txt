@@ -1,0 +1,33 @@
+- img "logo"
+- generic: 具身智能实训大纲
+- generic: 具身智能应用设计挑战赛练习
+- generic: 项目一 练习
+- generic: 任务一 机器人平地走跳跑
+- generic: 任务二 机器人复杂地形行走
+- generic: 任务三 机器人复杂动作表演
+- generic: 任务四 图像分类识别
+- generic: 任务五 物体目标检测
+- generic: 任务六 人体行为识别
+- generic: 任务七 机器人2d建图
+- generic: 任务八 机器人2d导航规划
+- generic: 任务九 机器人3d建图与导航
+- generic: 任务十 2d平面抓取
+- generic: 任务十一 6d位姿估计抓取
+- generic: 任务十二 路径规划避障抓取
+- generic: 任务十三 ROS2基本通信
+- generic: 任务十四 功能模块改造与集成
+- generic: 项目二 比赛
+- generic: 任务一 机器人展会表演
+- 'generic "icon: question-circle"':
+- generic: 指导手册
+- 'generic "icon: desktop"':
+- generic: 实训中台
+- img "图片"
+- generic: 知识学习
+- generic: 课件教案
+- generic: 视频教案
+- img "图片"
+- generic: 虚仿实训（未发布）
+- generic: 指导书
+- generic: 进入实验
+- generic: 实验报告

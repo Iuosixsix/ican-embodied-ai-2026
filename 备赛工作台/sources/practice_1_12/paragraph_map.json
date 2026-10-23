@@ -1,0 +1,571 @@
+[
+  {
+    "paragraph": 1,
+    "text": "任务一走路",
+    "images": [
+      "image1.png"
+    ]
+  },
+  {
+    "paragraph": 3,
+    "text": "跑步，跳跃",
+    "images": [
+      "image2.png"
+    ]
+  },
+  {
+    "paragraph": 4,
+    "text": "任务三跳舞",
+    "images": [
+      "image3.png"
+    ]
+  },
+  {
+    "paragraph": 5,
+    "text": "",
+    "images": [
+      "image4.png"
+    ]
+  },
+  {
+    "paragraph": 6,
+    "text": "任务三复杂地形",
+    "images": []
+  },
+  {
+    "paragraph": 7,
+    "text": "",
+    "images": [
+      "image5.png",
+      "image6.png",
+      "image7.png"
+    ]
+  },
+  {
+    "paragraph": 8,
+    "text": "",
+    "images": [
+      "image8.png"
+    ]
+  },
+  {
+    "paragraph": 15,
+    "text": "",
+    "images": [
+      "image9.png"
+    ]
+  },
+  {
+    "paragraph": 24,
+    "text": "任务四图像分类识别",
+    "images": []
+  },
+  {
+    "paragraph": 25,
+    "text": "",
+    "images": [
+      "image10.png",
+      "image11.png",
+      "image12.png",
+      "image13.png"
+    ]
+  },
+  {
+    "paragraph": 28,
+    "text": "",
+    "images": [
+      "image14.png"
+    ]
+  },
+  {
+    "paragraph": 31,
+    "text": "",
+    "images": [
+      "image15.png"
+    ]
+  },
+  {
+    "paragraph": 33,
+    "text": "",
+    "images": [
+      "image16.png"
+    ]
+  },
+  {
+    "paragraph": 36,
+    "text": "",
+    "images": [
+      "image17.jpeg"
+    ]
+  },
+  {
+    "paragraph": 39,
+    "text": "任务五物体目标检测",
+    "images": []
+  },
+  {
+    "paragraph": 41,
+    "text": "",
+    "images": [
+      "image18.png",
+      "image19.png",
+      "image20.png"
+    ]
+  },
+  {
+    "paragraph": 43,
+    "text": "",
+    "images": [
+      "image21.png",
+      "image22.png"
+    ]
+  },
+  {
+    "paragraph": 44,
+    "text": "任务六人体行为识别",
+    "images": []
+  },
+  {
+    "paragraph": 45,
+    "text": "",
+    "images": [
+      "image23.png"
+    ]
+  },
+  {
+    "paragraph": 59,
+    "text": "",
+    "images": [
+      "image24.png"
+    ]
+  },
+  {
+    "paragraph": 65,
+    "text": "",
+    "images": [
+      "image25.png"
+    ]
+  },
+  {
+    "paragraph": 67,
+    "text": "任务七2D建图",
+    "images": []
+  },
+  {
+    "paragraph": 68,
+    "text": "",
+    "images": [
+      "image26.jpeg"
+    ]
+  },
+  {
+    "paragraph": 69,
+    "text": "",
+    "images": [
+      "image27.jpeg"
+    ]
+  },
+  {
+    "paragraph": 90,
+    "text": "",
+    "images": [
+      "image28.jpeg"
+    ]
+  },
+  {
+    "paragraph": 91,
+    "text": "",
+    "images": [
+      "image29.jpeg"
+    ]
+  },
+  {
+    "paragraph": 108,
+    "text": "任务八2D导航规划",
+    "images": []
+  },
+  {
+    "paragraph": 109,
+    "text": "",
+    "images": [
+      "image30.jpeg"
+    ]
+  },
+  {
+    "paragraph": 124,
+    "text": "",
+    "images": [
+      "image31.jpeg"
+    ]
+  },
+  {
+    "paragraph": 147,
+    "text": "",
+    "images": [
+      "image32.jpeg"
+    ]
+  },
+  {
+    "paragraph": 158,
+    "text": "",
+    "images": [
+      "image33.jpeg"
+    ]
+  },
+  {
+    "paragraph": 178,
+    "text": "",
+    "images": [
+      "image34.jpeg"
+    ]
+  },
+  {
+    "paragraph": 180,
+    "text": "任务九3D建图与导航",
+    "images": []
+  },
+  {
+    "paragraph": 182,
+    "text": "",
+    "images": [
+      "image35.jpeg",
+      "image36.jpeg"
+    ]
+  },
+  {
+    "paragraph": 183,
+    "text": "",
+    "images": [
+      "image37.jpeg"
+    ]
+  },
+  {
+    "paragraph": 200,
+    "text": "",
+    "images": [
+      "image38.jpeg"
+    ]
+  },
+  {
+    "paragraph": 201,
+    "text": "",
+    "images": [
+      "image39.jpeg"
+    ]
+  },
+  {
+    "paragraph": 205,
+    "text": "",
+    "images": [
+      "image40.jpeg"
+    ]
+  },
+  {
+    "paragraph": 210,
+    "text": "任务十",
+    "images": []
+  },
+  {
+    "paragraph": 211,
+    "text": "",
+    "images": [
+      "image41.jpeg"
+    ]
+  },
+  {
+    "paragraph": 212,
+    "text": "",
+    "images": [
+      "image42.jpeg"
+    ]
+  },
+  {
+    "paragraph": 213,
+    "text": "",
+    "images": [
+      "image43.jpeg"
+    ]
+  },
+  {
+    "paragraph": 215,
+    "text": "",
+    "images": [
+      "image44.jpeg"
+    ]
+  },
+  {
+    "paragraph": 216,
+    "text": "",
+    "images": [
+      "image45.jpeg"
+    ]
+  },
+  {
+    "paragraph": 217,
+    "text": "",
+    "images": [
+      "image46.jpeg"
+    ]
+  },
+  {
+    "paragraph": 218,
+    "text": "",
+    "images": [
+      "image47.jpeg"
+    ]
+  },
+  {
+    "paragraph": 219,
+    "text": "",
+    "images": [
+      "image48.jpeg"
+    ]
+  },
+  {
+    "paragraph": 220,
+    "text": "",
+    "images": [
+      "image49.jpeg"
+    ]
+  },
+  {
+    "paragraph": 221,
+    "text": "",
+    "images": [
+      "image50.jpeg"
+    ]
+  },
+  {
+    "paragraph": 222,
+    "text": "",
+    "images": [
+      "image41.jpeg"
+    ]
+  },
+  {
+    "paragraph": 223,
+    "text": "手眼标定",
+    "images": []
+  },
+  {
+    "paragraph": 224,
+    "text": "",
+    "images": [
+      "image51.jpeg"
+    ]
+  },
+  {
+    "paragraph": 225,
+    "text": "",
+    "images": [
+      "image52.jpeg"
+    ]
+  },
+  {
+    "paragraph": 226,
+    "text": "任务十一6D位姿抓取",
+    "images": []
+  },
+  {
+    "paragraph": 228,
+    "text": "",
+    "images": [
+      "image53.png"
+    ]
+  },
+  {
+    "paragraph": 229,
+    "text": "",
+    "images": [
+      "image54.png"
+    ]
+  },
+  {
+    "paragraph": 237,
+    "text": "",
+    "images": [
+      "image55.png"
+    ]
+  },
+  {
+    "paragraph": 240,
+    "text": "",
+    "images": [
+      "image56.png"
+    ]
+  },
+  {
+    "paragraph": 248,
+    "text": "",
+    "images": [
+      "image57.png"
+    ]
+  },
+  {
+    "paragraph": 252,
+    "text": "",
+    "images": [
+      "image58.png"
+    ]
+  },
+  {
+    "paragraph": 261,
+    "text": "",
+    "images": [
+      "image59.png"
+    ]
+  },
+  {
+    "paragraph": 264,
+    "text": "",
+    "images": [
+      "image60.png"
+    ]
+  },
+  {
+    "paragraph": 272,
+    "text": "",
+    "images": [
+      "image61.png"
+    ]
+  },
+  {
+    "paragraph": 275,
+    "text": "",
+    "images": [
+      "image62.png"
+    ]
+  },
+  {
+    "paragraph": 280,
+    "text": "",
+    "images": [
+      "image63.png"
+    ]
+  },
+  {
+    "paragraph": 282,
+    "text": "任务十二路径规划",
+    "images": []
+  },
+  {
+    "paragraph": 284,
+    "text": "",
+    "images": [
+      "image64.png"
+    ]
+  },
+  {
+    "paragraph": 287,
+    "text": "",
+    "images": [
+      "image65.png"
+    ]
+  },
+  {
+    "paragraph": 293,
+    "text": "",
+    "images": [
+      "image66.png"
+    ]
+  },
+  {
+    "paragraph": 294,
+    "text": "",
+    "images": [
+      "image67.png"
+    ]
+  },
+  {
+    "paragraph": 302,
+    "text": "",
+    "images": [
+      "image68.png"
+    ]
+  },
+  {
+    "paragraph": 305,
+    "text": "",
+    "images": [
+      "image69.png"
+    ]
+  },
+  {
+    "paragraph": 306,
+    "text": "",
+    "images": [
+      "image70.png"
+    ]
+  },
+  {
+    "paragraph": 311,
+    "text": "",
+    "images": [
+      "image71.png"
+    ]
+  },
+  {
+    "paragraph": 320,
+    "text": "",
+    "images": [
+      "image72.png"
+    ]
+  },
+  {
+    "paragraph": 322,
+    "text": "",
+    "images": [
+      "image73.png"
+    ]
+  },
+  {
+    "paragraph": 332,
+    "text": "",
+    "images": [
+      "image74.png"
+    ]
+  },
+  {
+    "paragraph": 334,
+    "text": "",
+    "images": [
+      "image75.png"
+    ]
+  },
+  {
+    "paragraph": 335,
+    "text": "",
+    "images": [
+      "image76.png",
+      "image77.png"
+    ]
+  },
+  {
+    "paragraph": 336,
+    "text": "",
+    "images": [
+      "image78.png"
+    ]
+  },
+  {
+    "paragraph": 339,
+    "text": "",
+    "images": [
+      "image79.png"
+    ]
+  },
+  {
+    "paragraph": 340,
+    "text": "",
+    "images": [
+      "image80.png"
+    ]
+  },
+  {
+    "paragraph": 363,
+    "text": "",
+    "images": [
+      "image81.png"
+    ]
+  }
+]

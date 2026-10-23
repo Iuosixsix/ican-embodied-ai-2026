@@ -1,0 +1,13 @@
+[
+  {"task":2,"title":"机器人复杂地形行走","url":"https://video.suitanglian.com/attachment/rationalism/2025922/2dea8f09-338b-2a3e-d910-1b435f41d98f.pdf"},
+  {"task":3,"title":"机器人复杂动作表演","url":"https://video.suitanglian.com/attachment/rationalism/2025922/5b6685c4-8036-c50c-fb4c-a67eeb196e93.pdf"},
+  {"task":4,"title":"图像分类识别","url":"https://video.suitanglian.com/attachment/rationalism/2025811/a388b2ee-1432-f06e-46b7-60da2078f3b6.pdf"},
+  {"task":5,"title":"物体目标检测","url":"https://video.suitanglian.com/attachment/rationalism/2025811/6cbc71ac-b643-5029-f9f9-7c370b4d92b9.pdf"},
+  {"task":6,"title":"人体行为识别","url":"https://video.suitanglian.com/attachment/rationalism/202594/9ccbd500-1098-83a1-6715-aec01f948b25.pdf"},
+  {"task":7,"title":"机器人2d建图","url":"https://video.suitanglian.com/attachment/rationalism/2025125/ae0b49ed-b6d6-7452-e869-06e127b32e24.pdf"},
+  {"task":8,"title":"机器人2d导航规划","url":"https://video.suitanglian.com/attachment/rationalism/2025125/8b5a40ab-283f-76f7-d20b-221be9e76e1d.pdf"},
+  {"task":9,"title":"机器人3d建图与导航","url":"https://video.suitanglian.com/attachment/rationalism/2026727/e20faaeb-fc6d-43b1-48c9-874c02b7a950.pdf"},
+  {"task":10,"title":"2d平面抓取","url":"https://video.suitanglian.com/attachment/rationalism/202614/c70ecd1c-79e2-8a6c-5283-26d5e9fa841a.pdf"},
+  {"task":11,"title":"6d位姿估计抓取","url":"https://video.suitanglian.com/attachment/rationalism/202614/edff70ca-7655-c443-2ca6-40cc05273991.pdf"},
+  {"task":12,"title":"路径规划避障抓取","url":"https://video.suitanglian.com/attachment/rationalism/2026824/1862a67c-99ad-f784-3a0e-84edd58c271b.pdf"}
+]

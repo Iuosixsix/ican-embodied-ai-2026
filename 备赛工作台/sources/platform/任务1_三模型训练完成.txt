@@ -1,0 +1,63 @@
+- iframe [active] [id="iframe_window"] [name="iframe_window"]:
+  - generic: 训练模型构建
+  - generic: 新建
+  - table:
+    - rowgroup:
+      - row "模型文件 所属类型 创建时间 状态 操作":
+        - columnheader "模型文件":
+          - generic: 模型文件
+        - columnheader "所属类型":
+          - generic: 所属类型
+        - columnheader "创建时间":
+          - generic: 创建时间
+        - columnheader "状态":
+          - generic: 状态
+        - columnheader "操作":
+          - generic: 操作
+    - rowgroup:
+      - row "walk_baseline_1022 行走策略 2026/10/22 15:52:53 已完成（训练5分钟） 查看 复制 删除":
+        - cell "walk_baseline_1022"
+        - cell "行走策略"
+        - cell "2026/10/22 15:52:53"
+        - cell "已完成（训练5分钟）":
+          - generic: 已完成（训练5分钟）
+        - cell "查看 复制 删除":
+          - button "查看":
+            - generic: 查看
+          - button "复制":
+            - generic: 复制
+          - button "删除":
+            - generic: 删除
+      - row "run_baseline_1022 跑步策略 2026/10/22 16:04:57 已完成（训练5分钟） 查看 复制 删除":
+        - cell "run_baseline_1022"
+        - cell "跑步策略"
+        - cell "2026/10/22 16:04:57"
+        - cell "已完成（训练5分钟）":
+          - generic: 已完成（训练5分钟）
+        - cell "查看 复制 删除":
+          - button "查看":
+            - generic: 查看
+          - button "复制":
+            - generic: 复制
+          - button "删除":
+            - generic: 删除
+      - row "jump_baseline_1022 跳跃策略 2026/10/22 16:06:40 已完成（训练5分钟） 查看 复制 删除":
+        - cell "jump_baseline_1022"
+        - cell "跳跃策略"
+        - cell "2026/10/22 16:06:40"
+        - cell "已完成（训练5分钟）":
+          - generic: 已完成（训练5分钟）
+        - cell "查看 复制 删除":
+          - button "查看":
+            - generic: 查看
+          - button "复制":
+            - generic: 复制
+          - button "删除":
+            - generic: 删除
+  - list:
+    - listitem "Previous Page":
+      - 'generic "icon: left"':
+    - listitem "1":
+      - generic: "1"
+    - listitem "Next Page":
+      - 'generic "icon: right"':

@@ -1,0 +1,26 @@
+{
+  "checked_at": "2026-10-23 04:23:46 +08:00",
+  "task_states": [
+    {
+      "id": 10,
+      "status": "15次标定已保存并生成文件，三组核心矩阵和顶视图腕关节位姿已回读；数据正在标注，尚未保存成数据集或训练两模型，完整抓取流程和7对象仿真未完成；最终评分未提交。"
+    },
+    {
+      "id": 12,
+      "status": "13图实例分割与6D抓取两模型均已完成并查看；分割precision为0.995，6D的S@1/ S@5达题面阈值，CFR83.04%和SLR33.41%未达。抓取数据119正1负共120位姿、15组标定及两组核心矩阵已保存；机械臂规划、完整抓放链和4对象仿真未完成，最终评分未提交。"
+    }
+  ],
+  "required_metric_strings": [
+    "82.15%",
+    "94.75%",
+    "83.04%",
+    "33.41%",
+    "T12_pose20_1023",
+    "119",
+    "120"
+  ],
+  "missing_metric_strings": [],
+  "practice_log_has_task12": true,
+  "live_lab_has_final_grasp_metrics": true,
+  "validation_kind": "offline generated content check; no current browser UI test"
+}

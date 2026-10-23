@@ -1,0 +1,1 @@
+After fresh course session and browser reload, clicking 抓取流程构建 opens dark overlay. Visible iframe#iframe_window has empty src; body is empty. Mechanical module saved and browser reload readback succeeded. No final scoring submitted.

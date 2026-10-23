@@ -1,0 +1,18 @@
+[
+  {
+    "level": "warn",
+    "message": "Couldn't create a Convex Mesh from source mesh \"苹果\" within the maximum polygons limit (256). The partial hull will be used. Consider simplifying your mesh.\n"
+  },
+  {
+    "level": "warn",
+    "message": "Couldn't create a Convex Mesh from source mesh \"torso_link4\" within the maximum polygons limit (256). The partial hull will be used. Consider simplifying your mesh.\n"
+  },
+  {
+    "level": "warn",
+    "message": "Couldn't create a Convex Mesh from source mesh \"zed_link\" within the maximum polygons limit (256). The partial hull will be used. Consider simplifying your mesh.\n"
+  },
+  {
+    "level": "warn",
+    "message": "Couldn't create a Convex Mesh from source mesh \"zed_link\" within the maximum polygons limit (256). The partial hull will be used. Consider simplifying your mesh.\n"
+  }
+]

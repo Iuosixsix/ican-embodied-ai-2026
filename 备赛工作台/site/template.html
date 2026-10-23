@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="description" content="2026 iCAN 金视线杯具身智能应用设计挑战赛离线备赛课程、资料核查与学习记录。">
+<title>ICAN 备赛学习站</title>
+<style>/*__STYLE__*/</style>
+</head>
+<body>
+<a class="skip-link" href="#main-content">跳到正文</a>
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar" aria-label="课程导航">
+    <a class="brand" href="#home"><span class="brand-symbol" aria-hidden="true">i</span><span><strong>ICAN 备赛学习站</strong><small>金视线杯 · 2026</small></span></a>
+    <div class="sidebar-section-label">学习工作台</div>
+    <nav id="primary-nav"></nav>
+    <div class="sidebar-section-label">随手查阅</div>
+    <nav id="article-nav"></nav>
+    <div class="sidebar-bottom">
+      <span class="offline-dot"></span> 本地离线 · 无需联网
+      <p>阅读标记只记录学习进度，<br>不代表平台得分或实操通过。</p>
+      <a href="#progress">备份我的学习记录 <span aria-hidden="true">↗</span></a>
+    </div>
+  </aside>
+  <button class="sidebar-scrim" id="sidebar-scrim" aria-label="关闭导航" hidden></button>
+  <div class="main-shell">
+    <header class="topbar">
+      <button class="icon-button menu-toggle" id="menu-toggle" aria-label="展开导航" aria-expanded="false">☰</button>
+      <span class="topbar-label" id="topbar-label">备赛总览</span>
+      <form class="global-search" id="global-search" role="search"><label class="sr-only" for="global-query">搜索课程、文章和会议逐字稿</label><span aria-hidden="true">⌕</span><input id="global-query" placeholder="搜索任务、知识点、会议原话…" autocomplete="off"><button type="submit">搜索</button></form>
+    </header>
+    <div id="storage-warning" class="storage-warning" hidden>当前浏览器无法持久保存本地进度。本窗口仍可使用；关闭前请到“学习进度”导出JSON备份。</div>
+    <main id="main-content" tabindex="-1"></main>
+    <footer class="site-footer"><span>依据官方文件、平台观察、培训逐字稿与第三方参考整理</span><span>最后整理 <span id="updated-label"></span> · 仅作赛前学习</span></footer>
+  </div>
+</div>
+<dialog id="image-dialog" class="image-dialog"><div class="image-dialog-toolbar"><span id="image-caption">证据图片</span><button class="button secondary" id="close-image">关闭 ×</button></div><img id="enlarged-image" alt=""><p>原始证据图片，点击图片外区域或按 Esc 关闭。</p></dialog>
+<dialog id="progress-confirm-dialog" class="progress-confirm-dialog" aria-labelledby="progress-confirm-title" aria-describedby="progress-confirm-message"><h2 id="progress-confirm-title">确认操作</h2><p id="progress-confirm-message"></p><div class="actions"><button class="button secondary" id="progress-confirm-cancel" autofocus>取消</button><button class="button" id="progress-confirm-accept">确认</button></div></dialog>
+<div id="toast" role="status" aria-live="polite"></div>
+<input type="file" id="progress-import" accept="application/json,.json" hidden>
+<script id="site-data" type="application/json">/*__DATA__*/</script>
+<script>/*__APP__*/</script>
+</body>
+</html>

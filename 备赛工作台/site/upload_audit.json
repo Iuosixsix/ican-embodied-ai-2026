@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-23",
+  "visibility": "private",
+  "repository": "https://github.com/Iuosixsix/ican-embodied-ai-2026",
+  "scope": "Git index candidate bundle; report itself excluded from counts",
+  "tracked_files": 967,
+  "bytes": 141491995,
+  "text_files_scanned": 275,
+  "docx_archives_scanned": 4,
+  "binary_privacy_ocr": "not performed; screenshots and PDF not exhaustively OCR reviewed",
+  "local_site_targets_in_git": 637,
+  "findings": [],
+  "largest_files": [
+    {
+      "path": "练习题参考(第三方)/任务1-12具身智能应用.docx",
+      "bytes": 14984982
+    },
+    {
+      "path": "练习题参考(第三方)/任务十四 功能模块改造与集成.docx",
+      "bytes": 7999280
+    },
+    {
+      "path": "练习题参考(第三方)/任务14-节点截图整理.docx",
+      "bytes": 7831828
+    },
+    {
+      "path": "赛事文件/【练习平台·操作手册】2026年iCAN大学生创新创业大赛“金视线杯”具身智能应用设计挑战赛1.0(2).pdf",
+      "bytes": 3054836
+    },
+    {
+      "path": "ICAN备赛学习站.html",
+      "bytes": 1773346
+    },
+    {
+      "path": "备赛工作台/sources/platform/任务11_当前平台指导书.pdf",
+      "bytes": 1429044
+    },
+    {
+      "path": "备赛工作台/site/content.json",
+      "bytes": 1419452
+    },
+    {
+      "path": "备赛工作台/sources/platform/任务10_当前平台指导书.pdf",
+      "bytes": 1402644
+    }
+  ],
+  "html_sha256": "278c539077ca1c5f5c053a14f14c1f8ad57d6142b1f3143ab27c80d1ad2ba0c5"
+}

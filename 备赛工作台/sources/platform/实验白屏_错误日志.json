@@ -1,0 +1,8 @@
+[
+  {
+    "level": "error",
+    "message": "Error: Network Error\n    at e.exports (https://eai.suitanglian.com/basic_main.75b66022.js:925:3574)\n    at f.onerror (https://eai.suitanglian.com/basic_main.75b66022.js:925:2624)",
+    "timestamp": "2026-10-22T07:35:14.901Z",
+    "url": "https://eai.suitanglian.com/basic_main.75b66022.js"
+  }
+]

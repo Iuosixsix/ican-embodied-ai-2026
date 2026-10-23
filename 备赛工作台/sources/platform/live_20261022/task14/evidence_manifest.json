@@ -1,0 +1,27 @@
+[
+  {
+    "file": "01_node_editor_blank_overlay.png",
+    "bytes": 140128,
+    "sha256": "7F783E5A428B50AB528E461697A79FCCB423F5641FF1649694EAEA194650C349"
+  },
+  {
+    "file": "02_node_editor_blank_after_reload.png",
+    "bytes": 238217,
+    "sha256": "B037667BBEE787E8E2B8DF0B29A6CF035E69CBD6B59E499A8183C92AD11B56A4"
+  },
+  {
+    "file": "03_node_editor_blank_after_course_reopen.png",
+    "bytes": 238171,
+    "sha256": "EFCAACF31698C0C46D393B539DA236DBDF0E187F3DD613FFAE9D09CC258CC69A"
+  },
+  {
+    "file": "04_node_editor_blank_after_ready_retry.png",
+    "bytes": 140056,
+    "sha256": "BD1A815EFD733CDA3EF07F8F46C5F9793B7AD37D737A757803D5775344678FD9"
+  },
+  {
+    "file": "safe_warning_log.json",
+    "bytes": 855,
+    "sha256": "26C44EF1BAF9ED2DA369860AEDC19990058452F791BEB6364460E0527A9CA302"
+  }
+]

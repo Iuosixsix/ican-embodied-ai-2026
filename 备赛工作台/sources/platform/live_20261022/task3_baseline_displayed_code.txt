@@ -1,0 +1,462 @@
+using UnityEngine;
+using Unity.MLAgents;
+using Unity.MLAgents.Actuators;
+using Unity.MLAgents.Sensors;
+using System.Collections.Generic;
+using System.IO;
+using System;
+using Sirenix.OdinInspector;
+using Unity.MLAgents.Policies;
+using Unity.Sentis;
+
+/// <summary>
+/// H1人形机器人智能体控制器
+/// 功能：基于参考动作数据的动作模仿控制
+/// 控制策略：前馈控制(参考动作) + 反馈修正(神经网络输出)
+/// </summary>
+public class H1Agent : Agent
+{
+    // ========== 动画数据字段 ==========
+    private int maxFrame;                    // 插值后动画数据的最大帧数
+
+    // ========== 动作控制字段 ==========
+    // 前馈控制信号（参考动作角度，单位：度）
+    float[] uff = new float[19] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+    // 平滑后的神经网络输出（EMA滤波后）
+    float[] u = new float[19] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }; 
+    // 最终关节控制信号 = kb * u + uff
+    float[] utotal = new float[19] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+
+    // ========== 参考动作数据 ==========
+    private List<float[]> refData = new();   // 原始参考动作数据（30fps）
+    private List<float[]> itpData = new();   // 插值后的参考动作数据（50fps，匹配物理仿真频率）
+
+    // ========== 帧计数器 ==========
+    public int currentFrame;                 // 当前播放的动画帧索引
+
+    // ========== 当前帧数据解析 ==========
+    float[] currentData = new float[26];     // 当前帧的完整数据（位置3 + 旋转4 + 关节角度19 = 26）
+    float[] currentPos = new float[3];       // 当前帧的根节点位置 [x, y, z]
+    float[] currentRot = new float[4];       // 当前帧的根节点旋转四元数 [x, y, z, w]
+    float[] currentDof = new float[19];      // 当前帧的19个关节角度（单位：弧度）
+
+    // ========== 机器人组件引用 ==========
+    Transform body;                          // 躯干/基座的Transform组件
+
+    // ========== 初始状态存储（用于重置） ==========
+    List<float> P0 = new();                  // 初始关节位置列表
+    List<float> W0 = new();                  // 初始关节速度列表
+    Vector3 pos0;                            // 初始躯干位置
+    Quaternion rot0;                         // 初始躯干旋转
+
+
+    // ========== 关节组件数组 ==========
+    // 19个可驱动关节（髋、膝、踝、腰、肩、肘等）
+    ArticulationBody[] jh = new ArticulationBody[19];    
+    // 所有ArticulationBody组件（包含非驱动关节）
+    ArticulationBody[] arts = new ArticulationBody[30];
+    // 根节点ArticulationBody  
+    ArticulationBody art0;                              
+
+    // ========== 计时器字段 ==========
+    int tt = 0;                              // 总训练步数计时器
+    int step = 0;                    // 步数计数器（备用）
+
+    // ========== 配置参数 ==========
+    public int frame0 = 0;                 // 动画起始帧索引
+    private Vector3 initialOffset = Vector3.zero;  // 初始位置偏移量
+    public TextAsset motionData;             // 参考动作数据文件（CSV格式）
+
+
+    /// <summary>
+    /// Unity Start生命周期
+    /// 1. 设置物理仿真频率
+    /// 2. 配置碰撞忽略
+    /// 3. 克隆多个训练实例
+    /// </summary>
+    void Start()
+    {
+        Time.fixedDeltaTime = 0.02f;         // 物理系统每0.02秒更新一次，即每秒50次
+        Physics.IgnoreLayerCollision(15, 15, true);  // 忽略同层碰撞（防止自身碰撞）
+
+        // 克隆34个智能体实例，排列成6列网格
+        int col = 0;
+        int row = 0;
+        for (int i = 0; i < 34; i++)
+        {
+            row++;
+            if (row == 6)  // 每6个换一列
+            {
+                col += 1;
+                row = 1;
+            }
+
+            GameObject clone;
+            if (i == 0)
+            {
+                clone = gameObject;  // 第一个使用自身
+            }
+            else
+            {
+                clone = Instantiate(gameObject);  // 其余克隆
+            }
+
+            // 设置克隆体位置（网格排列，间距2米）
+            Vector3 offset = new Vector3(row * 2f, 0, col * 2);
+            clone.transform.position = transform.position + offset;
+        }
+    }
+
+    /// <summary>
+    /// ML-Agents初始化
+    /// 1. 获取所有关节组件
+    /// 2. 存储初始状态
+    /// 3. 加载并插值参考动作数据
+    /// </summary>
+    public override void Initialize()
+    {
+	    // 筛选出19个可旋转关节
+        arts = this.GetComponentsInChildren<ArticulationBody>();
+        int ActionNum = 0;
+        for (int k = 0; k < arts.Length; k++)
+        {
+            if (arts[k].jointType.ToString() == "RevoluteJoint")
+            {
+                if (ActionNum < 19)
+                {
+                    jh[ActionNum] = arts[k];
+                    ActionNum++;
+                }
+            }
+        }
+
+        // 获取躯干引用
+        body = jh[10].GetComponent<Transform>();
+        art0 = body.GetComponent<ArticulationBody>();
+
+        // 存储初始状态（用于Episode重置）
+        pos0 = body.position;
+        rot0 = body.rotation;
+        art0.GetJointPositions(P0);   // 获取初始关节位置
+        art0.GetJointVelocities(W0);  // 获取初始关节速度
+
+        // 加载原始参考动作数据（30fps）
+        refData = LoadDataFromFile();
+
+        // 时间插值：将30fps数据插值到50fps（匹配物理仿真频率）
+        float[] refT = new float[refData.Count];
+        for (int i = 0; i < refT.Length; i++) refT[i] = i / 30f;  // 原始时间戳（30fps）
+        
+        float[] newT = new float[(int)(refData.Count * 50f / 30f) - 1];
+        for (int i = 0; i < newT.Length; i++) newT[i] = i / 50f;  // 目标时间戳（50fps）
+        
+        itpData = Interpolate(refT, refData, newT);  // 线性插值
+    }
+
+    /// <summary>
+    /// 加载参考动作CSV文件
+    /// </summary>
+    List<float[]> LoadDataFromFile()
+    {
+        TextAsset textAsset = motionData;
+        List<float[]> dataList = new List<float[]>();
+        try
+        {
+            if (textAsset == null)
+            {
+                Debug.LogError("No CSV file assigned to TextAsset field");
+                return dataList;
+            }
+
+            string content = textAsset.text;
+            string[] lines = content.Split(new[] { '\r', '\n' }, System.StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string line in lines)
+            {
+                string[] values = line.Split(',');
+                List<float> frameData = new List<float>();
+                foreach (string value in values)
+                {
+                    if (float.TryParse(value.Trim(), out float parsedValue)) 
+                        frameData.Add(parsedValue);
+                }
+                dataList.Add(frameData.ToArray());
+            }
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError("Error loading data from TextAsset: " + e.Message);
+        }
+
+        return dataList;
+    }
+
+    /// <summary>
+    /// Episode开始时的重置逻辑
+    /// 1. 重置机器人位姿到初始状态
+    /// 2. 重置控制信号
+    /// 3. 设置初始帧的关节角度
+    /// </summary>
+    public override void OnEpisodeBegin()
+    {
+        // 重置机器人根节点位置和旋转
+        arts[0].TeleportRoot(pos0 + initialOffset, rot0);
+        arts[0].velocity = Vector3.zero;         // 清零线速度
+        arts[0].angularVelocity = Vector3.zero;  // 清零角速度
+        arts[0].SetJointPositions(P0);           // 重置关节位置
+        arts[0].SetJointVelocities(W0);          // 重置关节速度
+
+        // 重置控制信号数组
+        for (int i = 0; i < 19; i++) u[i] = 0;
+        for (int i = 0; i < 19; i++) uff[i] = 0;
+
+        // 重置帧计数器和步数
+        currentFrame = frame0;
+        tt = 0;
+
+        // 解析初始帧数据
+        currentData = refData[currentFrame];
+        Array.Copy(currentData, 0, currentPos, 0, 3);    // 提取位置
+        Array.Copy(currentData, 3, currentRot, 0, 4);    // 提取旋转
+        Array.Copy(currentData, 7, currentDof, 0, 19);   // 提取关节角度
+
+        // 坐标系转换：从参考数据坐标系转换到Unity坐标系
+        // 位置转换：(-y, z, x) 映射
+        Vector3 newPosition = new Vector3(-currentPos[1], currentPos[2], currentPos[0]);
+        // 旋转转换：四元数分量重映射
+        Quaternion newRotation = new Quaternion(
+            currentRot[1],    // Unity.x = Ref.y
+            -currentRot[2],   // Unity.y = -Ref.z
+            currentRot[0],    // Unity.z = Ref.x
+            currentRot[3]     // Unity.w = Ref.w
+        );
+
+        // 传送机器人到初始位置
+        arts[0].TeleportRoot(newPosition + initialOffset, newRotation);
+        arts[0].velocity = Vector3.zero;
+        arts[0].angularVelocity = Vector3.zero;
+        arts[0].immovable = true;  // 暂时固定根节点
+
+        // 设置初始关节角度（弧度转角度）
+        for (int i = 0; i < 19; i++)
+        {
+            uff[i] = currentDof[i] * 180f / 3.14f;  // 弧度转角度
+            SetJointTargetDeg(jh[i], uff[i]);
+        }
+    }
+
+    /// <summary>
+    /// 将原始帧率（30fps）的动作数据线性插值到目标帧率（50fps）
+    /// </summary>
+    List<float[]> Interpolate(float[] t, List<float[]> posList, float[] targetT)
+    {
+        List<float[]> result = new List<float[]>();
+        
+        for (int i = 0; i < targetT.Length; i++)
+        {
+            float tValue = targetT[i];
+            
+            int index = 0;
+            while (index < t.Length - 1 && t[index + 1] < tValue)
+            {
+                index++;
+            }
+            float ratio = (tValue - t[index]) / (t[index + 1] - t[index]);
+            float[] interpolatedPos = new float[dimension];
+            for (int j = 0; j < dimension; j++)
+            {
+                interpolatedPos[j] = Mathf.Lerp(posList[index][j], posList[index + 1][j], ratio);
+            }
+
+            result.Add(interpolatedPos);
+        }
+
+        maxFrame = result.Count;
+        return result;
+    }
+
+    /// <summary>
+    /// 物理更新循环（每0.02秒执行，50Hz）
+    /// 1. 更新当前帧参考数据
+    /// 2. 计算奖励
+    /// 3. 推进帧计数器
+    /// </summary>
+    void FixedUpdate()
+    {
+        // 确保插值数据已加载
+        if (itpData.Count > 0)
+        {
+            // 获取当前帧的参考数据
+            currentData = itpData[currentFrame];
+            
+            // 复制数据：位置、旋转、关节角度
+            Array.Copy(currentData, 0, currentPos, 0, 3);
+            Array.Copy(currentData, 3, currentRot, 0, 4);
+            Array.Copy(currentData, 7, currentDof, 0, 19);
+            
+            // 更新前馈控制信号（弧度转角度）
+            for (int i = 0; i < 19; i++) 
+                uff[i] = currentDof[i] * 180f / 3.14f;
+        }
+
+        // 更新计时器
+        tt++;
+        
+        // 计算奖励
+        RewardSetting();
+        
+        // 推进帧计数器
+        currentFrame = currentFrame < maxFrame - 1 ? (currentFrame + 1) : currentFrame;
+    }
+
+    /// <summary>
+    /// 启发式控制接口
+    /// </summary>
+    public override void Heuristic(in ActionBuffers actionsOut)
+    {
+        // 预留手动控制接口
+    }
+
+    /// <summary>
+    /// 设置关节目标角度
+    /// </summary>
+    void SetJointTargetDeg(ArticulationBody joint, float x)
+    {
+        var drive = joint.xDrive;
+        drive.stiffness = 180f;  // 关节刚度
+        drive.damping = 8f;      // 关节阻尼
+        drive.target = x;        // 目标角度
+        joint.xDrive = drive;
+    }
+
+    /// <summary>
+    /// 设置关节目标位置
+    /// </summary>
+    void SetJointTargetPosition(ArticulationBody joint, float x)
+    {
+        x = (x + 1f) * 0.5f;  // 映射到 [0, 1]
+        // 线性插值到关节角度范围
+        var x1 = Mathf.Lerp(joint.xDrive.lowerLimit, joint.xDrive.upperLimit, x);
+        
+        var drive = joint.xDrive;
+        drive.stiffness = 2000f;   // 高刚度
+        drive.damping = 100f;      // 高阻尼
+        drive.forceLimit = 200f;   // 力矩限制
+        drive.target = x1;
+        joint.xDrive = drive;
+    }
+
+    /// <summary>
+    /// 欧拉角转换
+    /// 将[0, 360)范围转换为(-180, 180]范围
+    /// </summary>
+    float EulerTrans(float eulerAngle)
+    {
+        if (eulerAngle <= 180)
+            return eulerAngle;
+        else
+            return eulerAngle - 360f;
+    }
+
+    /// <summary>
+    /// 观察值收集
+    /// 向神经网络提供环境状态信息
+    /// </summary>
+    public override void CollectObservations(VectorSensor sensor)
+    {
+        //躯干姿态
+        sensor.AddObservation(EulerTrans(body.eulerAngles[0]) * 3.14f / 180f);
+        sensor.AddObservation(EulerTrans(body.eulerAngles[2]) * 3.14f / 180f);
+        //躯干角速度
+        sensor.AddObservation(body.InverseTransformDirection(art0.angularVelocity));
+        for (int i = 0; i < ActionNum; i++)
+        {
+            //所有关节电机角度
+            sensor.AddObservation(jh[i].jointPosition[0]);
+            //所有关节电机角速度
+            sensor.AddObservation(jh[i].jointVelocity[0]);
+        }
+    }
+    
+    /// <summary>
+    /// 动作执行
+    /// 处理神经网络输出的动作
+    /// </summary>
+    public override void OnActionReceived(ActionBuffers actionBuffers)
+    {
+        //动作生成：指数移动平均+前馈控制
+        var kk = 0.9f;
+        float kb = 20;
+        for (int i = 0; i < 19; i++)
+        {
+            u[i] = u[i] * kk + (1 - kk) * actionBuffers.ContinuousActions[i];
+            if (i >= 11) kb = 0;
+            utotal[i] = kb * u[i] + uff[i];
+            SetJointTargetPosition(jh[i], utotal[i]);
+        }
+    }
+    
+    /// <summary>
+    /// 奖励计算
+    /// </summary>
+    void RewardSetting()
+    {
+        float live_reward = 1; //存活奖励
+        float rot_reward = 0.01;  //躯干角度偏移惩罚
+        float pos_reward = 1;  //躯干位置偏移惩罚
+        if (tt > 3)
+        {
+            arts[0].immovable = false;
+            rot_reward = -rot_rate * Quaternion.Angle(body.rotation, newRotation);
+    
+            Vector3 targetPosition = newPosition + initialOffset;
+            pos_reward = -pos_rate * (body.position - targetPosition).magnitude; 
+    
+            if (ResetCondition(targetPosition)) EndEpisode();
+        }
+    
+        var reward = live_reward + (rot_reward + pos_reward) * 1f;
+        AddReward(reward);
+
+    }
+    
+    /// <summary>
+    /// 重置条件检查
+    /// </summary>
+    bool ResetCondition(Vector3 targetPosition)
+    {
+        //躯干角度与目标角度偏差>30度 或 位置与目标位置偏差>0.3m
+        if((Quaternion.Angle(body.rotation, newRotation) > 30f ||(body.position - targetPosition).magnitude > 0.3f)) return true;
+        step++;
+        if (step > 1000 )
+        {
+            step = 0;
+            return true;
+        }
+         
+         return false;
+    }
+}
+    
+    下面是训练用的超参数配置    
+    behaviors:
+    gewu:
+        checkpoint_interval: 400000
+        hyperparameters: {batch_size: 4096, beta: 0.005, beta_schedule: linear, buffer_size: 20480,
+        epsilon: 0.2, epsilon_schedule: linear, lambd: 0.95, learning_rate: 0.0003,
+        learning_rate_schedule: linear, num_epoch: 3}
+        keep_checkpoints: 5
+        max_steps: 1000000
+        network_settings: {deterministic: false, goal_conditioning_type: hyper, hidden_units: 512,
+        normalize: true, num_layers: 4, vis_encode_type: simple}
+        reward_signals:
+        extrinsic:
+            gamma: 0.995   
+            network_settings: {deterministic: false, goal_conditioning_type: hyper, hidden_units: 512,
+            normalize: false, num_layers: 4, vis_encode_type: simple}
+            strength: 1.0
+        summary_freq: 20000  
+        threaded: false
+        time_horizon: 2000
+        trainer_type: ppo
+    

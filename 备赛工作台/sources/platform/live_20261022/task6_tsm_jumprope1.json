@@ -1,0 +1,50 @@
+{
+    "tsm": [
+        {
+            "frame": 23,
+            "class": "跳绳",
+            "conf": 0.67
+        },
+        {
+            "frame": 39,
+            "class": "跳绳",
+            "conf": 0.67
+        },
+        {
+            "frame": 55,
+            "class": "跳绳",
+            "conf": 0.73
+        },
+        {
+            "frame": 71,
+            "class": "跳绳",
+            "conf": 0.55
+        },
+        {
+            "frame": 87,
+            "class": "跳绳",
+            "conf": 0.74
+        },
+        {
+            "frame": 103,
+            "class": "跳绳",
+            "conf": 0.57
+        },
+        {
+            "frame": 119,
+            "class": "跳绳",
+            "conf": 0.71
+        },
+        {
+            "frame": 135,
+            "class": "跳绳",
+            "conf": 0.42
+        },
+        {
+            "frame": 151,
+            "class": "跳绳",
+            "conf": 0.66
+        }
+    ],
+    "error": null
+}

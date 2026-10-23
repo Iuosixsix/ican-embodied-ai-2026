@@ -1,0 +1,1 @@
+Visible DOM algorithm-arrow count after re-open: 14

@@ -1,0 +1,26 @@
+仿真报告
+拍摄到的视频
+	
+处理后视频
+	
+结果
+
+
+	
+	
+{ "tsm": [ { "frame": 23, "class": "打字", "conf": 0.42 }, { "frame": 39, "class": "打字", "conf": 0.28 }, { "frame": 55, "class": "打字", "conf": 0.34 }, { "frame": 71, "class": "打字", "conf": 0.29 }, { "frame": 87, "class": "打字", "conf": 0.31 } ], "error": null }
+
+
+	
+	
+{ "tsm": [ { "frame": 23, "class": "跳绳", "conf": 0.75 }, { "frame": 39, "class": "跳绳", "conf": 0.76 }, { "frame": 55, "class": "跳绳", "conf": 0.76 }, { "frame": 71, "class": "跳绳", "conf": 0.76 }, { "frame": 87, "class": "跳绳", "conf": 0.75 } ], "error": null }
+
+
+	
+	
+{ "tsm": [ { "frame": 23, "class": "摔倒", "conf": 0.53 }, { "frame": 39, "class": "跳绳", "conf": 0.33 }, { "frame": 55, "class": "俯卧撑", "conf": 0.35 } ], "error": null }
+
+
+	
+	
+{ "pose_estimate": { "outputs": "攀爬", "match": 1, "frames": [ 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105, 110, 115, 120, 125 ], "position_conditions": [ { "id": 1, "result": true } ], "distance_conditions": [ { "id": 1, "result": true }, { "id": 2, "result": true } ], "angle_conditions": [ { "id": 1, "result": true } ] }, "error": null }

@@ -1,0 +1,40 @@
+[
+  {
+    "name": "condition",
+    "body": "函数编辑\n返回提交\n节点功能设计节点变量\n通用\n变量赋值\n条件判断\n发布静态TF\nTF坐标变换\n通信\n创建发布者\n创建订阅者\n创建服务端\n发布话题\n客户端请求\n服务端响应\n语音\n设置唤醒词\n提取任务信息\n文字转语音\n导航\n初始化航点\n导航到航点\n加载走路模型\n视觉\n目标检测\n颜色检测\n深度图转点云\n二维点转三维点\n抓取位姿估计\n机械臂\n初始化规划组\n机械臂移动\n张开夹爪\n闭合夹爪\n变量赋值\n条件判断\n变量赋值\n变量赋值\n变量赋值\n变量赋值\n抓取位姿估计\n抓取位姿估计\nTF坐标变换\nTF坐标变换\n机械臂移动\n机械臂移动\n分支1\n分支2\narm_node_g1.py -- grab_message_callback\n</>\n条件判断\n选择判断的变量（只能选布尔数字字符）\n回调函数参数 / Hand\n分支条件（分支从左到右执行）\n分支1\nfalse\n分支2\ntrue\n一旦确认好分支对应的判断条件，在外部就不要去调整分支连线的结构和顺序\n取消确定\n新建\n变量名\n\t\n变量类型\n\t\n引用次数\n\t\n操作\n\nGrasp_Hand\t字符\t4\t\n查看引用修改删除\n\nArm_Hand\t字符\t8\t\n查看引用修改删除\n\nGrasp_Point_Cloud\t点云\t3\t\n查看引用修改删除\n\nGrasp_Pose1\t位姿\t6\t\n查看引用修改删除\n\nGrasp_Pose2\t位姿\t3\t\n查看引用修改删除\n1",
+    "inputs": [
+      ""
+    ]
+  },
+  {
+    "name": "false_grasp_hand",
+    "body": "函数编辑\n返回提交\n节点功能设计节点变量\n通用\n变量赋值\n条件判断\n发布静态TF\nTF坐标变换\n通信\n创建发布者\n创建订阅者\n创建服务端\n发布话题\n客户端请求\n服务端响应\n语音\n设置唤醒词\n提取任务信息\n文字转语音\n导航\n初始化航点\n导航到航点\n加载走路模型\n视觉\n目标检测\n颜色检测\n深度图转点云\n二维点转三维点\n抓取位姿估计\n机械臂\n初始化规划组\n机械臂移动\n张开夹爪\n闭合夹爪\n变量赋值\n条件判断\n变量赋值\n变量赋值\n变量赋值\n变量赋值\n抓取位姿估计\n抓取位姿估计\nTF坐标变换\nTF坐标变换\n机械臂移动\n机械臂移动\n分支1\n分支2\narm_node_g1.py -- grab_message_callback\n</>\n变量赋值\n要赋值的变量\nGrasp_Hand\n赋值类型\n手动赋值\n具体值\n取消确定\n新建\n变量名\n\t\n变量类型\n\t\n引用次数\n\t\n操作\n\nGrasp_Hand\t字符\t4\t\n查看引用修改删除\n\nArm_Hand\t字符\t8\t\n查看引用修改删除\n\nGrasp_Point_Cloud\t点云\t3\t\n查看引用修改删除\n\nGrasp_Pose1\t位姿\t6\t\n查看引用修改删除\n\nGrasp_Pose2\t位姿\t3\t\n查看引用修改删除\n1",
+    "inputs": [
+      "left_gripper"
+    ]
+  },
+  {
+    "name": "false_arm_hand",
+    "body": "函数编辑\n返回提交\n节点功能设计节点变量\n通用\n变量赋值\n条件判断\n发布静态TF\nTF坐标变换\n通信\n创建发布者\n创建订阅者\n创建服务端\n发布话题\n客户端请求\n服务端响应\n语音\n设置唤醒词\n提取任务信息\n文字转语音\n导航\n初始化航点\n导航到航点\n加载走路模型\n视觉\n目标检测\n颜色检测\n深度图转点云\n二维点转三维点\n抓取位姿估计\n机械臂\n初始化规划组\n机械臂移动\n张开夹爪\n闭合夹爪\n变量赋值\n条件判断\n变量赋值\n变量赋值\n变量赋值\n变量赋值\n抓取位姿估计\n抓取位姿估计\nTF坐标变换\nTF坐标变换\n机械臂移动\n机械臂移动\n分支1\n分支2\narm_node_g1.py -- grab_message_callback\n</>\n变量赋值\n要赋值的变量\nArm_Hand\n赋值类型\n手动赋值\n具体值\n取消确定\n新建\n变量名\n\t\n变量类型\n\t\n引用次数\n\t\n操作\n\nGrasp_Hand\t字符\t4\t\n查看引用修改删除\n\nArm_Hand\t字符\t8\t\n查看引用修改删除\n\nGrasp_Point_Cloud\t点云\t3\t\n查看引用修改删除\n\nGrasp_Pose1\t位姿\t6\t\n查看引用修改删除\n\nGrasp_Pose2\t位姿\t3\t\n查看引用修改删除\n1",
+    "inputs": [
+      "left_arm"
+    ]
+  },
+  {
+    "name": "false_graspnet",
+    "body": "函数编辑\n返回提交\n节点功能设计节点变量\n通用\n变量赋值\n条件判断\n发布静态TF\nTF坐标变换\n通信\n创建发布者\n创建订阅者\n创建服务端\n发布话题\n客户端请求\n服务端响应\n语音\n设置唤醒词\n提取任务信息\n文字转语音\n导航\n初始化航点\n导航到航点\n加载走路模型\n视觉\n目标检测\n颜色检测\n深度图转点云\n二维点转三维点\n抓取位姿估计\n机械臂\n初始化规划组\n机械臂移动\n张开夹爪\n闭合夹爪\n变量赋值\n条件判断\n变量赋值\n变量赋值\n变量赋值\n变量赋值\n抓取位姿估计\n抓取位姿估计\nTF坐标变换\nTF坐标变换\n机械臂移动\n机械臂移动\n分支1\n分支2\narm_node_g1.py -- grab_message_callback\n</>\n抓取位姿估计\n位姿估计模型\ngraspnet.tar\n抓取对象的点云\nGrasp_Point_Cloud\n抓取位姿存储变量\nGrasp_Pose1\n取消确定\n新建\n变量名\n\t\n变量类型\n\t\n引用次数\n\t\n操作\n\nGrasp_Hand\t字符\t4\t\n查看引用修改删除\n\nArm_Hand\t字符\t8\t\n查看引用修改删除\n\nGrasp_Point_Cloud\t点云\t3\t\n查看引用修改删除\n\nGrasp_Pose1\t位姿\t6\t\n查看引用修改删除\n\nGrasp_Pose2\t位姿\t3\t\n查看引用修改删除\n1",
+    "inputs": []
+  },
+  {
+    "name": "false_move",
+    "body": "函数编辑\n返回提交\n节点功能设计节点变量\n通用\n变量赋值\n条件判断\n发布静态TF\nTF坐标变换\n通信\n创建发布者\n创建订阅者\n创建服务端\n发布话题\n客户端请求\n服务端响应\n语音\n设置唤醒词\n提取任务信息\n文字转语音\n导航\n初始化航点\n导航到航点\n加载走路模型\n视觉\n目标检测\n颜色检测\n深度图转点云\n二维点转三维点\n抓取位姿估计\n机械臂\n初始化规划组\n机械臂移动\n张开夹爪\n闭合夹爪\n变量赋值\n条件判断\n变量赋值\n变量赋值\n变量赋值\n变量赋值\n抓取位姿估计\n抓取位姿估计\nTF坐标变换\nTF坐标变换\n机械臂移动\n机械臂移动\n分支1\n分支2\narm_node_g1.py -- grab_message_callback\n</>\n机械臂移动\n要移动的机械臂\n变量赋值\nArm_Hand\n目标移动位姿\n选变量\nGrasp_Pose1\n移动速度\n % 的最大移动速度\n回调函数\ngrab_finish_callback\n取消确定\n新建\n变量名\n\t\n变量类型\n\t\n引用次数\n\t\n操作\n\nGrasp_Hand\t字符\t4\t\n查看引用修改删除\n\nArm_Hand\t字符\t8\t\n查看引用修改删除\n\nGrasp_Point_Cloud\t点云\t3\t\n查看引用修改删除\n\nGrasp_Pose1\t位姿\t6\t\n查看引用修改删除\n\nGrasp_Pose2\t位姿\t3\t\n查看引用修改删除\n1",
+    "inputs": [
+      "100"
+    ]
+  },
+  {
+    "name": "initial_cloud_assign",
+    "body": "函数编辑\n返回提交\n节点功能设计节点变量\n通用\n变量赋值\n条件判断\n发布静态TF\nTF坐标变换\n通信\n创建发布者\n创建订阅者\n创建服务端\n发布话题\n客户端请求\n服务端响应\n语音\n设置唤醒词\n提取任务信息\n文字转语音\n导航\n初始化航点\n导航到航点\n加载走路模型\n视觉\n目标检测\n颜色检测\n深度图转点云\n二维点转三维点\n抓取位姿估计\n机械臂\n初始化规划组\n机械臂移动\n张开夹爪\n闭合夹爪\n变量赋值\n条件判断\n变量赋值\n变量赋值\n变量赋值\n变量赋值\n抓取位姿估计\n抓取位姿估计\nTF坐标变换\nTF坐标变换\n机械臂移动\n机械臂移动\n分支1\n分支2\narm_node_g1.py -- grab_message_callback\n</>\n变量赋值\n要赋值的变量\nGrasp_Point_Cloud\n赋值类型\n回调函数参数赋值\n具体值\nPcloud\n取消确定\n新建\n变量名\n\t\n变量类型\n\t\n引用次数\n\t\n操作\n\nGrasp_Hand\t字符\t4\t\n查看引用修改删除\n\nArm_Hand\t字符\t8\t\n查看引用修改删除\n\nGrasp_Point_Cloud\t点云\t3\t\n查看引用修改删除\n\nGrasp_Pose1\t位姿\t6\t\n查看引用修改删除\n\nGrasp_Pose2\t位姿\t3\t\n查看引用修改删除\n1",
+    "inputs": []
+  }
+]

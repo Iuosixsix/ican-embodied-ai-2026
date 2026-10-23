@@ -1,0 +1,437 @@
+ROS节点编写
+提交
+星海图R1节点宇树G1节点配置文件和其他资源
+	
+节点名
+	
+节点用途
+	
+操作
+
+	master_node_r1.py	与各个节点通信主逻辑控制功能实现	
+新增函数复制内容查看源码
+
+	nav_node_r1.py	与Nav2通信的导航功能实现	
+新增函数复制内容查看源码
+
+	vision_node_r1.py	目标/颜色检测、抓取位姿估计等视觉检测功能实现	
+新增函数复制内容查看源码
+
+	arm_node_r1.py	机械臂控制功能实现	
+新增函数复制内容查看源码
+	
+节点名
+	
+节点用途
+	
+操作
+
+	master_node_g1.py	与各个节点通信主逻辑控制功能实现	
+新增函数复制内容查看源码
+
+	nav_node_g1.py	与Nav2通信的导航功能实现	
+新增函数复制内容查看源码
+
+	
+函数名
+	
+函数用途
+	
+操作
+
+
+init
+	
+各种初始化功能
+	
+编辑功能删除函数查看源码
+
+
+nav_target_message_callback
+	
+接收目标航点并启动导航
+	
+编辑功能删除函数查看源码
+
+
+nav_finish_callback
+	
+导航完成后通知主控
+	
+编辑功能删除函数查看源码
+
+	vision_node_g1.py	目标/颜色检测、抓取位姿估计等视觉检测功能实现	
+新增函数复制内容查看源码
+
+	
+函数名
+	
+函数用途
+	
+操作
+
+
+init
+	
+各种初始化功能
+	
+编辑功能删除函数查看源码
+
+
+get_camera_rgb_callback
+	
+缓存彩色图像
+	
+编辑功能删除函数查看源码
+
+
+get_camera_depth_callback
+	
+缓存深度图像
+	
+编辑功能删除函数查看源码
+
+
+vision_detect_request_callback
+	
+按物体或颜色请求定位并响应
+	
+编辑功能删除函数查看源码
+
+	arm_node_g1.py	机械臂控制功能实现	
+新增函数复制内容查看源码
+文件名
+	
+用途
+	
+针对机器人
+	
+操作
+
+r1.launch	星海图R1启动配置文件	星海图R1	查看
+g1.launch	宇树G1启动配置文件	宇树G1	查看
+map.yaml、map.pgm	室内环境栅格地图	通用	查看
+waypoints.yaml	地图航点配置	通用	查看
+walk.rknn	走路强化学习模型	通用	查看
+yolo.pt	视觉检测模型	通用	查看
+graspnet.tar	6d抓取位姿估计模型	通用	查看
+hand_eye_r1.yaml	星海图R1头部相机手眼标定文件	星海图R1	查看
+hand_eye_g1.yaml	宇树G1头部相机手眼标定文件	宇树G1	查看
+源码
+import rclpy   
+import cv2  
+from rclpy.node import Node 
+from rclpy.action import ActionClient 
+from geometry_msgs.msg import PoseStamped, Twist 
+from sensor_msgs.msg import PointCloud2,Image 
+from std_msgs.msg import Int32, Bool,String, Float32MultiArray 
+import math 
+import Talk  
+import serial 
+import threading 
+import numpy as np 
+import time 
+import transforms3d 
+import torch 
+from graspnet import GraspNet 
+from rknnlite.api import RKNNLite 
+from moveit_py import MoveItPy 
+from moveit_msgs.msg import MoveItErrorCodes 
+from nav2_msgs.action import NavigateToPose 
+from tf2_ros import StaticTransformBroadcaster 
+from tf2 import quaternion_from_euler 
+import tf2_ros 
+from tf2_geometry_msgs import do_transform_pose 
+import yaml 
+from ultralytics import YOLO 
+ 
+class MinimalNode(Node): 
+     #节点初始化函数 
+     def __init__(self): 
+          super().__init__('minimal_node')  # 节点名称 
+          self.get_logger().info('Minimal node has been started.') 
+          self.bridge = CvBridge()  #初始化图像格式转化工具 
+           
+          
+          #创建一个发布者
+          self._deploy_pub = self.create_publisher(_grabMessage, '_deploy', 10)
+          # _grabMessage.msg的内容如下
+          bool Hand
+          pose Fpose
+          #创建一个订阅者
+          self.is_Finish_pub = self.create_subscription(Bool, 'is_Finish', self.callback, 10)
+          #设置通信串口 
+          self.declare_parameter('serial_port', '/dev/ttyUSB0') 
+          self.declare_parameter('baud_rate', 9600)  
+           
+          port = self.get_parameter('serial_port').value 
+          baud = self.get_parameter('baud_rate').value 
+           
+          #设置一个唤醒词并通过串口传给外部语音模块 
+          try:   
+              self.ser = serial.Serial(port, baud, timeout=1)  
+              self.get_logger().info(f'Connected to {port}') 
+              cmd = f"WAKEUP:{'$wake_word 
+       
+     
+
+     def nav_arm_finish_callback(self, msg):
+          if self.master_work_status == 1:
+               #变量赋值
+               self.master_work_status = 2
+               #创建一个客户端
+               self.11_pub = self.create_client(_locateService, '_locate')
+               #如果请求超时则报错
+               if not self.locate_client.wait_for_service(timeout_sec=2.0):
+                    self.get_logger().error('服务不可用')
+                    return None
+               #设置请求参数
+               request = _locateService.Request()
+               request.Detect_Type = '物体'
+               request.Detect_Name = self.master_task_dictionary.target1-2
+               future = self.locate_client.call_async(request)
+               #发起一个异步请求，并设置一个请求响应后的回调函数
+               future.add_done_callback(self.vision_detect_response_callback1)
+               #_locateService.srv的内容如下：
+               string Detect_Type
+               string Detect_Name
+          if self.master_work_status == 3:
+               #变量赋值
+               self.master_work_status = 4
+               #发布一个话题
+               msgData = String()
+               msgData.data = self.Navigation_Address
+               self._nav_pub.publish(msg)
+          if self.master_work_status == 4:
+               #变量赋值
+               self.master_work_status = 5
+               #创建一个客户端
+               self.11_pub = self.create_client(_locateService, '_locate')
+               #如果请求超时则报错
+               if not self.locate_client.wait_for_service(timeout_sec=2.0):
+                    self.get_logger().error('服务不可用')
+                    return None
+               #设置请求参数
+               request = _locateService.Request()
+               request.Detect_Type = '物体'
+               request.Detect_Name = self.master_task_dictionary.target2-2
+               future = self.locate_client.call_async(request)
+               #发起一个异步请求，并设置一个请求响应后的回调函数
+               future.add_done_callback(self.vision_detect_response_callback2)
+               #_locateService.srv的内容如下：
+               string Detect_Type
+               string Detect_Name
+          if self.master_work_status == 6:
+               #变量赋值
+               self.master_work_status = 7
+               #发布一个话题
+               msgData = String()
+               msgData.data = self.Navigation_Address
+               self._nav_pub.publish(msg)
+          if self.master_work_status == 7:
+               #变量赋值
+               self.master_work_status = 8
+               #创建一个客户端
+               self.11_pub = self.create_client(_locateService, '_locate')
+               #如果请求超时则报错
+               if not self.locate_client.wait_for_service(timeout_sec=2.0):
+                    self.get_logger().error('服务不可用')
+                    return None
+               #设置请求参数
+               request = _locateService.Request()
+               request.Detect_Type = '颜色'
+               request.Detect_Name = self.master_task_dictionary.target3-2
+               future = self.locate_client.call_async(request)
+               #发起一个异步请求，并设置一个请求响应后的回调函数
+               future.add_done_callback(self.vision_detect_response_callback3)
+               #_locateService.srv的内容如下：
+               string Detect_Type
+               string Detect_Name
+          if self.master_work_status == 9:
+               #变量赋值
+               self.master_work_status = 10
+               #创建一个客户端
+               self.11_pub = self.create_client(_locateService, '_locate')
+               #如果请求超时则报错
+               if not self.locate_client.wait_for_service(timeout_sec=2.0):
+                    self.get_logger().error('服务不可用')
+                    return None
+               #设置请求参数
+               request = _locateService.Request()
+               request.Detect_Type = '颜色'
+               request.Detect_Name = self.master_task_dictionary.target3-3
+               future = self.locate_client.call_async(request)
+               #发起一个异步请求，并设置一个请求响应后的回调函数
+               future.add_done_callback(self.vision_detect_response_callback4)
+               #_locateService.srv的内容如下：
+               string Detect_Type
+               string Detect_Name
+          if self.master_work_status == 11:
+               #变量赋值
+               self.master_work_status = 12
+               #发布一个话题
+               msgData = String()
+               msgData.data = self.Navigation_Address
+               self._nav_pub.publish(msg)
+          if self.master_work_status == 12:
+               #设置一个要语音播放的文字内容，通过串口传输给外部语音模块播放 
+               greeting = "任务完成，回到原点等待下一个指令！"   # 对应转语音的文字 
+               ser = serial.Serial(port, baud, timeout=1) 
+               # 构造TTS命令字符串 
+               cmd = f"TTS:{greeting}\n"               
+               # 通过串口发送命令 
+               ser.write(cmd.encode())       
+               get_logger().info(f'[TTS] Say: {greeting}')  
+               #变量赋值
+               self.master_work_status = 0
+
+     def vision_detect_response_callback1(self, future):
+          #变量赋值
+          self.master_work_status = 3
+          #发布一个话题
+          msgData = _grabMessage()
+          msgData.data = 1
+          msgData.data = future.result().Pcloud
+          msgData.header.stamp = self.get_clock().now().to_msg()
+          self._grab_pub_.publish(msgData)
+          #_grabMessage.msg的内容如下
+          bool Hand
+          pointcloud Pcloud
+
+     def vision_detect_response_callback2(self, future):
+          #变量赋值
+          self.master_work_status = 6
+          #发布一个话题
+          msgData = _grabMessage()
+          msgData.data = 0
+          msgData.data = future.result().Pcloud
+          msgData.header.stamp = self.get_clock().now().to_msg()
+          self._grab_pub_.publish(msgData)
+          #_grabMessage.msg的内容如下
+          bool Hand
+          pointcloud Pcloud
+
+     def vision_detect_response_callback3(self, future):
+          #变量赋值
+          self.master_work_status = 9
+          #发布一个话题
+          msgData = _grabMessage()
+          msgData.data = 1
+          msgData.data = future.result().Fpose
+          msgData.header.stamp = self.get_clock().now().to_msg()
+          self._grab_pub_.publish(msgData)
+          #_grabMessage.msg的内容如下
+          bool Hand
+          pose Fpose
+
+     def vision_detect_response_callback4(self, future):
+          #变量赋值
+          self.master_work_status = 11
+          #发布一个话题
+          msgData = _grabMessage()
+          msgData.data = 0
+          msgData.data = future.result().Fpose
+          msgData.header.stamp = self.get_clock().now().to_msg()
+          self._grab_pub_.publish(msgData)
+          #_grabMessage.msg的内容如下
+          bool Hand
+          pose Fpose
+     def set_wakeup_keywords_callback(self):
+          #通过串口获取外部语音模块返回的任务相关关键信息字符 
+          line = self.ser.readline().decode('utf-8', errors='ignore').strip()  
+          if line.startswith("CMD:"):          
+               payload = line[4:]                
+               fields = [f.strip() for f in payload.split(',')]  
+           
+               # 安全检查：至少需要8个字段 
+               if len(fields) >= 8: 
+                    self.tasks = { 
+                         "target1-1": fields[0],  # 对应要提取的八个内容 
+                         "target1-2": fields[1], 
+                         "target2-1": fields[2], 
+                         "target2-2": fields[3], 
+                         "target3-1": fields[4], 
+                         "target3-2": fields[5], 
+                         "target3-3": fields[6], 
+                         "target4": fields[7] 
+               }
+          #设置要加入到TF树的新坐标系 
+          child_frame = 'r12_camera'       # 对应新增TF名称 
+           
+          #设置新坐标系针对哪个坐标系的变换关系 
+          parent_frame = '基座'        # 对应相对坐标系 
+          x,  y,  z = 0.0364,0,1.2256           # 对应相对坐标系位姿位置 
+          roll,  pitch,  yaw = 0,0.8727,0   # 对应相对坐标系位姿旋转 
+           
+          qx, qy, qz, qw = quaternion_from_euler(roll, pitch, yaw) 
+           
+          TransformStamped t = TransformStamped() 
+          t.header.stamp = self.get_clock().now().to_msg() 
+          t.header.frame_id = parent_frame 
+          t.child_frame_id = child_frame 
+          t.transform.translation.x = x 
+          t.transform.translation.y = y 
+          t.transform.translation.z = z 
+          t.transform.rotation.x = qx 
+          t.transform.rotation.y = qy 
+          t.transform.rotation.z = qz 
+          t.transform.rotation.w = qw 
+           
+          broadcaster = StaticTransformBroadcaster(self) 
+          broadcaster.sendTransform(t) 
+          
+          #变量赋值
+          self.master_work_status = 1
+          #发布一个话题
+          msgData = String()
+          msgData.data = self.Navigation_Address
+          self._nav_pub.publish(msg)
+ 
+ 
+def main(args=None): 
+     rclpy.init(args=args) 
+     node = MinimalNode() 
+     try: 
+          rclpy.spin(node) 
+     except KeyboardInterrupt: 
+          node.get_logger().info('Node interrupted by user.') 
+     finally: 
+          node.destroy_node() 
+          rclpy.shutdown() 
+ 
+if __name__ == '__main__': 
+     main()
+}\n"             # 对应学生设置的唤醒词 
+              self.ser.write(cmd.encode())  
+          except Exception as e: 
+              self.get_logger().error(f'Serial error: {e}')    
+              raise 
+           
+          #设置一个回调函数，在外部语音模块识别到唤醒词后被触发 
+          self.running = True   
+          self.thread = threading.Thread(target=self.serial_loop, daemon=True)  # 对应回调函数 
+          self.thread.start()
+          #创建一个发布者
+          self.Navigation_Address_pub = self.create_publisher(String, 'Navigation_Address', 10)
+          #创建一个发布者
+          self._grab_pub = self.create_publisher(_grabMessage, '_grab', 10)
+          # _grabMessage.msg的内容如下
+          bool Hand
+          pointcloud Pcloud
+ 
+       
+     $self_func_code$ 
+ 
+def main(args=None): 
+     rclpy.init(args=args) 
+     node = MinimalNode() 
+     try: 
+          rclpy.spin(node) 
+     except KeyboardInterrupt: 
+          node.get_logger().info('Node interrupted by user.') 
+     finally: 
+          node.destroy_node() 
+          rclpy.shutdown() 
+ 
+if __name__ == '__main__': 
+     main()

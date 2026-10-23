@@ -1,0 +1,307 @@
+模型构建
+实例分割数据集实例分割模型抓取位姿数据集抓取位姿估计模型
+新建
+模型权重文件
+	
+训练数据集
+	
+创建时间
+	
+状态
+	
+操作
+
+T12_grasp6d_m1_1023	T12_pose20_1023	10/23/2026 3:58:16 AM	已完成	
+查看复制删除
+1
+模型验证结果
+该模型的四个关键指标如下：
+Top-1 成功率（S@1）：82.15%     Top-5 成功率（S@5）：94.75%
+无碰撞率（CFR）：83.04%     打滑风险率（SLR）：33.41%
+
+
+下面是模型训练源码（graspnet的train源码）
+# 训练 GraspNet baseline 的主入口脚本：负责参数解析、数据集与加载器创建、模型/优化器/调度器初始化、训练-评估循环与 checkpoint 保存。
+ 
+import os 
+import sys 
+import numpy as np 
+from datetime import datetime 
+import argparse 
+ 
+import torch 
+import torch.nn as nn 
+import torch.optim as optim 
+from torch.optim import lr_scheduler 
+from torch.utils.data import DataLoader 
+from torch.utils.tensorboard import SummaryWriter 
+ 
+# 项目根目录（用于追加自定义模块搜索路径） 
+ROOT_DIR = os.path.dirname(os.path.abspath(__file__)) 
+ 
+# utils/ 下放通用工具（如 BN 动量调度器等） 
+# pointnet2/ 下放点云特征网络（PointNet++ 等实现） 
+# models/ 下放 GraspNet 主干与损失函数 
+# dataset/ 下放数据集定义、标签载入与预处理逻辑 
+sys.path.append(os.path.join(ROOT_DIR, 'utils')) 
+sys.path.append(os.path.join(ROOT_DIR, 'pointnet2')) 
+sys.path.append(os.path.join(ROOT_DIR, 'models')) 
+sys.path.append(os.path.join(ROOT_DIR, 'dataset')) 
+ 
+# GraspNet 为抓取评分网络；get_loss 计算整体训练损失（含各子项） 
+from graspnet import GraspNet, get_loss 
+ 
+# 批归一化(BN)动量调度器：随 epoch 逐步收敛，提升稳定性 
+from pytorch_utils import BNMomentumScheduler 
+ 
+# GraspNetDataset 产出“点云+抓取候选标签”批数据；collate_fn 负责组 batch；load_grasp_labels 读取抓取可行性标签 
+from graspnet_dataset import GraspNetDataset, collate_fn, load_grasp_labels 
+ 
+# 将原始抓取标签做规则化/筛选（碰撞、摩擦锥、深度/开口等规则），得到可训练的正/负样本与计数 
+from label_generation import process_grasp_labels 
+ 
+# 数据集根目录（包含点云、抓取标签等） 
+# 相机域/划分（realsense/kinect），影响数据子集选择 
+# 每批采样的点数（对大场景点云做下采样，如 20000） 
+# 视角/接近方向的候选数（抓取采样方向数量，越大越密但越慢） 
+# 训练轮数（基线常见 18~20 轮即可收敛） 
+# 训练 batch 大小（点云任务显存占用高，常取 1~4） 
+# 初始学习率（基线用 Adam, lr≈1e-3 最常见） 
+# L2 权重衰减（默认 0，可按需正则化） 
+# BN 动量衰减步长/比率（提升后期稳定性） 
+# 学习率分段衰减的里程碑（epoch 列表，如 8,12,16） 
+# 各里程碑对应的衰减倍率（与上面一一对应） 
+parser = argparse.ArgumentParser() 
+parser.add_argument('--dataset_root', required=True, help='Dataset root') 
+parser.add_argument('--camera', required=True, help='Camera split [realsense/kinect]') 
+parser.add_argument('--checkpoint_path', default=None, help='Model checkpoint path [default: None]') 
+parser.add_argument('--log_dir', default='log', help='Dump dir to save model checkpoint [default: log]') 
+parser.add_argument('--num_point', type=int, default=20000, help='Point Number [default: 20000]') 
+parser.add_argument('--num_view', type=int, default=300, help='View Number [default: 300]') 
+parser.add_argument('--max_epoch', type=int, default=18, help='Epoch to run [default: 18]') 
+parser.add_argument('--batch_size', type=int, default=2, help='Batch Size during training [default: 2]') 
+parser.add_argument('--learning_rate', type=float, default=0.001, help='Initial learning rate [default: 0.001]') 
+parser.add_argument('--weight_decay', type=float, default=0, help='Optimization L2 weight decay [default: 0]') 
+parser.add_argument('--bn_decay_step', type=int, default=2, help='Period of BN decay (in epochs) [default: 2]') 
+parser.add_argument('--bn_decay_rate', type=float, default=0.5, help='Decay rate for BN decay [default: 0.5]') 
+parser.add_argument('--lr_decay_steps', default='8,12,16', help='When to decay the learning rate (in epochs) [default: 8,12,16]') 
+parser.add_argument('--lr_decay_rates', default='0.1,0.1,0.1', help='Decay rates for lr decay [default: 0.1,0.1,0.1]') 
+cfgs = parser.parse_args() 
+ 
+GLOBAL CONFIG BEG 
+EPOCH_CNT = 0 
+ 
+# 解析 LR 分段衰减配置，如在 8/12/16 epoch 分别衰减到 0.1× 
+LR_DECAY_STEPS = [int(x) for x in cfgs.lr_decay_steps.split(',')] 
+LR_DECAY_RATES = [float(x) for x in cfgs.lr_decay_rates.split(',')] 
+assert(len(LR_DECAY_STEPS)==len(LR_DECAY_RATES)) 
+DEFAULT_CHECKPOINT_PATH = os.path.join(cfgs.log_dir, 'checkpoint.tar') 
+ 
+# 若未显式传入 checkpoint_path，则默认保存到 log_dir/checkpoint.tar 
+CHECKPOINT_PATH = cfgs.checkpoint_path if cfgs.checkpoint_path is not None \ 
+    else DEFAULT_CHECKPOINT_PATH 
+ 
+# 简易日志函数：写文件+打印，记录训练过程的关键指标 
+if not os.path.exists(cfgs.log_dir): 
+    os.makedirs(cfgs.log_dir) 
+ 
+LOG_FOUT = open(os.path.join(cfgs.log_dir, 'log_train.txt'), 'a') 
+LOG_FOUT.write(str(cfgs)+'\n') 
+def log_string(out_str): 
+    LOG_FOUT.write(out_str+'\n') 
+    LOG_FOUT.flush() 
+    print(out_str) 
+ 
+# DataLoader 每个 worker 固定随机种子，保证可复现实验（与主进程种子错开） 
+def my_worker_init_fn(worker_id): 
+    np.random.seed(np.random.get_state()[1][0] + worker_id) 
+    pass 
+ 
+# 读取抓取标签（哪些候选可行/不可行，以及有效物体索引） 
+# 训练集：remove_outlier=True（去异常点），augment=True（开启点云增强） 
+# 测试集：augment=False（评估时不做增强），其余配置与训练一致 
+valid_obj_idxs, grasp_labels = load_grasp_labels(cfgs.dataset_root) 
+TRAIN_DATASET = GraspNetDataset(cfgs.dataset_root, valid_obj_idxs, grasp_labels, camera=cfgs.camera, split='train', num_points=cfgs.num_point, remove_outlier=True, augment=True) 
+TEST_DATASET = GraspNetDataset(cfgs.dataset_root, valid_obj_idxs, grasp_labels, camera=cfgs.camera, split='test_seen', num_points=cfgs.num_point, remove_outlier=True, augment=False) 
+ 
+print(len(TRAIN_DATASET), len(TEST_DATASET)) 
+ 
+# 训练集打乱（shuffle=True），并传入自定义 collate_fn（合并不同长度列表等） 
+# num_workers=4 并行加载可提速（I/O 与简单预处理并行） 
+TRAIN_DATALOADER = DataLoader(TRAIN_DATASET, batch_size=cfgs.batch_size, shuffle=True, 
+    num_workers=4, worker_init_fn=my_worker_init_fn, collate_fn=collate_fn) 
+TEST_DATALOADER = DataLoader(TEST_DATASET, batch_size=cfgs.batch_size, shuffle=False, 
+    num_workers=4, worker_init_fn=my_worker_init_fn, collate_fn=collate_fn) 
+print(len(TRAIN_DATALOADER), len(TEST_DATALOADER)) 
+ 
+# GraspNet 超参：num_angle=12（手爪绕接近轴的角度离散）、num_depth=4（深入深度离散） 
+# cylinder_radius/hmin/hmax_list 定义抓取采样的空间范围（手爪“探入圆柱”的几何参数） 
+net = GraspNet(input_feature_dim=0, num_view=cfgs.num_view, num_angle=12, num_depth=4, 
+                        cylinder_radius=0.05, hmin=-0.02, hmax_list=[0.01,0.02,0.03,0.04]) 
+ 
+# 优先用 GPU；无 GPU 则退回 CPU 
+# Adam 优化器（与基线配置一致），可选加入 weight_decay 做 L2 正则 
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu") 
+net.to(device) 
+ 
+optimizer = optim.Adam(net.parameters(), lr=cfgs.learning_rate, weight_decay=cfgs.weight_decay) 
+ 
+# it 为调度器内部步计数的初始占位 
+# 若存在 checkpoint：恢复模型/优化器/起始 epoch，便于断点续训 
+it = -1 # for the initialize value of `LambdaLR` and `BNMomentumScheduler` 
+start_epoch = 0 
+if CHECKPOINT_PATH is not None and os.path.isfile(CHECKPOINT_PATH): 
+    checkpoint = torch.load(CHECKPOINT_PATH) 
+    net.load_state_dict(checkpoint['model_state_dict']) 
+    optimizer.load_state_dict(checkpoint['optimizer_state_dict']) 
+    start_epoch = checkpoint['epoch'] 
+    log_string("-> loaded checkpoint %s (epoch: %d)"%(CHECKPOINT_PATH, start_epoch)) 
+ 
+# 训练早期 BN 动量大（更新更快），后期逐步减小（更稳定） 
+# 注：PyTorch 的 momentum 定义与 TF 相反（0.1 = 1-0.9） 
+# bnm_scheduler：每个 epoch 调整全网 BN 的 momentum，贴近期望曲线 
+BN_MOMENTUM_INIT = 0.5 
+BN_MOMENTUM_MAX = 0.001 
+bn_lbmd = lambda it: max(BN_MOMENTUM_INIT * cfgs.bn_decay_rate**(int(it / cfgs.bn_decay_step)), BN_MOMENTUM_MAX) 
+bnm_scheduler = BNMomentumScheduler(net, bn_lambda=bn_lbmd, last_epoch=start_epoch-1) 
+ 
+# 按照 LR_DECAY_STEPS/ RATES 计算当前 epoch 的学习率 
+# 将学习率写回 optimizer 的各 param_group，实现分段衰减 
+def get_current_lr(epoch): 
+    lr = cfgs.learning_rate 
+    for i,lr_decay_epoch in enumerate(LR_DECAY_STEPS): 
+        if epoch >= lr_decay_epoch: 
+            lr *= LR_DECAY_RATES[i] 
+    return lr 
+ 
+def adjust_learning_rate(optimizer, epoch): 
+    lr = get_current_lr(epoch) 
+    for param_group in optimizer.param_groups: 
+        param_group['lr'] = lr 
+ 
+# TensorBoard 可视化 
+TRAIN_WRITER = SummaryWriter(os.path.join(cfgs.log_dir, 'train')) 
+TEST_WRITER = SummaryWriter(os.path.join(cfgs.log_dir, 'test')) 
+ 
+# 根据当前 epoch 设置学习率（分段衰减） 
+# 同步衰减 BN 动量（与 epoch 对齐） 
+# 切换为训练模式（启用 BN/Dropout 的训练行为） 
+# 将 batch 中的张量搬到 device；若是 list 嵌套结构则逐层搬运 
+# 前向传播：输入为“点云片段 + 抓取候选/标签等字典”，输出 end_points（预测与中间结果） 
+# 计算总损失（可能包含多个子损失，如分类/质量打分/正负样本平衡等），并将各指标写入 end_points 
+# 反向传播与优化：按积累步数（这里每步）更新参数、清空梯度 
+# 统计并打印：每隔 batch_interval 汇总 loss/acc/prec/recall/count 等，写入 TensorBoard，便于监控训练稳定性 
+def train_one_epoch(): 
+    stat_dict = {} # collect statistics 
+    adjust_learning_rate(optimizer, EPOCH_CNT) 
+    bnm_scheduler.step() # decay BN momentum 
+    # set model to training mode 
+    net.train() 
+    for batch_idx, batch_data_label in enumerate(TRAIN_DATALOADER): 
+        for key in batch_data_label: 
+            if 'list' in key: 
+                for i in range(len(batch_data_label[key])): 
+                    for j in range(len(batch_data_label[key][i])): 
+                        batch_data_label[key][i][j] = batch_data_label[key][i][j].to(device) 
+            else: 
+                batch_data_label[key] = batch_data_label[key].to(device) 
+ 
+        # Forward pass 
+        end_points = net(batch_data_label) 
+ 
+        # Compute loss and gradients, update parameters. 
+        loss, end_points = get_loss(end_points) 
+        loss.backward() 
+        if (batch_idx+1) % 1 == 0: 
+            optimizer.step() 
+            optimizer.zero_grad() 
+ 
+        # Accumulate statistics and print out 
+        for key in end_points: 
+            if 'loss' in key or 'acc' in key or 'prec' in key or 'recall' in key or 'count' in key: 
+                if key not in stat_dict: stat_dict[key] = 0 
+                stat_dict[key] += end_points[key].item() 
+ 
+        batch_interval = 10 
+        if (batch_idx+1) % batch_interval == 0: 
+            log_string(' ---- batch: %03d ----' % (batch_idx+1)) 
+            for key in sorted(stat_dict.keys()): 
+                TRAIN_WRITER.add_scalar(key, stat_dict[key]/batch_interval, (EPOCH_CNT*len(TRAIN_DATALOADER)+batch_idx)*cfgs.batch_size) 
+                log_string('mean %s: %f'%(key, stat_dict[key]/batch_interval)) 
+                stat_dict[key] = 0 
+ 
+# 切换 eval 模式（冻结 BN/Dropout 的训练行为） 
+# 与训练类似，将测试批数据搬到 device；但评估阶段不做梯度计算 
+# 前向推理（no_grad）：得到预测 end_points 
+# 计算评估损失（与训练同一套指标，便于横向对比） 
+# 汇总测试集的 mean 指标，写入 TensorBoard；返回 mean loss 以便保存最优模型 
+# 返回本轮评估的平均 loss，供外层训练循环记录与对比 
+def evaluate_one_epoch(): 
+    stat_dict = {} # collect statistics 
+    # set model to eval mode (for bn and dp) 
+    net.eval() 
+    for batch_idx, batch_data_label in enumerate(TEST_DATALOADER): 
+        if batch_idx % 10 == 0: 
+            print('Eval batch: %d'%(batch_idx)) 
+        for key in batch_data_label: 
+            if 'list' in key: 
+                for i in range(len(batch_data_label[key])): 
+                    for j in range(len(batch_data_label[key][i])): 
+                        batch_data_label[key][i][j] = batch_data_label[key][i][j].to(device) 
+            else: 
+                batch_data_label[key] = batch_data_label[key].to(device) 
+         
+        # Forward pass 
+        with torch.no_grad(): 
+            end_points = net(batch_data_label) 
+ 
+        # Compute loss 
+        loss, end_points = get_loss(end_points) 
+ 
+        # Accumulate statistics and print out 
+        for key in end_points: 
+            if 'loss' in key or 'acc' in key or 'prec' in key or 'recall' in key or 'count' in key: 
+                if key not in stat_dict: stat_dict[key] = 0 
+                stat_dict[key] += end_points[key].item() 
+ 
+    for key in sorted(stat_dict.keys()): 
+        TEST_WRITER.add_scalar(key, stat_dict[key]/float(batch_idx+1), (EPOCH_CNT+1)*len(TRAIN_DATALOADER)*cfgs.batch_size) 
+        log_string('eval mean %s: %f'%(key, stat_dict[key]/(float(batch_idx+1)))) 
+ 
+    mean_loss = stat_dict['loss/overall_loss']/float(batch_idx+1) 
+    return mean_loss 
+ 
+# 训练主循环：打印 epoch 编号、当前 LR 与 BN 动量、时间戳；重置 numpy 随机种子（确保 loader 随机性） 
+# 参考 PyTorch 讨论：多进程 DataLoader 的随机性需要在 epoch 内重新播种 
+def train(start_epoch): 
+    global EPOCH_CNT  
+    min_loss = 1e10 
+    loss = 0 
+    for epoch in range(start_epoch, cfgs.max_epoch): 
+        EPOCH_CNT = epoch 
+        log_string('**** EPOCH %03d ****' % (epoch)) 
+        log_string('Current learning rate: %f'%(get_current_lr(epoch))) 
+        log_string('Current BN decay momentum: %f'%(bnm_scheduler.lmbd(bnm_scheduler.last_epoch))) 
+        log_string(str(datetime.now())) 
+ 
+        # 执行一个 epoch 的训练 
+# 在验证/测试划分上评估，得到 mean loss 
+# 组装 checkpoint 字典，兼容 DataParallel 与单卡；保存至 log_dir/checkpoint.tar 
+# 每轮均覆盖式保存 checkpoint；也可按需加“最优”另存逻辑 
+        np.random.seed() 
+        train_one_epoch() 
+        loss = evaluate_one_epoch() 
+        # Save checkpoint 
+        save_dict = {'epoch': epoch+1, # after training one epoch, the start_epoch should be epoch+1 
+                    'optimizer_state_dict': optimizer.state_dict(), 
+                    'loss': loss, 
+                    } 
+        try: # with nn.DataParallel() the net is added as a submodule of DataParallel 
+            save_dict['model_state_dict'] = net.module.state_dict() 
+        except: 
+            save_dict['model_state_dict'] = net.state_dict() 
+        torch.save(save_dict, os.path.join(cfgs.log_dir, 'checkpoint.tar')) 
+ 
+# 从（断点恢复的）start_epoch 开始训练 
+if __name__=='__main__': 
+train(start_epoch)

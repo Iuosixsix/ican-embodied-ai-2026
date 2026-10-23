@@ -1,0 +1,117 @@
+[
+  {
+    "Path": "task7-9/task7_blank_strategy_panel.png",
+    "Bytes": 75298,
+    "SHA256": "146A757CDE99ABE683AA1452A1EA6F0FABCCD337044EFA2E53D0565668ABFFB1"
+  },
+  {
+    "Path": "task7-9/task7_c1_karto.png",
+    "Bytes": 131371,
+    "SHA256": "397D1D1222A70683096684409EC6763A3F2A51B4FCE6D298C8233F5E43F11D16"
+  },
+  {
+    "Path": "task7-9/task7_c1_report_86p6.png",
+    "Bytes": 61741,
+    "SHA256": "5A3F98FAB59851AF4573B3862C2BB7A29FBDC3C41A033FEDF7EAACA6154FAF3E"
+  },
+  {
+    "Path": "task7-9/task7_c1_route.png",
+    "Bytes": 132217,
+    "SHA256": "D472E5E761F7C1BFA3A96D77EF5E02D32CCCA6AB2FBB297CEE2C41E9FAF0BF2C"
+  },
+  {
+    "Path": "task7-9/task7_c2_gmapping.png",
+    "Bytes": 132788,
+    "SHA256": "A2756A0D7EF05A78DAF8A820FE56633A750E28F78B72B2C8151BE667D67804BE"
+  },
+  {
+    "Path": "task7-9/task7_c2_route.png",
+    "Bytes": 164170,
+    "SHA256": "D996E3388E781E7619F022E9A0CA6A9D09AF92DEF048832656417B84BDD5D8CF"
+  },
+  {
+    "Path": "task7-9/task7_hardware.png",
+    "Bytes": 117987,
+    "SHA256": "A7C046271D2993C3BA4C8A2E21F16593EF66FE2EA5EBD3032EB5AE4C1D40C39A"
+  },
+  {
+    "Path": "task7-9/task8_c1_costmap.png",
+    "Bytes": 149231,
+    "SHA256": "C55650AD2059CF0F22E7676622949937E4CD98E7EDCA8055CC855E3721893B1F"
+  },
+  {
+    "Path": "task7-9/task8_c1_global.png",
+    "Bytes": 141157,
+    "SHA256": "F10E3A02093CC0AFFAA6677E85B0BD7DFE1DBD592BAEF42990C0503B38DA1492"
+  },
+  {
+    "Path": "task7-9/task8_c1_local.png",
+    "Bytes": 147900,
+    "SHA256": "99531C384CFA0CD9C99CE6B3D6A4D2E9AFC56997FACA59F937B328BFC577483D"
+  },
+  {
+    "Path": "task7-9/task8_c2_costmap.png",
+    "Bytes": 145359,
+    "SHA256": "7B9B3FC0EDDAE3957061D7624ABD37837633204ABAB9C035010E07DD86FBBEBF"
+  },
+  {
+    "Path": "task7-9/task8_c2_global.png",
+    "Bytes": 141855,
+    "SHA256": "17A4F8798C6922E777ECDC0554F412A3E496819CAD35183ED8D08F8D9F65C806"
+  },
+  {
+    "Path": "task7-9/task8_c2_local.png",
+    "Bytes": 145683,
+    "SHA256": "BB239558075ACFFD7B25A1CC322E0C523C22744B8FEE1C6C1323308D1BC32B1E"
+  },
+  {
+    "Path": "task7-9/task8_customer_requirements.txt",
+    "Bytes": 1823,
+    "SHA256": "F55C162A21AC39F9F86B8FD41EAD8990EC6BCAEA4BD815919B06B9CD5E43C98B"
+  },
+  {
+    "Path": "task7-9/task8_customer1_requirements.png",
+    "Bytes": 170703,
+    "SHA256": "FD2EFD4985857ECE1E322364E208BDFF30A0927130886635B527392B1BE01C9B"
+  },
+  {
+    "Path": "task7-9/task8_customer2_requirements.png",
+    "Bytes": 162857,
+    "SHA256": "960B7310C0CE287C0B6CCE8C7B951CEAA9321437E1FABD401255D3EE9EA28AED"
+  },
+  {
+    "Path": "task7-9/task8_one_waypoint_draft.png",
+    "Bytes": 86014,
+    "SHA256": "663F0E7DC40FF1E9CA097B76CA2F98AE08DAF3E4B49B282AEFCC824FC5F2B334"
+  },
+  {
+    "Path": "task7_customer2_algorithm_readback_1023.txt",
+    "Bytes": 143,
+    "SHA256": "6B16AAFDEBCADE8F2D0E6CD7407719BA8435B3AFB9A15C5932631EE66D2168B2"
+  },
+  {
+    "Path": "task7_customer2_route_readback_1023.txt",
+    "Bytes": 98,
+    "SHA256": "6E1DCB72C3533983BE03F8C3FEF20AB8156BDF617289947B39D7E13EB9C82C79"
+  },
+  {
+    "Path": "task9_map_algorithm_config.txt",
+    "Bytes": 709,
+    "SHA256": "4BBCC958DF34A56D2392C8CACA5C62CE39D054FE8616A03154AD79AB7D651794"
+  },
+  {
+    "Path": "task9_route1_selected.png",
+    "Bytes": 255993,
+    "SHA256": "2D889DB1FC9FD46E2CB070518A321C76D783EB8A7FAC831896898A67B722992D"
+  },
+  {
+    "Path": "task9_route1_description.txt",
+    "Bytes": 882,
+    "SHA256": "F574C0E07F169E231146DD227D3DA2066739F179E211D19BBB2F725C8A01C358"
+  },
+  {
+    "Path": "task9_route1_description.png",
+    "Bytes": 155862,
+    "SHA256": "5DDF08017C401CFBF245EC7E2F5F9EA34DF7D2AE6545F0A6AF8EE1B93E78D28F"
+  }
+]

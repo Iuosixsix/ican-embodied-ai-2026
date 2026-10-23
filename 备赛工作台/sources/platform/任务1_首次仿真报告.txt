@@ -1,0 +1,21 @@
+- iframe [id="iframe_window"] [name="iframe_window"]:
+  - generic: 仿真报告
+  - table:
+    - rowgroup:
+      - row "仿真次数 仿真结果":
+        - columnheader "仿真次数":
+          - generic: 仿真次数
+        - columnheader "仿真结果":
+          - generic: 仿真结果
+    - rowgroup:
+      - row "第1次 机器人正常行走，速度1米/秒，方向动作稳定、机器人正常跑步，速度3米/秒、机器人正常跳跃，速度1.5米/秒":
+        - cell "第1次":
+          - generic: 第1次
+        - cell "机器人正常行走，速度1米/秒，方向动作稳定、机器人正常跑步，速度3米/秒、机器人正常跳跃，速度1.5米/秒"
+  - list:
+    - listitem "Previous Page":
+      - 'generic "icon: left"':
+    - listitem "1":
+      - generic: "1"
+    - listitem "Next Page":
+      - 'generic "icon: right"':

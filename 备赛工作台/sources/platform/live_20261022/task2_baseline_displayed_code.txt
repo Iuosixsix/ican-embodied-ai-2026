@@ -1,0 +1,323 @@
+下面是训练用的C#源码
+
+using UnityEngine;
+using Unity.MLAgents;
+using Unity.MLAgents.Actuators;
+using Unity.MLAgentsExamples;
+using Unity.MLAgents.Sensors;
+using Random = UnityEngine.Random;
+using System.Collections.Generic;
+using System.IO;
+using UnityEditor;
+using Unity.Sentis;
+using System.Threading.Tasks;
+
+public class RobotTerrain : Agent
+{
+    // ========== 计时器字段 ==========
+    int tp = 0; // 步态周期计时器（用于周期性动作）
+    int tt = 0; // 总训练步数计时器
+
+    // ========== 动作控制字段 ==========
+    float uf1 = 0; // 第一组腿的周期信号
+    float uf2 = 0; // 第二组腿的周期信号
+    float[] u = new float[12] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }; // 平滑后的动作值
+    float[] utotal = new float[12] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }; // 最终关节控制信号
+
+    // ========== 步态控制参数 ==========
+    int T1 = 50; // 步态周期长度（固定步数）
+    int tp0 = 0; // 当前子周期计时器
+
+    Transform body; //基座对象
+    public int ObservationNum; //观察数据值
+    public int ActionNum; //动作数量--关节数量
+
+    List<float> P0 = new List<float>(); //关节的当前位置(角度/位移)。
+    List<float> W0 = new List<float>(); //关节的当前速度(角速度/线速度)。
+    Vector3 pos0; //基座初始位置
+    Quaternion rot0; //基座初始角度
+    public ArticulationBody[] arts = new ArticulationBody[40]; //收集所有关节
+    public ArticulationBody[] acts = new ArticulationBody[20]; //收集可驱动关节
+
+    float[] kb = new float[12] { 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30 }; //关节刚度系数
+    float dh = 25; // 动态阻尼系数
+    float d0 = 15; // 基础阻尼系数
+    float ko = 0.4f; // 姿态惩罚权重
+    float kw = 1f; // 角速度跟踪处罚权重    
+    public float wr = 0; // 目标旋转速度
+
+    /// <summary>
+    /// 初始化--用于获取自身的关节信息及数据 多数用于重置
+    /// 1. 获取关节组件
+    /// 2. 设置初始状态
+    /// 3. 配置训练模式
+    /// </summary>
+    public override void Initialize()
+    {
+        float dhT = dh;
+        float d0T = d0;
+        arts = this.GetComponentsInChildren<ArticulationBody>();
+        ActionNum = 0;
+        for (int k = 0; k < arts.Length; k++)
+        {
+            if (arts[k].jointType.ToString() == "RevoluteJoint")
+            {
+                acts[ActionNum] = arts[k];
+                print(acts[ActionNum]);
+                ActionNum++;
+            }
+        }
+
+        ActionNum = 12;
+        body = arts[0].GetComponent<Transform>();
+        pos0 = body.position;
+        rot0 = body.rotation;
+        arts[0].GetJointPositions(P0);
+        arts[0].GetJointVelocities(W0);
+    }
+
+    public bool _isClone = true; //是否克隆
+    public bool _isRange = true; //是否随机位置
+
+    void Start()
+    {
+        Time.fixedDeltaTime = 0.01f; //物理系统每0.01秒更新一次，即每秒100次
+
+        int numrob = 32; //克隆数
+        if (_isClone)
+        {
+            for (int i = 1; i < numrob; i++)
+            {
+                GameObject clone = Instantiate(gameObject);
+                //clone.transform.position = transform.position + new Vector3(i * 2f, 0, 0);
+                clone.name = $"{name}_Clone_{i}";
+                clone.GetComponent<RobotTerrain>()._isClone = false;
+            }
+        }
+    }
+
+    /// <summary>
+    /// 训练轮次开始时的重置逻辑
+    /// 1. 重置计时器
+    /// 2. 随机初始位置和朝向
+    /// 3. 重置物理状态
+    /// </summary>
+    public override void OnEpisodeBegin()
+    {
+        tp = 0; // 重置步态计时器
+        tt = 0; // 重置总步数
+        // 重置动作值
+        for (int i = 0; i < 12; i++) u[i] = 0;
+        // 生成随机初始朝向
+        Quaternion randRot = rot0 * Quaternion.Euler(0, _isRange ? Random.Range(-180f, 180f) : 0, 0);
+        // 生成随机初始位置（边界区域）
+        float px = 0;
+        float pz = 0;
+
+        if (_isRange)
+        {
+            if (Random.Range(0, 2) == 0)
+            {
+                px = 4 * (Random.Range(0, 2) * 2 - 1);
+                pz = Random.Range(-4f, 4f);
+            }
+            else
+            {
+                pz = 4 * (Random.Range(0, 2) * 2 - 1);
+                px = Random.Range(-4f, 4f);
+            }
+        }
+
+        Vector3 randPos = new Vector3(pos0[0] + px, pos0[1], pos0[2] + pz);
+        ObservationNum = 9 + 2 * ActionNum; //计算观察值维度
+       
+        arts[0].TeleportRoot(randPos, randRot); //瞬间移动关节链的根部到指定位置和旋转。
+        arts[0].velocity = Vector3.zero; //线性速度向量  (米/秒)
+        arts[0].angularVelocity = Vector3.zero; //角速度向量(弧度/秒)
+        arts[0].SetJointPositions(P0); //设置关节目标位置
+        arts[0].SetJointVelocities(W0); //设置关节目标速度
+      
+        wr = Random.Range(-1, 2);
+    }
+    /// <summary>
+    /// 传感器数据信息：收集环境观察值--用于向强化学习模型提供输入特征
+    /// </summary>
+    /// <param name="sensor"></param>
+    public override void CollectObservations(VectorSensor sensor)
+    {
+        sensor.AddObservation(body.InverseTransformDirection(Vector3.down)); //躯干姿态
+        sensor.AddObservation(body.InverseTransformDirection(arts[0].velocity)); //躯干线速度
+        sensor.AddObservation(body.InverseTransformDirection(arts[0].angularVelocity));//躯干角速度
+        for (int i = 0; i < ActionNum; i++)
+        {
+        sensor.AddObservation(acts[i].jointPosition[0]); //所有关节电机角度
+        sensor.AddObservation(acts[i].jointVelocity[0]); //所有关节电机角速度
+        }
+        sensor.AddObservation(wr); //躯干目标角速度
+        //以下是步态相位信息
+        sensor.AddObservation(Mathf.Sin(3.14f * 1 * tp / T1)); //周期性信号 --正弦
+        sensor.AddObservation(Mathf.Cos(3.14f * 1 * tp / T1)); //周期性信号 --余弦
+    }
+    /// <summary>
+    /// 使其范围在（-180-180）
+    /// </summary>
+    /// <param name="eulerAngle"></param>
+    /// <returns></returns>
+    float EulerTrans(float eulerAngle)
+    {
+        if (eulerAngle <= 180)
+            return eulerAngle;
+        else
+            return eulerAngle - 360f;
+    }
+
+    /// <summary>
+    /// 根据动作输出计算关节力矩，并设置关节的目标驱动值
+    /// 处理模型输出的动作
+    /// 1. 平滑动作值
+    /// 2. 根据机器人类型配置参数
+    /// 3. 添加周期性控制信号
+    /// 4. 设置关节目标
+    /// </summary>
+    /// <param name="actionBuffers">用于管理和传递智能体(Agent)的动作数据</param>
+    public override void OnActionReceived(ActionBuffers actionBuffers)
+    {
+        // 重置控制信号
+        for (int i = 0; i < 12; i++) utotal[i] = 0;
+        var continuousActions = actionBuffers.ContinuousActions;
+
+        int[] idx = new int[6] { -1, -4, -5, -7, -10, -11 };
+        kb = new float[12] { 30, 20, 10, 30, 30, 20, 30, 20, 10, 30, 30, 20 };
+        T1 = 40;//周期长度
+        d0 = 10;//基础阻尼系数
+        dh = 30;//动态阻尼系数
+        
+        //动作生成：低通滤波+前馈控制
+        var kk = 0.9f;
+        for (int i = 0; i < ActionNum; i++)
+        {
+            u[i] = u[i] * kk + (1 - kk) * continuousActions[i];
+            utotal[i] = 2 * kb[i] * u[i];
+        }
+        // 添加周期性前馈信号
+        utotal[Mathf.Abs(idx[0]) - 1] += (dh * uf1 + d0) * Mathf.Sign(idx[0]);
+        utotal[Mathf.Abs(idx[1]) - 1] -= 2 * (dh * uf1 + d0) * Mathf.Sign(idx[1]);
+        utotal[Mathf.Abs(idx[2]) - 1] += (dh * uf1 + d0) * Mathf.Sign(idx[2]);
+        utotal[Mathf.Abs(idx[3]) - 1] += (dh * uf2 + d0) * Mathf.Sign(idx[3]);
+        utotal[Mathf.Abs(idx[4]) - 1] -= 2 * (dh * uf2 + d0) * Mathf.Sign(idx[4]);
+        utotal[Mathf.Abs(idx[5]) - 1] += (dh * uf2 + d0) * Mathf.Sign(idx[5]);
+        // 机器人特定的关节限幅  髋（hip）：roll
+        utotal[1] = Mathf.Clamp(utotal[1], -200f, 0f);
+        utotal[7] = Mathf.Clamp(utotal[7], 0f, 200f);
+        
+        // 应用关节控制 ：改变“ArticulationBody”下的“xDrive”target值
+        for (int i = 0; i < ActionNum; i++) SetJointTargetDeg(acts[i], utotal[i]);
+    }
+    void SetJointTargetDeg(ArticulationBody joint, float x)
+    {
+        var drive = joint.xDrive;
+        drive.stiffness = 2000f; // 关节刚度
+        drive.damping = 100f; // 关节阻尼
+        drive.forceLimit = 300f; // 最大力限制
+        drive.target = x; // 目标角度
+        joint.xDrive = drive;
+    }
+
+    void SetJointTargetPosition(ArticulationBody joint, float x)
+    {
+        x = (x + 1f) * 0.5f;
+        var x1 = Mathf.Lerp(joint.xDrive.lowerLimit, joint.xDrive.upperLimit, x);
+        var drive = joint.xDrive;
+        drive.stiffness = 2000f;
+        drive.damping = 100f;
+        drive.forceLimit = 200f;
+        drive.target = x1;
+        joint.xDrive = drive;
+    }
+
+    /// <summary>
+    /// 在启发式控制中填充动作
+    /// </summary>
+    /// <param name="actionsOut"></param>
+    public override void Heuristic(in ActionBuffers actionsOut)
+    {
+        // 预留手动控制接口
+    }
+
+    /// <summary>
+    /// 物理更新循环（每0.01秒执行）
+    /// 1. 更新周期性信号
+    /// 2. 计算奖励
+    /// 3. 检查终止条件
+    /// 4. 控制时间流速
+    /// </summary>
+    void FixedUpdate()
+    {
+        Time.timeScale = 20;
+
+        tp++; // 步态计时器更新
+        // 更新周期性控制信号（两组腿交替运动）
+        if (tp > 0 && tp <= T1) // 第一组腿运动周期
+        {
+            tp0 = tp;
+            uf1 = (-Mathf.Cos(3.14f * 2 * tp0 / T1) + 1f) / 2f;
+            uf2 = 0;
+        }
+
+        if (tp > T1 && tp <= 2 * T1) // 第二组腿运动周期
+        {
+            tp0 = tp - T1;
+            uf1 = 0;
+            uf2 = (-Mathf.Cos(3.14f * 2 * tp0 / T1) + 1f) / 2f;
+        }
+
+        if (tp >= 2 * T1) tp = 0;
+        // 总步数更新
+        tt++;
+        if (tt > 900 && ko < 0.5f) // 训练后期调整参数（示例）
+        {
+            // 此处为添加后期策略调整
+            ko = 1f;
+        }
+
+        // 获取本体坐标系下的速度和角速度
+        var vel = body.InverseTransformDirection(arts[0].velocity);
+        var wel = body.InverseTransformDirection(arts[0].angularVelocity);
+        var live_reward = 1f; //存活奖励函数
+        var ori_reward1 = -0.1f * Mathf.Abs(EulerTrans(body.eulerAngles[0])); //基座X轴的倾斜角度--前后倾斜
+        var ori_reward2 = -0.1f * Mathf.Abs(EulerTrans(body.eulerAngles[2])); //基座Z轴的倾斜角度--左右倾斜--滚转角惩罚
+        var wel_reward = -Mathf.Abs(wel[1] - wr); //角速度跟踪处罚
+        var vel_reward = vel[2]- Mathf.Abs(vel[0]); //前进速度奖励
+
+        var reward = live_reward + (ori_reward1 + ori_reward2) * ko + wel_reward * kw + vel_reward;
+        AddReward(reward);
+        if ((Mathf.Abs(EulerTrans(body.eulerAngles[0])) > 20) ||(Mathf.Abs(EulerTrans(body.eulerAngles[2])) > 20) //身体姿态
+            || tt > 1000)  //训练步数 
+        {
+            EndEpisode();
+        }
+    }
+}
+    
+下面是训练用的超参数配置    
+behaviors:
+  gewu:
+    checkpoint_interval: 400000
+    hyperparameters: {batch_size: 2048, beta: 0.005, beta_schedule: linear, buffer_size: 20480,
+      epsilon: 0.2, epsilon_schedule: linear, lambd: 0.95, learning_rate: 0.0001,
+      learning_rate_schedule: linear, num_epoch: 3}
+    keep_checkpoints: 5
+    max_steps: 20000000
+    network_settings: {deterministic: false, goal_conditioning_type: hyper, hidden_units: 512,
+      normalize: true, num_layers: 3, vis_encode_type: simple}
+    reward_signals:
+      extrinsic:
+        gamma: 0.995   
+        network_settings: {deterministic: false, goal_conditioning_type: hyper, hidden_units: 512,
+          normalize: false, num_layers: 3, vis_encode_type: simple}
+        strength: 1.0
+    summary_freq: 20000  
+    threaded: false
+    time_horizon: 1000
+    trainer_type: ppo
+    
