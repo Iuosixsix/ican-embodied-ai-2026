@@ -30,6 +30,8 @@ ARTICLE_DEFS = [
     ('15_', 'mock-answers', '模拟卷标准答案'),
     ('16_', 'mock-variants', '换题与故障诊断'),
     ('17_', 'offline-practice', '离线交互与截图'),
+    ('18_', 'super-sprint', '全能超级速通'),
+    ('19_', 'sprint-chat', 'Chat配套辅导'),
     ('12_', 'live-lab', '全任务实测'),
     ('01_', 'rules', '赛制规则'),
     ('07_', 'primer', '基础概念'),
@@ -387,6 +389,7 @@ add_source(WORKSPACE/'HANDOFF.md','对话续接')
 add_source(WORKSPACE/'AGENTS.md','工作区指引')
 add_source(WORKSPACE/'README.md','仓库学习入口')
 add_source(WORKSPACE/'CHAT_CONTEXT.md','跨对话学习上下文')
+add_source(WORKSPACE/'CHAT_SUPER_START.md','超级速通Chat入口')
 add_source(WORKSPACE/'UPLOAD_POLICY.md','资料范围与未上传项')
 
 evidence_path=SITE/'offline_evidence.json'
@@ -397,11 +400,14 @@ for item in [*offline_evidence['items'],*offline_evidence['archive']]:
         raise ValueError('Invalid evidence image '+item['path'])
     LOCAL_LINKS.add(target)
 add_source(evidence_path,'离线图库索引')
+sprint_path=SITE/'sprint_curriculum.json'
+sprint=json.loads(read(sprint_path))
+add_source(sprint_path,'超级速通课程数据')
 content={
-    'meta':{'title':'iCAN 金视线杯 · 具身智能备赛学习站','updated':'2026-10-23',
+    'meta':{'title':'iCAN 金视线杯 · 具身智能备赛学习站','updated':'2026-10-24',
             'competitionDate':'2026-10-24',
             'scope':'赛前离线自学与复习。完整保留官方规则、第三方参考、培训ASR及本队实操边界；阅读/自测标记不代表平台成绩或任务通过。'},
-    'offlineEvidence':offline_evidence,
+    'offlineEvidence':offline_evidence,'sprint':sprint,
     'tasks':tasks,'articles':articles,'quizzes':quizzes,'meetings':meetings,'sources':sources,
 }
 serialized=json.dumps(content,ensure_ascii=False,indent=2)
@@ -419,6 +425,7 @@ manifest={'output':relpath(output),'tasks':len(tasks),'articles':len(articles),'
           'official_requirements_tasks':sorted(official_sections),
           'live_lab_tasks':sorted(live_lab_sections),'explicit_live_status_tasks':sorted(live_lab_statuses),
           'local_links_checked':len(LOCAL_LINKS),'content_sha256':hashlib.sha256(output.read_bytes()).hexdigest(),
+          'sprint_curriculum_sha256':hashlib.sha256(sprint_path.read_bytes()).hexdigest(),
           'evidence_index_sha256':hashlib.sha256(evidence_path.read_bytes()).hexdigest(),
           'input_markdown':[{'path':relpath(p),'sha256':hashlib.sha256(INPUT_SNAPSHOTS[p.resolve()]).hexdigest()} for p in INPUTS.values()]}
 (SITE/'content_manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2),encoding='utf-8')

@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-24",
+  "scope": "Chrome local HTTP; offline teaching only",
+  "course": {
+    "modules": 12,
+    "questions": 24,
+    "glossary": 58,
+    "flow_blocks": 85,
+    "all_12_visible_in_30_minute_mode": true,
+    "input_output_panels": true,
+    "blank_answer_feedback": true,
+    "answer_edit_revokes_pass": true,
+    "notes_reload": true
+  },
+  "chat": {
+    "branch_and_lesson_in_prompt": true,
+    "selected_answer_and_note_in_prompt": true,
+    "block_logs_and_matching_lesson": true,
+    "manual_copy_full_selection": true,
+    "automatic_clipboard_write": "not independently verified"
+  },
+  "blocks": {
+    "wrong_event_no_advance": true,
+    "empty_cloud_blocks_at": "3/5",
+    "repair_does_not_auto_advance": true,
+    "explicit_reexecution_completes": "5/5",
+    "duplicate_TF_config_rejected": true
+  },
+  "responsive": {
+    "font_percent": 180,
+    "mobile": [
+      360,
+      360
+    ],
+    "tablet": [
+      753,
+      753
+    ],
+    "surfaces": [
+      "blocks",
+      "S05 lesson",
+      "Chat prompt"
+    ]
+  },
+  "cleanup": {
+    "board_test_data_cleared": true,
+    "block_test_data_cleared": true,
+    "old_study_data_untouched": true,
+    "font_reset": 120
+  },
+  "file_protocol": "not attempted this turn; earlier browser policy block retained",
+  "html_sha256": "8d0e4ffc72cdf486834cc5946146d7cdf0280e4ea4b35b8cc9f25712314518c9"
+}

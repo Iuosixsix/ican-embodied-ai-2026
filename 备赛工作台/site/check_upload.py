@@ -76,7 +76,7 @@ for link in links.links:
     local_targets.add(rel)
 
 report={
-    'date':'2026-10-23','visibility':'private','repository':'https://github.com/Iuosixsix/ican-embodied-ai-2026',
+    'date':'2026-10-24','visibility':'private','repository':'https://github.com/Iuosixsix/ican-embodied-ai-2026',
     'scope':'Git index candidate bundle; report itself excluded from counts',
     'tracked_files':len(tracked),'bytes':sum(x['bytes'] for x in size_entries),
     'text_files_scanned':text_scanned,'docx_archives_scanned':docx_scanned,

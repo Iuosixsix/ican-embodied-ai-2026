@@ -1,14 +1,14 @@
 {
-  "date": "2026-10-23",
+  "date": "2026-10-24",
   "visibility": "private",
   "repository": "https://github.com/Iuosixsix/ican-embodied-ai-2026",
   "scope": "Git index candidate bundle; report itself excluded from counts",
-  "tracked_files": 992,
-  "bytes": 143107169,
-  "text_files_scanned": 295,
+  "tracked_files": 1006,
+  "bytes": 144280709,
+  "text_files_scanned": 307,
   "docx_archives_scanned": 4,
   "binary_privacy_ocr": "not performed; screenshots and PDF not exhaustively OCR reviewed",
-  "local_site_targets_in_git": 691,
+  "local_site_targets_in_git": 695,
   "findings": [],
   "largest_files": [
     {
@@ -29,11 +29,11 @@
     },
     {
       "path": "ICAN备赛学习站.html",
-      "bytes": 2092303
+      "bytes": 2416698
     },
     {
       "path": "备赛工作台/site/content.json",
-      "bytes": 1623670
+      "bytes": 1854151
     },
     {
       "path": "备赛工作台/sources/platform/任务11_当前平台指导书.pdf",
@@ -44,5 +44,5 @@
       "bytes": 1402644
     }
   ],
-  "html_sha256": "2001f2b72b1883d3d3ce6acb5127ff442a5577521b0b1184d9a3fea9667f0341"
+  "html_sha256": "8d0e4ffc72cdf486834cc5946146d7cdf0280e4ea4b35b8cc9f25712314518c9"
 }
