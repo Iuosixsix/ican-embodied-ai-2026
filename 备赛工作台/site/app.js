@@ -3,6 +3,30 @@
   const data = JSON.parse(document.getElementById('site-data').textContent);
   const tasks = data.tasks || [], articles = data.articles || [], quizzes = data.quizzes || [], meetings = data.meetings || [];
   const KEY = 'ican-study-v1';
+  const FONT_KEY = 'ican-study-font-v1';
+  const FONT_DEFAULT = 120, FONT_MIN = 100, FONT_MAX = 180;
+  let fontPercent = FONT_DEFAULT;
+  try {
+    const saved = Number(localStorage.getItem(FONT_KEY));
+    if (Number.isFinite(saved) && saved >= FONT_MIN && saved <= FONT_MAX && saved % 10 === 0) fontPercent = saved;
+  } catch (_) { /* Font controls still work when storage is unavailable. */ }
+  function setFontSize(value, persist = true) {
+    fontPercent = Math.max(FONT_MIN, Math.min(FONT_MAX, value));
+    document.documentElement.style.setProperty('--font-scale', String(fontPercent / 100));
+    document.getElementById('font-value').textContent = fontPercent + '%';
+    document.getElementById('font-decrease').disabled = fontPercent === FONT_MIN;
+    document.getElementById('font-increase').disabled = fontPercent === FONT_MAX;
+    if (persist) {
+      try { localStorage.setItem(FONT_KEY, String(fontPercent)); }
+      catch (_) { toast('字号已调整；当前浏览器无法保存，下次打开需重新设置。'); }
+    }
+  }
+  setFontSize(fontPercent, false);
+  const topbar = document.querySelector('.topbar');
+  const updateTopbarHeight = () => document.documentElement.style.setProperty('--topbar-height', topbar.offsetHeight + 'px');
+  updateTopbarHeight();
+  if (typeof ResizeObserver !== 'undefined') new ResizeObserver(updateTopbarHeight).observe(topbar);
+  else window.addEventListener('resize', updateTopbarHeight);
   const main = document.getElementById('main-content');
   const esc = value => String(value ?? '').replace(/[&<>"']/g, x => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
   const eq = (a,b) => String(a) === String(b);
@@ -97,6 +121,9 @@
     const internal=event.target.closest('a[data-article]');if(internal&&findArticle(internal.dataset.article)){event.preventDefault();navigate('#article/'+encodeURIComponent(internal.dataset.article));return;}
     const localAnchor=event.target.closest('.prose a[href^="#"]');if(localAnchor){const target=decodeRoutePart(localAnchor.getAttribute('href').slice(1));const heading=[...document.querySelectorAll('#reading-body [data-original-id]')].find(h=>h.dataset.originalId===target);if(heading){event.preventDefault();heading.scrollIntoView({behavior:'smooth'});return;}}
     const action=event.target.closest('[data-action]');if(!action)return;event.preventDefault();const id=action.dataset.id,key=action.dataset.key;switch(action.dataset.action){
+      case 'font-decrease':setFontSize(fontPercent - 10);break;
+      case 'font-increase':setFontSize(fontPercent + 10);break;
+      case 'font-reset':setFontSize(FONT_DEFAULT);break;
       case 'filter-tasks':navigate('#tasks?module='+encodeURIComponent(action.dataset.module));break;
       case 'filter-quiz':navigate('#quiz?module='+encodeURIComponent(action.dataset.module));break;
       case 'only-practice':navigate(route.params.get('status')==='practice'?'#quiz':'#quiz?status=practice');break;

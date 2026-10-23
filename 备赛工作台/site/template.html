@@ -28,6 +28,13 @@
     <header class="topbar">
       <button class="icon-button menu-toggle" id="menu-toggle" aria-label="展开导航" aria-expanded="false">☰</button>
       <span class="topbar-label" id="topbar-label">备赛总览</span>
+      <div class="font-controls" role="group" aria-label="字号调节">
+        <span>字号</span>
+        <button type="button" id="font-decrease" data-action="font-decrease" aria-label="缩小字号" title="缩小字号">A−</button>
+        <output id="font-value" aria-live="polite" aria-label="当前字号比例">120%</output>
+        <button type="button" id="font-increase" data-action="font-increase" aria-label="放大字号" title="放大字号">A＋</button>
+        <button type="button" data-action="font-reset" aria-label="重置字号为120%" title="恢复推荐字号120%">重置</button>
+      </div>
       <form class="global-search" id="global-search" role="search"><label class="sr-only" for="global-query">搜索课程、文章和会议逐字稿</label><span aria-hidden="true">⌕</span><input id="global-query" placeholder="搜索任务、知识点、会议原话…" autocomplete="off"><button type="submit">搜索</button></form>
     </header>
     <div id="storage-warning" class="storage-warning" hidden>当前浏览器无法持久保存本地进度。本窗口仍可使用；关闭前请到“学习进度”导出JSON备份。</div>
