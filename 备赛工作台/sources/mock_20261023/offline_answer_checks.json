@@ -1,0 +1,58 @@
+{
+  "scope": "仅验证原创离线题算术和几何；未运行物理仿真、导航、训练或评分",
+  "total_score": 100,
+  "M2_models": [
+    "A"
+  ],
+  "N1_grid": [
+    240,
+    160
+  ],
+  "N2_yaw_rad": {
+    "home": 0.0,
+    "stage": -1.5707963267948966,
+    "pick": 1.5707963267948966,
+    "place": 0.0
+  },
+  "N2_forbidden_aabb_m": {
+    "x": [
+      3.6,
+      6.4
+    ],
+    "y": [
+      2.6,
+      5.4
+    ]
+  },
+  "N2_P_geometric_safe": false,
+  "N2_Q_geometric_safe": true,
+  "N2_return_example_geometric_safe": true,
+  "N3_accepted": [
+    "n2"
+  ],
+  "V1_selected": [
+    "d1"
+  ],
+  "V2_camera_m": [
+    0.1,
+    0.0,
+    1
+  ],
+  "V2_base_m": [
+    0.30000000000000004,
+    0.0,
+    1.5
+  ],
+  "D1_period_s": 0.6,
+  "D1_hz": 1.6666666666666667,
+  "D1_half_period_s": 0.3,
+  "D2_wrong_duration_s": 9.0,
+  "D2_resampled_rows": 751,
+  "D3_reward": 2.8,
+  "D6_wrong_position": [
+    0.7,
+    0.1,
+    1.8
+  ],
+  "checks_passed": true
+}

@@ -60,9 +60,9 @@ embedded_app=next(x['text'] for x in audit.script_records if x['id']!='site-data
 assert embedded_app==app, 'HTML app differs from app.js'
 articles={a['id']:a for a in content['articles']}
 tasks={t['id']:t for t in content['tasks']}
-assert len(articles)==15 and len(tasks)==14
+assert len(articles)==18 and len(tasks)==14
 assert set(tasks)==set(range(1,15))
-assert {'fast-track','live-lab','source-code','exam-forecast'}<=articles.keys()
+assert {'fast-track','live-lab','source-code','exam-forecast','mock-exam','mock-answers','mock-variants'}<=articles.keys()
 assert '11_' in articles['fast-track']['source'] and '12_' in articles['live-lab']['source']
 duplicate_leading_titles=[]
 for item in articles.values():
@@ -71,12 +71,13 @@ for item in articles.values():
         visible=unescape(re.sub(r'<[^>]+>','',first.group(1)))
         if ' '.join(visible.split())==' '.join(item['title'].split()): duplicate_leading_titles.append(item['id'])
 assert not duplicate_leading_titles, 'Duplicate article page/body h1'
-for article_id in ('fast-track','live-lab','exam-forecast'):
+for article_id in ('fast-track','live-lab','exam-forecast','mock-exam','mock-answers','mock-variants'):
     source=(root/articles[article_id]['source']).read_text(encoding='utf-8-sig')
     source_h2=len(re.findall(r'(?m)^##\s+',source))
     assert len(re.findall(r'<h2\b',articles[article_id]['html']))==source_h2, 'Section heading lost'
 assert "articleLink('fast-track'" in app and "articleLink('live-lab'" in app
 assert "articleLink('exam-forecast'" in app
+assert "articleLink('mock-exam'" in app
 assert "esc(t.status" in app, 'Task status must be displayed'
 assert len(content['quizzes'])==30 and len(content['meetings'])==4
 assert sum(len(m['segments']) for m in content['meetings'])==337

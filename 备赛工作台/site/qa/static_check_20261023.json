@@ -6,7 +6,7 @@
   "build_markers_remaining": false,
   "meta_updated": "2026-10-23",
   "tasks": 14,
-  "articles": 15,
+  "articles": 18,
   "quizzes": 30,
   "meeting_segments": 337,
   "fast_track_entry": true,
@@ -18,12 +18,12 @@
   "live_lab_sections": 14,
   "task14_status": "双机器人已完成两轮原配置仿真及一轮G1左臂抓取减速对照，三轮16项结果相同，每轮38函数均标执行；R1八项全部成功，G1六项成功、抓长颈鹿与放入黄盒两项失败。左手分支字段已回读，未发现与预定配置不符；100%改50%未修复，已恢复100%并重开回读。R1/G1各19函数15变量及G1差异已保存；当前保留三轮结果，问题可复现、原因未定位，不再盲调。最终评分未提交，不能称R1已满分、G1通过或总体准确率；首次0%空Debug是历史中断记录。",
   "task6_status": "两套流程已保存，20段四动作数据及30MB的TSM模型已完成，accuracy为0.95407；四动作通用内部测试、三段姿态正负例对照和四场景3D报告均已取得。摔倒仍混淆，多项置信度不足，尚未全部达到质量要求；最终评分未提交。",
-  "local_targets_checked": 637,
+  "local_targets_checked": 648,
   "broken_local_targets": 0,
   "input_hashes_match": true,
   "embedded_data_matches": true,
   "embedded_app_matches": true,
   "javascript_syntax_checked": true,
-  "html_sha256": "8e4400ca512d0594400a76cfe065c3b612372a1573669368b6c098456159cb82",
+  "html_sha256": "480149fba7abf6f555d13b3a8741870cc6cc1e87d2c8138d54f10ed20fa4d186",
   "validation_kind": "offline static only; no current browser UI test"
 }

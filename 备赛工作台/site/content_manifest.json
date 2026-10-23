@@ -1,7 +1,7 @@
 {
   "output": "备赛工作台/site/content.json",
   "tasks": 14,
-  "articles": 15,
+  "articles": 18,
   "quizzes": 30,
   "meetings": 4,
   "segments": 337,
@@ -53,8 +53,8 @@
     13,
     14
   ],
-  "local_links_checked": 625,
-  "content_sha256": "3a1de8d182b8ab56582fe0564c74652057e5cf81f6bdddcd8fde2a0f358b1377",
+  "local_links_checked": 636,
+  "content_sha256": "b9a042f90b825efa8318ab16c489d9a488b33376c2a1804effa5a76b26992237",
   "input_markdown": [
     {
       "path": "备赛工作台/00_从这里开始.md",
@@ -66,7 +66,19 @@
     },
     {
       "path": "备赛工作台/13_正式赛题推断与备赛重点.md",
-      "sha256": "631cd287751942de0334e5b4e48bbfd0b6401199fc6cdfa8b779ba933d7b3ad1"
+      "sha256": "f469341d53b780309065e1e727d368fdcd68e6b4dd0bf441c74c6c2d56f23978"
+    },
+    {
+      "path": "备赛工作台/14_省赛模拟卷A_机器人展会表演.md",
+      "sha256": "52f9b92e2006e89607a4083b8be727c6df996a21f60f878456543aa8f7c9ea73"
+    },
+    {
+      "path": "备赛工作台/15_模拟卷A标准答案与操作对照.md",
+      "sha256": "ae2d25178ed538c36a03eb2ba6a93f72456730645bc7735eff73acdf3fe9ed9c"
+    },
+    {
+      "path": "备赛工作台/16_换题变体与故障诊断模拟.md",
+      "sha256": "a30578538b4fe6a3000390f1015e3115daae580ef65ee7dfca95ea9d9daf8413"
     },
     {
       "path": "备赛工作台/12_全任务实测与排错手册.md",
@@ -90,7 +102,7 @@
     },
     {
       "path": "备赛工作台/02_任务1-12练习攻略.md",
-      "sha256": "223c553db84bb506631d9bc0c2527bb3c061aae0d1f439fe266ec775ce5d9415"
+      "sha256": "2c79652abc301e27fb2f255013db45199b1d8eae5e96c314f998a6db96808313"
     },
     {
       "path": "备赛工作台/03_任务14实战攻略.md",
@@ -110,7 +122,7 @@
     },
     {
       "path": "备赛工作台/09_学习站使用与续接说明.md",
-      "sha256": "71aa648f60b08d839b43d0e9834b381140d2e372ad68e2231877233757d58471"
+      "sha256": "e13752a95444066f0d3f0ea88c16040bf351f29637864c8ba8b5d47d0bd012da"
     }
   ]
 }

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-70 -80 860 660" role="img" aria-labelledby="title desc">
+<title id="title">原创模拟卷A教学地图</title><desc id="desc">12乘8米教学房间，四航点，中央矩形障碍及0.4米保守膨胀。绿色路径是几何示例，非真实导航报告。</desc>
+<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="none" stroke="#0e7490" stroke-width="1.4"/></marker></defs>
+<rect x="-70" y="-80" width="860" height="660" fill="#f7fafc"/>
+<g font-family="Microsoft YaHei,Arial,sans-serif" fill="#183e4b">
+<text x="0" y="-44" font-size="23" font-weight="bold">模拟卷 A · 展馆坐标与路线</text><text x="0" y="-16" font-size="15">原创教学场景 · 单位 m · 不是平台地图或运行结果</text>
+<rect width="720" height="480" fill="white" stroke="#66818a" stroke-width="2"/>
+<path d="M60 0V480 M120 0V480 M180 0V480 M240 0V480 M300 0V480 M360 0V480 M420 0V480 M480 0V480 M540 0V480 M600 0V480 M660 0V480 M0 60H720 M0 120H720 M0 180H720 M0 240H720 M0 300H720 M0 360H720 M0 420H720" stroke="#e6eef1"/>
+<rect x="216" y="156" width="168" height="168" fill="#fee2e2" stroke="#dc2626" stroke-dasharray="8 5"/>
+<rect x="240" y="180" width="120" height="120" fill="#94a3b8"/>
+<text x="260" y="230" font-size="18" fill="white">障碍</text><text x="246" y="257" font-size="14" fill="white">[4,6]×[3,5]</text>
+<text x="400" y="242" font-size="16" fill="#a82020">红框含0.4m膨胀</text>
+<path d="M60 420 L180 420 L180 120 L540 120 L540 420 L60 420" fill="none" stroke="#059669" stroke-width="5" stroke-linejoin="round"/>
+<path d="M60 420 L300 240 L180 120" fill="none" stroke="#dc2626" stroke-width="3" stroke-dasharray="7 6"/>
+<text x="18" y="300" font-size="16" fill="#dc2626">P 穿障碍</text><text x="100" y="330" font-size="16" fill="#047857">Q 绕行</text>
+<g fill="#0e7490" stroke="white" stroke-width="2"><circle cx="60" cy="420" r="8"/><circle cx="180" cy="420" r="8"/><circle cx="180" cy="120" r="8"/><circle cx="540" cy="120" r="8"/></g>
+<g stroke="#0e7490" stroke-width="3" marker-end="url(#arrow)"><path d="M60 420H95"/><path d="M180 420V455"/><path d="M180 120V85"/><path d="M540 120H575"/></g>
+<text x="8" y="454" font-size="17">home (1,1)</text><text x="197" y="446" font-size="17">stage (3,1)</text>
+<text x="112" y="60" font-size="17">pick (3,6)</text><text x="494" y="86" font-size="17">place (9,6)</text>
+<text x="-30" y="490" font-size="17">0</text><text x="710" y="510" font-size="17">12 x</text><text x="-40" y="14" font-size="17">8 y</text>
+<text x="0" y="540" font-size="16">箭头表示服务朝向；绿色折线只验证几何避障，尚未验证运动学与局部控制。</text>
+</g></svg>

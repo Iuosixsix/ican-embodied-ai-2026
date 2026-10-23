@@ -1,0 +1,52 @@
+{
+  "kind": "原创离线模拟题设；不是官方资源或平台结果",
+  "version": "2026-10-23-v1",
+  "units": {"position": "m", "yaw": "rad", "image": "px"},
+  "score": {"M1":6,"M2":8,"M3":6,"N1":6,"N2":10,"N3":9,"V1":8,"V2":6,"V3":6,"R1":12,"R2":8,"R3":9,"R4":6},
+  "motion": {
+    "acceptance": {"all_completion_pct":100,"max_normalized_error_pct":8,"max_steps_million":100},
+    "candidates": [
+      {"id":"A","steps_million":100,"completion_pct":[100,100,100],"normalized_error_pct":[7.1,7.4,7.8]},
+      {"id":"B","steps_million":200,"completion_pct":[100,100,100],"normalized_error_pct":[5.2,5.4,5.6]},
+      {"id":"C","steps_million":100,"completion_pct":[100,92,100],"normalized_error_pct":[6.2,6.0,6.4]}
+    ]
+  },
+  "navigation": {
+    "map_size_m":[12,8],"resolution_m":0.05,"origin_m":[0,0],
+    "waypoints":[
+      {"name":"home","xy":[1,1],"face_target_xy":[2,1]},
+      {"name":"stage","xy":[3,1],"face_target_xy":[3,0]},
+      {"name":"pick","xy":[3,6],"face_target_xy":[3,7]},
+      {"name":"place","xy":[9,6],"face_target_xy":[10,6]}
+    ],
+    "obstacle_aabb":{"x":[4,6],"y":[3,5]},"robot_radius_m":0.25,"safety_margin_m":0.15,
+    "route_P":[[1,1],[5,4],[3,6]],"route_Q":[[1,1],[3,1],[3,6]],
+    "arrival_limits":{"position_error_m":0.2,"shortest_yaw_error_rad":0.15,"collisions":0},
+    "candidates":[
+      {"id":"n1","position_error_m":0.08,"shortest_yaw_error_rad":3.14,"collisions":0},
+      {"id":"n2","position_error_m":0.10,"shortest_yaw_error_rad":0.08,"collisions":0},
+      {"id":"n3","position_error_m":0.05,"shortest_yaw_error_rad":0.04,"collisions":1}
+    ]
+  },
+  "vision": {
+    "requested_class":"水壶","threshold":0.5,
+    "detections":[
+      {"id":"d1","class":"水壶","confidence":0.86,"box":[100,100,200,240]},
+      {"id":"d2","class":"塑料碗","confidence":0.94,"box":[250,110,350,210]},
+      {"id":"d3","class":"水壶","confidence":0.42,"box":[410,80,500,220]}
+    ],
+    "separate_calculation_V2": {
+      "independent_of_detection_boxes":true,"registered_rectified":true,"depth_is_optical_Z":true,
+      "fx":600,"fy":600,"cx":320,"cy":240,"pixel":[380,240],"Z_m":1,
+      "column_vector":true,"T_base_from_camera":[[1,0,0,0.2],[0,1,0,0],[0,0,1,0.5],[0,0,0,1]]
+    }
+  },
+  "integration": {
+    "robot":"E抽象模型，不是实际URDF",
+    "paper_hand":false,"paper_assumes_left_arm_reachable":true,
+    "hand_mapping":{"false":["left_arm","left_gripper"],"true":["right_arm","right_gripper"]},
+    "finish_field":"Is_Finish","vision_timeout_seconds":5,
+    "dance_interface_is_mock_only":true,
+    "states":{"0":"idle","1":"nav_stage","2":"dance","3":"nav_pick","4":"locate_object","5":"grab","6":"nav_place","7":"locate_blue","8":"deploy","9":"nav_home","10":"done","F":"failure"}
+  }
+}
