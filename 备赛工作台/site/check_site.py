@@ -57,10 +57,11 @@ embedded=json.loads(next(x['text'] for x in audit.script_records if x['id']=='si
 assert embedded==content, 'HTML data differs from content.json'
 app=(site/'app.js').read_text(encoding='utf-8')
 embedded_app=next(x['text'] for x in audit.script_records if x['id']!='site-data')
-assert embedded_app==app, 'HTML app differs from app.js'
+combined_app='\n'.join((site/n).read_text(encoding='utf-8') for n in ['task14-lab.js','mock-lab.js','offline-lab.js','app.js'])
+assert embedded_app==combined_app, 'HTML app differs from app.js'
 articles={a['id']:a for a in content['articles']}
 tasks={t['id']:t for t in content['tasks']}
-assert len(articles)==18 and len(tasks)==14
+assert len(articles)==19 and len(tasks)==14
 assert set(tasks)==set(range(1,15))
 assert {'fast-track','live-lab','source-code','exam-forecast','mock-exam','mock-answers','mock-variants'}<=articles.keys()
 assert '11_' in articles['fast-track']['source'] and '12_' in articles['live-lab']['source']
@@ -77,7 +78,7 @@ for article_id in ('fast-track','live-lab','exam-forecast','mock-exam','mock-ans
     assert len(re.findall(r'<h2\b',articles[article_id]['html']))==source_h2, 'Section heading lost'
 assert "articleLink('fast-track'" in app and "articleLink('live-lab'" in app
 assert "articleLink('exam-forecast'" in app
-assert "articleLink('mock-exam'" in app
+assert "['mock-exam','A卷完整题目']" in app and "'#lab/task14'" in app
 assert "esc(t.status" in app, 'Task status must be displayed'
 assert len(content['quizzes'])==30 and len(content['meetings'])==4
 assert sum(len(m['segments']) for m in content['meetings'])==337
@@ -102,7 +103,7 @@ for task_id,task in tasks.items():
 body_audit=Audit()
 for item in [*content['tasks'],*content['articles']]: body_audit.feed(item['html'])
 assert all(key in articles for key in body_audit.article_links), 'Broken article-navigation target'
-links=set(audit.links+body_audit.links+[s['path'] for s in content['sources']])
+links=set(audit.links+body_audit.links+[s['path'] for s in content['sources']]+[x['path'] for x in content['offlineEvidence']['items']+content['offlineEvidence']['archive']])
 local_targets=set()
 for link in links:
     parts=urlsplit(link)
@@ -116,6 +117,9 @@ for link in links:
 content_manifest=json.loads((site/'content_manifest.json').read_text(encoding='utf-8-sig'))
 build_manifest=json.loads((site/'build_manifest.json').read_text(encoding='utf-8-sig'))
 digest=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+assert digest(site/'offline_evidence.json')==content_manifest['evidence_index_sha256']
+assert 'offline-practice' in articles
+assert "case 'lab':window.IcanOffline.mount" in app
 assert digest(site/'content.json')==content_manifest['content_sha256']
 assert digest(root/'ICAN备赛学习站.html')==build_manifest['sha256']
 for item in content_manifest['input_markdown']:
@@ -125,9 +129,12 @@ syntax_checked=False
 if args.node:
     subprocess.run([args.node,'--check',str(site/'app.js')],check=True,capture_output=True,text=True)
     subprocess.run([args.node,'--check'],input=embedded_app,check=True,capture_output=True,text=True,encoding='utf-8')
+    for test in ('check_mock_lab.cjs','check_task14_lab.cjs'):
+        subprocess.run([args.node,str(site/test)],check=True,capture_output=True,text=True,encoding='utf-8')
     syntax_checked=True
 result.update({'meta_updated':content['meta']['updated'],'tasks':len(tasks),'articles':len(articles),
     'quizzes':len(content['quizzes']),'meeting_segments':337,
+    'offline_screenshots':len(content['offlineEvidence']['archive']),'curated_screenshots':len(content['offlineEvidence']['items']),
     'fast_track_entry':True,'live_lab_entry':True,'exam_forecast_entry':True,'task_statuses_match_source':True,
     'duplicate_leading_article_titles':duplicate_leading_titles,
     'fast_track_sections':len(re.findall(r'<h2\b',articles['fast-track']['html'])),
@@ -135,7 +142,7 @@ result.update({'meta_updated':content['meta']['updated'],'tasks':len(tasks),'art
     'task14_status':tasks[14]['status'],'task6_status':tasks[6]['status'],
     'local_targets_checked':len(local_targets),'broken_local_targets':0,
     'input_hashes_match':True,'embedded_data_matches':True,'embedded_app_matches':True,
-    'javascript_syntax_checked':syntax_checked,'html_sha256':build_manifest['sha256'],
+    'javascript_syntax_checked':syntax_checked,'interactive_logic_tests_passed':syntax_checked,'html_sha256':build_manifest['sha256'],
     'validation_kind':'offline static only; no current browser UI test'})
 if args.output:
     Path(args.output).write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')

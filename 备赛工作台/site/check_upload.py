@@ -26,7 +26,7 @@ patterns = {
     'jwt': re.compile(r'\beyJ[A-Za-z0-9_-]{12,}\.[A-Za-z0-9_-]{12,}\.[A-Za-z0-9_-]{12,}\b'),
     'assigned_secret': re.compile(r'''(?i)["']?(?:access_token|refresh_token|id_token|authorization|api_key|password)["']?\s*[:=]\s*["'](?:Bearer\s+)?[A-Za-z0-9_./+=-]{20,}["']'''),
 }
-TEXT = {'.md','.txt','.json','.html','.js','.py','.css','.toml','.yaml','.yml','.csv','.xml'}
+TEXT = {'.md','.txt','.json','.html','.js','.cjs','.py','.css','.toml','.yaml','.yml','.csv','.xml'}
 size_entries=[]
 text_scanned=docx_scanned=0
 for rel in tracked:
@@ -64,6 +64,8 @@ links=Links()
 links.feed((ROOT/'ICAN备赛学习站.html').read_text(encoding='utf-8'))
 for item in content['tasks']+content['articles']:links.feed(item['html'])
 links.links.extend(s['path'] for s in content['sources'])
+links.links.extend(x['path'] for x in content.get('offlineEvidence',{}).get('archive',[]))
+links.links.extend(x['path'] for x in content.get('offlineEvidence',{}).get('items',[]))
 local_targets=set()
 for link in links.links:
     parsed=urlsplit(link)

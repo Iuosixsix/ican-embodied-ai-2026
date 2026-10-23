@@ -1,7 +1,7 @@
 {
   "output": "备赛工作台/site/content.json",
   "tasks": 14,
-  "articles": 18,
+  "articles": 19,
   "quizzes": 30,
   "meetings": 4,
   "segments": 337,
@@ -53,8 +53,9 @@
     13,
     14
   ],
-  "local_links_checked": 636,
-  "content_sha256": "b9a042f90b825efa8318ab16c489d9a488b33376c2a1804effa5a76b26992237",
+  "local_links_checked": 682,
+  "content_sha256": "5a764ce14e9e490d46b6671197138ace86279fdef162df53009a922056d219c9",
+  "evidence_index_sha256": "8d573ac760acf19134b7f2f39a4e1e479e19ebeb04cb6596eb0191ba540c3709",
   "input_markdown": [
     {
       "path": "备赛工作台/00_从这里开始.md",
@@ -81,8 +82,12 @@
       "sha256": "a30578538b4fe6a3000390f1015e3115daae580ef65ee7dfca95ea9d9daf8413"
     },
     {
+      "path": "备赛工作台/17_离线交互演练与截图使用.md",
+      "sha256": "6c86376d2aac5ae36e1e168ef568d4641b5ae5d40cd52e6bcb48e536f8fc3182"
+    },
+    {
       "path": "备赛工作台/12_全任务实测与排错手册.md",
-      "sha256": "af2e65c745b1a2d4ea754fb15dea99d74cb14aaaeedbd05c027528c8ec4c6796"
+      "sha256": "ed154232ac7a55aa48be628c0b0e28c9151638bfc79fe74e8ec5fb22c6359143"
     },
     {
       "path": "备赛工作台/01_官方规则梳理.md",
@@ -106,7 +111,7 @@
     },
     {
       "path": "备赛工作台/03_任务14实战攻略.md",
-      "sha256": "4b05d02f556d77818845a31748646980b184efe09253c3040e59fc6bc8ed1e3e"
+      "sha256": "7abcbbf89c56d5c83491aad68e51f3ae3b7ef9c1ceb4e9e23d4983b984bd23d4"
     },
     {
       "path": "备赛工作台/04_培训要点与时间索引.md",
@@ -118,11 +123,11 @@
     },
     {
       "path": "备赛工作台/08_实操记录.md",
-      "sha256": "09db673a4d7cbcb684a341dd38fda6eb8d4767a0017cf61618942fb3c43e1501"
+      "sha256": "78a692369281eece85ecaaef625cf3b4727e1d71ad1cbe4c657002e5a02a411e"
     },
     {
       "path": "备赛工作台/09_学习站使用与续接说明.md",
-      "sha256": "e13752a95444066f0d3f0ea88c16040bf351f29637864c8ba8b5d47d0bd012da"
+      "sha256": "7f13e937182901fe906a07c92a5a16d07f4b72fe73abd96d5385090e29318cec"
     }
   ]
 }

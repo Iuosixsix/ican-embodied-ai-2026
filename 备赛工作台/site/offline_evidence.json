@@ -1,0 +1,1939 @@
+{
+  "version": 1,
+  "updated": "2026-10-23",
+  "schema": {
+    "items": "逐张视觉核对并配有说明的精选截图；task为数字，path相对于仓库根目录，用正斜线。",
+    "archive": "全部本账号平台截图的文件名索引，含items中的图片；不代表本次逐张核对，旧图和失败图也保留。",
+    "counts": "按指定来源目录统计图像文件；SHA256去重是字节完全相同，不是语义去重。官方PDF页和拼图分别统计，不能算作本账号实测。"
+  },
+  "notice": "截图来自2026-10-22至23暂停前的历史过程，不证明当前平台状态。用户已报告重置任务14；本次仅做离线教学，无新增实训。",
+  "counts": {
+    "account_screenshots": 242,
+    "account_screenshots_unique_sha256": 242,
+    "third_party_extracted_files": 339,
+    "third_party_unique_sha256": 221,
+    "official_guide_rendered_pages": 24,
+    "third_party_contact_sheets": 14,
+    "curated_items": 48,
+    "curated_by_task": {
+      "1": 3,
+      "2": 3,
+      "3": 3,
+      "4": 3,
+      "5": 3,
+      "6": 3,
+      "7": 3,
+      "8": 3,
+      "9": 3,
+      "10": 3,
+      "11": 3,
+      "12": 3,
+      "14": 12
+    },
+    "archive_by_task": {
+      "1": 13,
+      "10": 33,
+      "11": 23,
+      "12": 54,
+      "13": 2,
+      "14": 43,
+      "2": 4,
+      "3": 3,
+      "4": 8,
+      "5": 10,
+      "6": 13,
+      "7": 13,
+      "8": 11,
+      "9": 10,
+      "general": 2
+    }
+  },
+  "items": [
+    {
+      "id": "evidence-01-01",
+      "task": 1,
+      "title": "训练参数怎样分工",
+      "path": "备赛工作台/sources/platform/任务1_walk_baseline_训练参数.png",
+      "caption": "训练最大步数2000W、学习率0.0001、熵系数0.005、batch2048、3层×512、gamma0.995、单次交互1000。先区分总训练预算和一次交互长度。",
+      "kind": "本账号历史实测",
+      "warning": "这是本轮基线，不是所有运动任务的唯一最优参数。"
+    },
+    {
+      "id": "evidence-01-02",
+      "task": 1,
+      "title": "六个模型与两种学习率",
+      "path": "备赛工作台/sources/platform/任务1_六模型完成且已查看.png",
+      "caption": "走、跑、跳各有基线和低学习率对照。模型列表的已完成说明训练状态，查看与推理是后续不同环节。",
+      "kind": "本账号历史实测",
+      "warning": "三个低学习率对照没有单独推理，不能据此说更好。"
+    },
+    {
+      "id": "evidence-01-03",
+      "task": 1,
+      "title": "三基线首次推理报告",
+      "path": "备赛工作台/sources/platform/任务1_首次仿真报告.png",
+      "caption": "报告记录走1米/秒、跑3米/秒、跳1.5米/秒。练习识别报告真正验证了什么。",
+      "kind": "本账号历史实测",
+      "warning": "这是过程报告，不是最终评分。"
+    },
+    {
+      "id": "evidence-02-01",
+      "task": 2,
+      "title": "复杂地形两个模型",
+      "path": "备赛工作台/sources/platform/live_20261022/task2_models_complete.png",
+      "caption": "列表保留terrain基线及低学习率对照，训练完成后仍需按题面查看和推理。",
+      "kind": "本账号历史实测",
+      "warning": "不能把模型个数当作场景全部通过。"
+    },
+    {
+      "id": "evidence-02-02",
+      "task": 2,
+      "title": "训练曲线四个量",
+      "path": "备赛工作台/sources/platform/live_20261022/task2_baseline_chart.png",
+      "caption": "平台展示累计奖励、回合长度、策略损失、熵曲线。奖励和回合长度上升仍需推理验证。",
+      "kind": "本账号历史实测",
+      "warning": "显示曲线不能独立证明每个地形成功。"
+    },
+    {
+      "id": "evidence-02-03",
+      "task": 2,
+      "title": "复杂地形基线报告",
+      "path": "备赛工作台/sources/platform/live_20261022/task2_baseline_report.png",
+      "caption": "报告写平缓路、下坡路、上坡路正常行走1.34米/秒，方向动作稳定流畅。",
+      "kind": "本账号历史实测",
+      "warning": "仅本轮报告；不是正式成绩。"
+    },
+    {
+      "id": "evidence-03-01",
+      "task": 3,
+      "title": "舞蹈模型与源码入口",
+      "path": "备赛工作台/sources/platform/live_20261022/task3_models_complete.png",
+      "caption": "截图显示H1动作模仿控制源码窗口，背后有100M基线和200M对照模型。可辨认动画、图表、源码三个查看入口。",
+      "kind": "本账号历史实测",
+      "warning": "文件名含models_complete，但当前截图前景实际为源码，不要把显示源码当已验证后端。"
+    },
+    {
+      "id": "evidence-03-02",
+      "task": 3,
+      "title": "舞蹈100M基线",
+      "path": "备赛工作台/sources/platform/live_20261022/task3_baseline_report.png",
+      "caption": "首轮报告：完成率100%、动作位置偏差6.71、训练步数100M。要分别读三个指标。",
+      "kind": "本账号历史实测",
+      "warning": "偏差没有标单位；100%完成率不等于100分。"
+    },
+    {
+      "id": "evidence-03-03",
+      "task": 3,
+      "title": "舞蹈三轮历史报告",
+      "path": "备赛工作台/sources/platform/live_20261022/task3_compare_200M_report_1023.png",
+      "caption": "三轮均显示完成率100%，偏差6.71、6.74、6.78；后两轮为200M步。",
+      "kind": "本账号历史实测",
+      "warning": "三条历史运行记录不证明测试了三套舞蹈，也不支持增加步数必然改善。"
+    },
+    {
+      "id": "evidence-04-01",
+      "task": 4,
+      "title": "27张表情分类数据",
+      "path": "备赛工作台/sources/platform/live_20261022/task4_dataset27.png",
+      "caption": "数据集列表显示27张已标图片。先辨认训练数据构建、模型构建和算法流程三个层次。",
+      "kind": "本账号历史实测",
+      "warning": "这张图保存于模型训练前，训练模型数量0是当时状态。"
+    },
+    {
+      "id": "evidence-04-02",
+      "task": 4,
+      "title": "分类模型验证值",
+      "path": "备赛工作台/sources/platform/live_20261022/task4_model_accuracy.png",
+      "caption": "ResNet模型界面显示accuracy0.8371及训练/验证曲线。",
+      "kind": "本账号历史实测",
+      "warning": "模型验证值不是后续3D仿真报告正确率。"
+    },
+    {
+      "id": "evidence-04-03",
+      "task": 4,
+      "title": "分类应用与低置信度",
+      "path": "备赛工作台/sources/platform/live_20261022/task4_simulation_report_baseline.png",
+      "caption": "截图为报告可见上部，展示原图、处理后图和class/conf结果；可见0.37、0.27、0.23。",
+      "kind": "本账号历史实测",
+      "warning": "完整10次报告有8次标签对应、2次误判；不能从这三行推断全对。"
+    },
+    {
+      "id": "evidence-05-01",
+      "task": 5,
+      "title": "20张检测数据",
+      "path": "备赛工作台/sources/platform/live_20261022/task5_dataset20.png",
+      "caption": "四类目标检测数据集列表显示20张。分类标签与检测框是不同标注任务。",
+      "kind": "本账号历史实测",
+      "warning": "截图模型数0是训练前时点；后续模型已在历史记录完成。"
+    },
+    {
+      "id": "evidence-05-02",
+      "task": 5,
+      "title": "电子屏读数流程",
+      "path": "备赛工作台/sources/platform/live_20261022/task5_ocr_flow_connected.png",
+      "caption": "图像采集→尺寸变换→YOLO→图像截取→文字识别模块；已见保存成功提示。",
+      "kind": "本账号历史实测",
+      "warning": "检测负责找屏幕，OCR负责读裁剪区域文字，不能把两步混同。"
+    },
+    {
+      "id": "evidence-05-03",
+      "task": 5,
+      "title": "三应用对照报告",
+      "path": "备赛工作台/sources/platform/live_20261022/task5_simulation_report_threshold042_resize640.png",
+      "caption": "人脸、刀具药片和电子屏读数三项报告；本轮使用人脸阈值0.42、OCR尺寸640。",
+      "kind": "本账号历史实测",
+      "warning": "有低置信度；本轮局部改善不等于所有样本稳定通过。"
+    },
+    {
+      "id": "evidence-06-01",
+      "task": 6,
+      "title": "20段行为数据入口",
+      "path": "备赛工作台/sources/platform/live_20261022/task6_dataset20.png",
+      "caption": "行为训练数据列表计20，历史记录为四动作20段视频。界面沿用“标记图片数量”字样。",
+      "kind": "本账号历史实测",
+      "warning": "以任务数据实际类型理解，不把20段视频说成20个独立场景。"
+    },
+    {
+      "id": "evidence-06-02",
+      "task": 6,
+      "title": "姿态规则怎样构成",
+      "path": "备赛工作台/sources/platform/live_20261022/task6_pose_distance_rules.png",
+      "caption": "可见关节距离判断：两脚踝垂直位置交替变化、左腕相对左肘的垂直关系；与其他角度/位置条件组合。",
+      "kind": "本账号历史实测",
+      "warning": "输出标签为攀爬不代表match成立，要继续核对条件结果。"
+    },
+    {
+      "id": "evidence-06-03",
+      "task": 6,
+      "title": "四场景行为报告",
+      "path": "备赛工作台/sources/platform/live_20261022/task6_simulation_report_baseline.png",
+      "caption": "报告包含打字、跳绳、摔倒和姿态规则；摔倒片段的逐帧标签中出现其他动作。",
+      "kind": "本账号历史实测",
+      "warning": "历史摔倒三条中两条误判；模型高accuracy不能代替应用报告。"
+    },
+    {
+      "id": "evidence-07-01",
+      "task": 7,
+      "title": "客户1 Karto配置卡",
+      "path": "备赛工作台/sources/platform/live_20261022/task7-9/task7_c1_karto.png",
+      "caption": "选择整张Karto卡：最小移动0.15m、转向0.1rad、回环搜索3m、缓存5m、搜索空间0.1m。",
+      "kind": "本账号历史实测",
+      "warning": "整卡选择不是可以任意编辑每个字段。"
+    },
+    {
+      "id": "evidence-07-02",
+      "task": 7,
+      "title": "客户1建图86.6%",
+      "path": "备赛工作台/sources/platform/live_20261022/task7-9/task7_c1_report_86p6.png",
+      "caption": "第一份历史报告客户1准确度86.6%，客户2当时未建图。",
+      "kind": "本账号历史实测",
+      "warning": "客户2未建图是这张旧报告时点，后续结果见下一张。"
+    },
+    {
+      "id": "evidence-07-03",
+      "task": 7,
+      "title": "客户2建图79.2%",
+      "path": "备赛工作台/sources/platform/live_20261022/task7_route3_report.png",
+      "caption": "第二轮报告保留客户1历史86.6%，客户2GMapping路线3得到79.2%。",
+      "kind": "本账号历史实测",
+      "warning": "79.2%未达官方>80%；后续Karto停99%无新准确度报告。"
+    },
+    {
+      "id": "evidence-08-01",
+      "task": 8,
+      "title": "客户2局部参数重开回读",
+      "path": "备赛工作台/sources/platform/live_20261022/task8_c2_local_reopened_verified.png",
+      "caption": "TEB、最大速度1m/s、目标位置容差0.25m和朝向容差0.2rad等已重开确认。",
+      "kind": "本账号历史实测",
+      "warning": "参数保存不等于导航运行成功，任务8没有完整仿真报告。"
+    },
+    {
+      "id": "evidence-08-02",
+      "task": 8,
+      "title": "代价地图表单与窗口尺寸",
+      "path": "备赛工作台/sources/platform/live_20261022/task7-9/task8_c1_costmap.png",
+      "caption": "图中可见半径、膨胀、障碍物范围、观察源与更新频率，滚动窗口尺寸下拉展开。",
+      "kind": "本账号历史实测",
+      "warning": "这是编辑中截图；尺寸字段尚未显示最终选择，不作为全部已保存证据。"
+    },
+    {
+      "id": "evidence-08-03",
+      "task": 8,
+      "title": "航点位置和朝向草稿",
+      "path": "备赛工作台/sources/platform/live_20261022/task8_longpress_drag_camera_only.png",
+      "caption": "地图仅见充电桩，底栏有零食架等待拖入点；点旁箭头表示朝向。",
+      "kind": "本账号历史实测",
+      "warning": "17点未齐、无仿真报告。用户曾证实需长按拖动，快速工具拖动只移动镜头。"
+    },
+    {
+      "id": "evidence-09-01",
+      "task": 9,
+      "title": "PGM栅格地图预览",
+      "path": "备赛工作台/sources/platform/live_20261022/task9_pgm_preview.png",
+      "caption": "nav9_pgm显示办公室墙体和障碍轮廓；由点云地图转换后用于导航。",
+      "kind": "本账号历史实测",
+      "warning": "预览是图片，不是可导入地图文件。"
+    },
+    {
+      "id": "evidence-09-02",
+      "task": 9,
+      "title": "十航点保存数量",
+      "path": "备赛工作台/sources/platform/live_20261022/task9_ten_waypoints_saved.png",
+      "caption": "设置航点列表中nav9_pgm航点数量为10。",
+      "kind": "本账号历史实测",
+      "warning": "数量正确不证明位置与朝向合理，仍需报告或运行证据。"
+    },
+    {
+      "id": "evidence-09-03",
+      "task": 9,
+      "title": "十目标到达与碰撞报告",
+      "path": "备赛工作台/sources/platform/live_20261022/task9_simulation_report_baseline.png",
+      "caption": "历史地图准确度92%；十目标显示到达，碰撞、撞人、撞墙或门均0。",
+      "kind": "本账号历史实测",
+      "warning": "没有最终满分证明，也没有用户独立复练证明。"
+    },
+    {
+      "id": "evidence-10-01",
+      "task": 10,
+      "title": "手眼标定15次记录",
+      "path": "备赛工作台/sources/platform/live_20261022/task10-12/task10_calibration_15.png",
+      "caption": "移动旋转腕关节，使末端相机面对标定板；右侧记录到15，左侧可见六种位移/旋转操作。",
+      "kind": "本账号历史实测",
+      "warning": "每题用该题生成矩阵，不从截图复制其他题的数值。"
+    },
+    {
+      "id": "evidence-10-02",
+      "task": 10,
+      "title": "2D抓取14节点13条边",
+      "path": "备赛工作台/sources/platform/live_20261022/task10_flow_reopened_all_edges.png",
+      "caption": "视觉抓取链与颜色放置链顺序连通；截图为关闭重开后箭头保留。",
+      "kind": "本账号历史实测",
+      "warning": "增删边后还须保存与回读，不能只看节点数量。"
+    },
+    {
+      "id": "evidence-10-03",
+      "task": 10,
+      "title": "首轮2/7完整抓放",
+      "path": "备赛工作台/sources/platform/live_20261022/task10_simulation_report_baseline.png",
+      "caption": "基线报告中锅铲和剪刀抓取、移动、放盒成功，其他样本存在未抓到或碰撞；图片只覆盖可见部分。",
+      "kind": "本账号历史实测",
+      "warning": "后续初始X改0的对照仅1/7完整成功；暂停时X仍0，旧图不代表当前参数。"
+    },
+    {
+      "id": "evidence-11-01",
+      "task": 11,
+      "title": "实例分割标注示例",
+      "path": "备赛工作台/sources/platform/live_20261022/task11_first_image_three_labeled.png",
+      "caption": "同一图三个包装盒分别有轮廓和三个标签项，体现实例分割不是整图单标签。",
+      "kind": "本账号历史实测",
+      "warning": "示例图不表示全部候选都已人工检查。"
+    },
+    {
+      "id": "evidence-11-02",
+      "task": 11,
+      "title": "6D抓取流程连线保留",
+      "path": "备赛工作台/sources/platform/live_20261022/task11_flow_all_edges_persisted.png",
+      "caption": "15节点14边，包含实例分割、深度转点云、6D抓取估计和坐标变换；关闭重开后仍可见。",
+      "kind": "本账号历史实测",
+      "warning": "旧版仅15个孤立节点的问题已修复；不使用那张旧图说明最终结构。"
+    },
+    {
+      "id": "evidence-11-03",
+      "task": 11,
+      "title": "2成功3无合理抓取位",
+      "path": "备赛工作台/sources/platform/live_20261022/task11_simulation_report_baseline.png",
+      "caption": "水壶、塑料碗成功；包装盒、长颈鹿、罐头的抓取点为[]，报告为未检测到合理抓取位。",
+      "kind": "本账号历史实测",
+      "warning": "分割模型高指标不能证明有有效6D抓取候选。"
+    },
+    {
+      "id": "evidence-12-01",
+      "task": 12,
+      "title": "规划组与姿态刷新回读",
+      "path": "备赛工作台/sources/platform/live_20261022/task12_mechanical_after_browser_reload.png",
+      "caption": "TRAC-IK、四规划组、六姿态、两个末端执行器经整页刷新后仍存在。",
+      "kind": "本账号历史实测",
+      "warning": "不能从滑杆或截图反推没有显示的精确关节角。"
+    },
+    {
+      "id": "evidence-12-02",
+      "task": 12,
+      "title": "14节点14边抓取流程",
+      "path": "备赛工作台/sources/platform/live_20261022/task12_flow_reopened_14_edges_verified.png",
+      "caption": "新增相机→颜色检测分支后，关闭重开核对14条边；区别早期文件名写14但实际13的截图。",
+      "kind": "本账号历史实测",
+      "warning": "连线存在不证明机械臂有可行路径。"
+    },
+    {
+      "id": "evidence-12-03",
+      "task": 12,
+      "title": "基线四物品失败分层",
+      "path": "备赛工作台/sources/platform/live_20261022/task12_simulation_report_baseline.png",
+      "caption": "三项无合理抓取位；塑料碗有候选但规划失败。放置点存在不代表已成功抓放。",
+      "kind": "本账号历史实测",
+      "warning": "规划时间3→5对照已启动但未读报告；不能宣称改5后修复。"
+    },
+    {
+      "id": "evidence-14-01",
+      "task": 14,
+      "title": "四节点职责入口",
+      "path": "备赛工作台/sources/platform/live_20261022/task14/05_ros_node_list_restored.png",
+      "caption": "R1列表含master、nav、vision、arm：总控、导航、视觉、机械臂。与正式四模块不是同一层级。",
+      "kind": "本账号历史实测",
+      "warning": "这是重置前历史入口截图。"
+    },
+    {
+      "id": "evidence-14-02",
+      "task": 14,
+      "title": "master初始化连接",
+      "path": "备赛工作台/sources/platform/live_20261022/task14/10_master_init_graph.png",
+      "caption": "设置唤醒词→创建三个发布者→创建一个订阅者。发布与订阅各有方向，具体消息字段见03。",
+      "kind": "本账号历史实测",
+      "warning": "这是R1基线初始化结构，不能整套不改地复制为G1。"
+    },
+    {
+      "id": "evidence-14-03",
+      "task": 14,
+      "title": "唤醒回调进入任务链",
+      "path": "备赛工作台/sources/platform/live_20261022/task14_wakeup_saved.png",
+      "caption": "提取任务信息→发布静态TF→变量赋值→发布话题。先建立数据与坐标系，再发起行动。",
+      "kind": "本账号历史实测",
+      "warning": "TF数值按机器人资源填写；不要从仅显示节点的截图猜矩阵。"
+    },
+    {
+      "id": "evidence-14-04",
+      "task": 14,
+      "title": "master八分支状态机",
+      "path": "备赛工作台/sources/platform/live_20261022/task14_master_state_machine_saved.png",
+      "caption": "nav_arm_finish_callback按状态走八个分支，分别触发视觉、下一导航或结束；不要把“发出请求”当“动作完成”。",
+      "kind": "本账号历史实测",
+      "warning": "这是历史图，完整条件/字段需配合03及实测文字回读。"
+    },
+    {
+      "id": "evidence-14-05",
+      "task": 14,
+      "title": "nav初始化连接",
+      "path": "备赛工作台/sources/platform/live_20261022/task14/11_nav_init_complete_graph.png",
+      "caption": "初始化航点→创建发布者→创建订阅者。初始化资源是后续按名称导航的前提。",
+      "kind": "本账号历史实测",
+      "warning": "R1图未出现G1额外的加载走路模型；不能漏掉G1差异。"
+    },
+    {
+      "id": "evidence-14-06",
+      "task": 14,
+      "title": "导航目标回调连接",
+      "path": "备赛工作台/sources/platform/live_20261022/task14_nav_target_connected.png",
+      "caption": "接收目标后变量赋值、条件判断、赋值目标、导航到航点。完成回调另外负责反馈。",
+      "kind": "本账号历史实测",
+      "warning": "订阅回调与动作完成回调不是同一函数。"
+    },
+    {
+      "id": "evidence-14-07",
+      "task": 14,
+      "title": "vision双相机输入与服务",
+      "path": "备赛工作台/sources/platform/live_20261022/task14_vision_init_saved.png",
+      "caption": "两路订阅接入图像/深度，服务端接收定位请求；不能把定位请求错建为普通话题订阅。",
+      "kind": "本账号历史实测",
+      "warning": "具体服务名与字段见03纠错，截图只显示结构。"
+    },
+    {
+      "id": "evidence-14-08",
+      "task": 14,
+      "title": "物体与颜色两条视觉分支",
+      "path": "备赛工作台/sources/platform/live_20261022/task14_vision_detection_saved.png",
+      "caption": "物体：目标检测→深度图转点云→服务响应；颜色：颜色检测→二维点转三维点→TF→服务响应。",
+      "kind": "本账号历史实测",
+      "warning": "点云和放置Pose输出用途不同；不要重复做TF。"
+    },
+    {
+      "id": "evidence-14-09",
+      "task": 14,
+      "title": "R1抓取按左右手分支",
+      "path": "备赛工作台/sources/platform/live_20261022/task14_grab_message_saved.png",
+      "caption": "抓取消息回调读取数据，分支选择手及规划组，抓取位姿估计→TF→机械臂移动。",
+      "kind": "本账号历史实测",
+      "warning": "随后还要闭夹爪并检查结果；移动函数执行不等于物体抓住。"
+    },
+    {
+      "id": "evidence-14-10",
+      "task": 14,
+      "title": "R1放置按左右手分支",
+      "path": "备赛工作台/sources/platform/live_20261022/task14_deploy_message_saved.png",
+      "caption": "放置消息回调读取Fpose并选手，移动后在完成回调张爪与反馈。",
+      "kind": "本账号历史实测",
+      "warning": "不要再对已变到基座的Fpose重复变换。"
+    },
+    {
+      "id": "evidence-14-11",
+      "task": 14,
+      "title": "G1抓取分支对照",
+      "path": "备赛工作台/sources/platform/live_20261022/task14_g1_arm_grab_saved.png",
+      "caption": "G1同样有左右手和抓取位姿/TF/移动分支；手、坐标系、资源要与G1匹配。",
+      "kind": "本账号历史实测",
+      "warning": "历史回读为false→left、true→right；不是所有机器人任务通用约定。"
+    },
+    {
+      "id": "evidence-14-12",
+      "task": 14,
+      "title": "双机器人完整历史报告",
+      "path": "备赛工作台/sources/platform/live_20261022/task14_both_simulation_report_baseline.png",
+      "caption": "R1八项成功；G1六项成功，长颈鹿抓取和黄色盒放置失败。下部可见函数执行表。",
+      "kind": "本账号历史实测",
+      "warning": "用户已于2026-10-23报告重置任务14；这不是重置后的新成绩。38函数执行不等于16任务全成功。"
+    }
+  ],
+  "archive": [
+    {
+      "task": null,
+      "path": "备赛工作台/sources/platform/live_20261022/course_login_restored_1023.png",
+      "title": "course_login_restored_1023.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 10,
+      "path": "备赛工作台/sources/platform/live_20261022/task10-12/task10_calibration_15.png",
+      "title": "task10_calibration_15.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 10,
+      "path": "备赛工作台/sources/platform/live_20261022/task10-12/task10_calibration_generated.png",
+      "title": "task10_calibration_generated.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 10,
+      "path": "备赛工作台/sources/platform/live_20261022/task10-12/task10_calibration_no_record.png",
+      "title": "task10_calibration_no_record.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 10,
+      "path": "备赛工作台/sources/platform/live_20261022/task10-12/task10_home.png",
+      "title": "task10_home.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 10,
+      "path": "备赛工作台/sources/platform/live_20261022/task10-12/task10_model_blank.png",
+      "title": "task10_model_blank.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 11,
+      "path": "备赛工作台/sources/platform/live_20261022/task10-12/task11_model_blank.png",
+      "title": "task11_model_blank.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task10-12/task12_dataset_13_saved.png",
+      "title": "task12_dataset_13_saved.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task10-12/task12_grasp_scene1_adjusted.png",
+      "title": "task12_grasp_scene1_adjusted.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task10-12/task12_grasp_scene3_adjusted.png",
+      "title": "task12_grasp_scene3_adjusted.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task10-12/task12_grasp_scene4_adjusted.png",
+      "title": "task12_grasp_scene4_adjusted.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task10-12/task12_model_loaded.png",
+      "title": "task12_model_loaded.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task10-12/task12_sam_labels_sample.png",
+      "title": "task12_sam_labels_sample.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task10-12/task12_seg_training_config.png",
+      "title": "task12_seg_training_config.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 10,
+      "path": "备赛工作台/sources/platform/live_20261022/task10_box11_verified.png",
+      "title": "task10_box11_verified.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 10,
+      "path": "备赛工作台/sources/platform/live_20261022/task10_box12_corrected.png",
+      "title": "task10_box12_corrected.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 10,
+      "path": "备赛工作台/sources/platform/live_20261022/task10_box1_verified.png",
+      "title": "task10_box1_verified.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 10,
+      "path": "备赛工作台/sources/platform/live_20261022/task10_box21_verified.png",
+      "title": "task10_box21_verified.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 10,
+      "path": "备赛工作台/sources/platform/live_20261022/task10_box2_verified.png",
+      "title": "task10_box2_verified.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 10,
+      "path": "备赛工作台/sources/platform/live_20261022/task10_box31_verified.png",
+      "title": "task10_box31_verified.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 10,
+      "path": "备赛工作台/sources/platform/live_20261022/task10_box39_verified.png",
+      "title": "task10_box39_verified.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 10,
+      "path": "备赛工作台/sources/platform/live_20261022/task10_box47_verified.png",
+      "title": "task10_box47_verified.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 10,
+      "path": "备赛工作台/sources/platform/live_20261022/task10_box60_verified.png",
+      "title": "task10_box60_verified.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 10,
+      "path": "备赛工作台/sources/platform/live_20261022/task10_core_parameters.png",
+      "title": "task10_core_parameters.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 10,
+      "path": "备赛工作台/sources/platform/live_20261022/task10_det9_save_expired.png",
+      "title": "task10_det9_save_expired.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 10,
+      "path": "备赛工作台/sources/platform/live_20261022/task10_det9_saved.png",
+      "title": "task10_det9_saved.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 10,
+      "path": "备赛工作台/sources/platform/live_20261022/task10_detection_model_metrics.png",
+      "title": "task10_detection_model_metrics.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 10,
+      "path": "备赛工作台/sources/platform/live_20261022/task10_detection_training_config.png",
+      "title": "task10_detection_training_config.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 10,
+      "path": "备赛工作台/sources/platform/live_20261022/task10_flow_reopened_all_edges.png",
+      "title": "task10_flow_reopened_all_edges.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 10,
+      "path": "备赛工作台/sources/platform/live_20261022/task10_pose2d_banana.png",
+      "title": "task10_pose2d_banana.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 10,
+      "path": "备赛工作台/sources/platform/live_20261022/task10_pose2d_glasses.png",
+      "title": "task10_pose2d_glasses.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 10,
+      "path": "备赛工作台/sources/platform/live_20261022/task10_pose2d_model_metrics.png",
+      "title": "task10_pose2d_model_metrics.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 10,
+      "path": "备赛工作台/sources/platform/live_20261022/task10_pose2d_pepper.png",
+      "title": "task10_pose2d_pepper.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 10,
+      "path": "备赛工作台/sources/platform/live_20261022/task10_pose2d_scissors.png",
+      "title": "task10_pose2d_scissors.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 10,
+      "path": "备赛工作台/sources/platform/live_20261022/task10_pose2d_screwdriver.png",
+      "title": "task10_pose2d_screwdriver.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 10,
+      "path": "备赛工作台/sources/platform/live_20261022/task10_pose2d_slipper.png",
+      "title": "task10_pose2d_slipper.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 10,
+      "path": "备赛工作台/sources/platform/live_20261022/task10_pose2d_spatula.png",
+      "title": "task10_pose2d_spatula.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 10,
+      "path": "备赛工作台/sources/platform/live_20261022/task10_pose2d_training_config.png",
+      "title": "task10_pose2d_training_config.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 10,
+      "path": "备赛工作台/sources/platform/live_20261022/task10_pose7_saved.png",
+      "title": "task10_pose7_saved.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 10,
+      "path": "备赛工作台/sources/platform/live_20261022/task10_simulation_report_baseline.png",
+      "title": "task10_simulation_report_baseline.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 10,
+      "path": "备赛工作台/sources/platform/live_20261022/task10_simulation_report_initial_x0.png",
+      "title": "task10_simulation_report_initial_x0.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 10,
+      "path": "备赛工作台/sources/platform/live_20261022/task10_unsaved_box_misaligned.png",
+      "title": "task10_unsaved_box_misaligned.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 11,
+      "path": "备赛工作台/sources/platform/live_20261022/task11_calibration_15.png",
+      "title": "task11_calibration_15.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 11,
+      "path": "备赛工作台/sources/platform/live_20261022/task11_calibration_generated.png",
+      "title": "task11_calibration_generated.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 11,
+      "path": "备赛工作台/sources/platform/live_20261022/task11_calibration_pose8.png",
+      "title": "task11_calibration_pose8.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 11,
+      "path": "备赛工作台/sources/platform/live_20261022/task11_core_parameters.png",
+      "title": "task11_core_parameters.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 11,
+      "path": "备赛工作台/sources/platform/live_20261022/task11_first_image_three_labeled.png",
+      "title": "task11_first_image_three_labeled.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 11,
+      "path": "备赛工作台/sources/platform/live_20261022/task11_flow_15nodes_14edges.png",
+      "title": "task11_flow_15nodes_14edges.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 11,
+      "path": "备赛工作台/sources/platform/live_20261022/task11_flow_all_edges_persisted.png",
+      "title": "task11_flow_all_edges_persisted.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 11,
+      "path": "备赛工作台/sources/platform/live_20261022/task11_flow_reopened.png",
+      "title": "task11_flow_reopened.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 11,
+      "path": "备赛工作台/sources/platform/live_20261022/task11_grasp_default_dataset_saved.png",
+      "title": "task11_grasp_default_dataset_saved.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 11,
+      "path": "备赛工作台/sources/platform/live_20261022/task11_grasp_model_metrics.png",
+      "title": "task11_grasp_model_metrics.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 11,
+      "path": "备赛工作台/sources/platform/live_20261022/task11_grasp_scene1_selected_box.png",
+      "title": "task11_grasp_scene1_selected_box.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 11,
+      "path": "备赛工作台/sources/platform/live_20261022/task11_grasp_scene1_selected_can.png",
+      "title": "task11_grasp_scene1_selected_can.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 11,
+      "path": "备赛工作台/sources/platform/live_20261022/task11_grasp_scene1_selected_kettle.png",
+      "title": "task11_grasp_scene1_selected_kettle.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 11,
+      "path": "备赛工作台/sources/platform/live_20261022/task11_grasp_scene2_overview.png",
+      "title": "task11_grasp_scene2_overview.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 11,
+      "path": "备赛工作台/sources/platform/live_20261022/task11_grasp_scene3_overview.png",
+      "title": "task11_grasp_scene3_overview.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 11,
+      "path": "备赛工作台/sources/platform/live_20261022/task11_grasp_scene4_overview.png",
+      "title": "task11_grasp_scene4_overview.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 11,
+      "path": "备赛工作台/sources/platform/live_20261022/task11_grasp_training_config.png",
+      "title": "task11_grasp_training_config.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 11,
+      "path": "备赛工作台/sources/platform/live_20261022/task11_seg_dataset_saved.png",
+      "title": "task11_seg_dataset_saved.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 11,
+      "path": "备赛工作台/sources/platform/live_20261022/task11_seg_model_metrics.png",
+      "title": "task11_seg_model_metrics.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 11,
+      "path": "备赛工作台/sources/platform/live_20261022/task11_seg_training_config.png",
+      "title": "task11_seg_training_config.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 11,
+      "path": "备赛工作台/sources/platform/live_20261022/task11_simulation_report_baseline.png",
+      "title": "task11_simulation_report_baseline.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 11,
+      "path": "备赛工作台/sources/platform/live_20261022/task11_simulation_stalled0.png",
+      "title": "task11_simulation_stalled0.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task12_calibration_15.png",
+      "title": "task12_calibration_15.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task12_calibration_generated.png",
+      "title": "task12_calibration_generated.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task12_core_parameters.png",
+      "title": "task12_core_parameters.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task12_flow_14nodes_14edges_before_reopen.png",
+      "title": "task12_flow_14nodes_14edges_before_reopen.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task12_flow_empty_frame.png",
+      "title": "task12_flow_empty_frame.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task12_flow_reopened_14_edges_verified.png",
+      "title": "task12_flow_reopened_14_edges_verified.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task12_flow_reopened_all_edges.png",
+      "title": "task12_flow_reopened_all_edges.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task12_four_groups_right_hand_links.png",
+      "title": "task12_four_groups_right_hand_links.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task12_four_groups_saved_reopened.png",
+      "title": "task12_four_groups_saved_reopened.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task12_grasp6d_model_metrics.png",
+      "title": "task12_grasp6d_model_metrics.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task12_grasp6d_training_config.png",
+      "title": "task12_grasp6d_training_config.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task12_left_arm_pose.png",
+      "title": "task12_left_arm_pose.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task12_left_hand_closed.png",
+      "title": "task12_left_hand_closed.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task12_left_hand_open.png",
+      "title": "task12_left_hand_open.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task12_mechanical_after_browser_reload.png",
+      "title": "task12_mechanical_after_browser_reload.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task12_mechanical_save_session_expired.png",
+      "title": "task12_mechanical_save_session_expired.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task12_new_session_mechanical_empty.png",
+      "title": "task12_new_session_mechanical_empty.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task12_planning_parameters.png",
+      "title": "task12_planning_parameters.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task12_planning_time5_trial.png",
+      "title": "task12_planning_time5_trial.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task12_pose20_dataset_saved.png",
+      "title": "task12_pose20_dataset_saved.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task12_pose_scene1_five_objects_reviewed.png",
+      "title": "task12_pose_scene1_five_objects_reviewed.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task12_pose_scene2_five_objects_reviewed.png",
+      "title": "task12_pose_scene2_five_objects_reviewed.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task12_pose_scene3_five_objects_reviewed.png",
+      "title": "task12_pose_scene3_five_objects_reviewed.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task12_pose_scene4_five_objects_reviewed.png",
+      "title": "task12_pose_scene4_five_objects_reviewed.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task12_preview_both_arms.png",
+      "title": "task12_preview_both_arms.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task12_preview_left_arm.png",
+      "title": "task12_preview_left_arm.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task12_preview_left_hand_closed.png",
+      "title": "task12_preview_left_hand_closed.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task12_preview_left_hand_open.png",
+      "title": "task12_preview_left_hand_open.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task12_preview_right_hand_closed.png",
+      "title": "task12_preview_right_hand_closed.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task12_preview_right_hand_open.png",
+      "title": "task12_preview_right_hand_open.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task12_restored_base_all.png",
+      "title": "task12_restored_base_all.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task12_restored_left_arm_pose.png",
+      "title": "task12_restored_left_arm_pose.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task12_restored_left_hand_closed.png",
+      "title": "task12_restored_left_hand_closed.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task12_restored_left_hand_open.png",
+      "title": "task12_restored_left_hand_open.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task12_restored_planning_octomap.png",
+      "title": "task12_restored_planning_octomap.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task12_restored_planning_parameters.png",
+      "title": "task12_restored_planning_parameters.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task12_restored_preview_both_arms.png",
+      "title": "task12_restored_preview_both_arms.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task12_restored_preview_left_arm.png",
+      "title": "task12_restored_preview_left_arm.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task12_restored_right_arm_pose.png",
+      "title": "task12_restored_right_arm_pose.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task12_restored_right_hand_closed.png",
+      "title": "task12_restored_right_hand_closed.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task12_restored_right_hand_open.png",
+      "title": "task12_restored_right_hand_open.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task12_right_arm_planning_octomap.png",
+      "title": "task12_right_arm_planning_octomap.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task12_right_arm_pose.png",
+      "title": "task12_right_arm_pose.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task12_right_hand_closed.png",
+      "title": "task12_right_hand_closed.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task12_right_hand_open.png",
+      "title": "task12_right_hand_open.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task12_seg13_model_metrics.png",
+      "title": "task12_seg13_model_metrics.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 12,
+      "path": "备赛工作台/sources/platform/live_20261022/task12_simulation_report_baseline.png",
+      "title": "task12_simulation_report_baseline.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 13,
+      "path": "备赛工作台/sources/platform/live_20261022/task13_unpublished.png",
+      "title": "task13_unpublished.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 14,
+      "path": "备赛工作台/sources/platform/live_20261022/task14/01_node_editor_blank_overlay.png",
+      "title": "01_node_editor_blank_overlay.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 14,
+      "path": "备赛工作台/sources/platform/live_20261022/task14/02_node_editor_blank_after_reload.png",
+      "title": "02_node_editor_blank_after_reload.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 14,
+      "path": "备赛工作台/sources/platform/live_20261022/task14/03_node_editor_blank_after_course_reopen.png",
+      "title": "03_node_editor_blank_after_course_reopen.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 14,
+      "path": "备赛工作台/sources/platform/live_20261022/task14/04_node_editor_blank_after_ready_retry.png",
+      "title": "04_node_editor_blank_after_ready_retry.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 14,
+      "path": "备赛工作台/sources/platform/live_20261022/task14/05_ros_node_list_restored.png",
+      "title": "05_ros_node_list_restored.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 14,
+      "path": "备赛工作台/sources/platform/live_20261022/task14/06_r1_hand_eye_resource.png",
+      "title": "06_r1_hand_eye_resource.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 14,
+      "path": "备赛工作台/sources/platform/live_20261022/task14/07_g1_hand_eye_resource.png",
+      "title": "07_g1_hand_eye_resource.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 14,
+      "path": "备赛工作台/sources/platform/live_20261022/task14/08_waypoints_resource.png",
+      "title": "08_waypoints_resource.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 14,
+      "path": "备赛工作台/sources/platform/live_20261022/task14/09_nav_init_partial_graph.png",
+      "title": "09_nav_init_partial_graph.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 14,
+      "path": "备赛工作台/sources/platform/live_20261022/task14/10_master_init_graph.png",
+      "title": "10_master_init_graph.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 14,
+      "path": "备赛工作台/sources/platform/live_20261022/task14/11_nav_init_complete_graph.png",
+      "title": "11_nav_init_complete_graph.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 14,
+      "path": "备赛工作台/sources/platform/live_20261022/task14_arm_init_saved.png",
+      "title": "task14_arm_init_saved.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 14,
+      "path": "备赛工作台/sources/platform/live_20261022/task14_both_config_submitted.png",
+      "title": "task14_both_config_submitted.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 14,
+      "path": "备赛工作台/sources/platform/live_20261022/task14_both_simulation_report_baseline.png",
+      "title": "task14_both_simulation_report_baseline.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 14,
+      "path": "备赛工作台/sources/platform/live_20261022/task14_both_simulation_report_repeat.png",
+      "title": "task14_both_simulation_report_repeat.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 14,
+      "path": "备赛工作台/sources/platform/live_20261022/task14_deploy_finish_readback.png",
+      "title": "task14_deploy_finish_readback.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 14,
+      "path": "备赛工作台/sources/platform/live_20261022/task14_deploy_finish_saved.png",
+      "title": "task14_deploy_finish_saved.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 14,
+      "path": "备赛工作台/sources/platform/live_20261022/task14_deploy_message_saved.png",
+      "title": "task14_deploy_message_saved.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 14,
+      "path": "备赛工作台/sources/platform/live_20261022/task14_depth_callback_readback.png",
+      "title": "task14_depth_callback_readback.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 14,
+      "path": "备赛工作台/sources/platform/live_20261022/task14_g1_arm_grab_saved.png",
+      "title": "task14_g1_arm_grab_saved.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 14,
+      "path": "备赛工作台/sources/platform/live_20261022/task14_g1_nav_init_saved.png",
+      "title": "task14_g1_nav_init_saved.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 14,
+      "path": "备赛工作台/sources/platform/live_20261022/task14_g1_response1_saved.png",
+      "title": "task14_g1_response1_saved.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 14,
+      "path": "备赛工作台/sources/platform/live_20261022/task14_g1_response_panel_blank.png",
+      "title": "task14_g1_response_panel_blank.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 14,
+      "path": "备赛工作台/sources/platform/live_20261022/task14_g1_speed50_report.png",
+      "title": "task14_g1_speed50_report.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 14,
+      "path": "备赛工作台/sources/platform/live_20261022/task14_g1_vision_saved.png",
+      "title": "task14_g1_vision_saved.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 14,
+      "path": "备赛工作台/sources/platform/live_20261022/task14_grab_finish_saved.png",
+      "title": "task14_grab_finish_saved.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 14,
+      "path": "备赛工作台/sources/platform/live_20261022/task14_grab_message_saved.png",
+      "title": "task14_grab_message_saved.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 14,
+      "path": "备赛工作台/sources/platform/live_20261022/task14_locate_service_fields.png",
+      "title": "task14_locate_service_fields.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 14,
+      "path": "备赛工作台/sources/platform/live_20261022/task14_master_state_conditions.png",
+      "title": "task14_master_state_conditions.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 14,
+      "path": "备赛工作台/sources/platform/live_20261022/task14_master_state_machine_saved.png",
+      "title": "task14_master_state_machine_saved.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 14,
+      "path": "备赛工作台/sources/platform/live_20261022/task14_nav_finish_saved.png",
+      "title": "task14_nav_finish_saved.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 14,
+      "path": "备赛工作台/sources/platform/live_20261022/task14_nav_target_connected.png",
+      "title": "task14_nav_target_connected.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 14,
+      "path": "备赛工作台/sources/platform/live_20261022/task14_r1_first_sim_debug_empty.png",
+      "title": "task14_r1_first_sim_debug_empty.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 14,
+      "path": "备赛工作台/sources/platform/live_20261022/task14_r1_module_submitted_sim_enabled.png",
+      "title": "task14_r1_module_submitted_sim_enabled.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 14,
+      "path": "备赛工作台/sources/platform/live_20261022/task14_rgb_parameter_after_binding.png",
+      "title": "task14_rgb_parameter_after_binding.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 14,
+      "path": "备赛工作台/sources/platform/live_20261022/task14_static_tf_fields.png",
+      "title": "task14_static_tf_fields.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 14,
+      "path": "备赛工作台/sources/platform/live_20261022/task14_vision_detection_saved.png",
+      "title": "task14_vision_detection_saved.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 14,
+      "path": "备赛工作台/sources/platform/live_20261022/task14_vision_init_saved.png",
+      "title": "task14_vision_init_saved.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 14,
+      "path": "备赛工作台/sources/platform/live_20261022/task14_vision_response1_saved.png",
+      "title": "task14_vision_response1_saved.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 14,
+      "path": "备赛工作台/sources/platform/live_20261022/task14_vision_response2_saved.png",
+      "title": "task14_vision_response2_saved.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 14,
+      "path": "备赛工作台/sources/platform/live_20261022/task14_vision_response3_saved.png",
+      "title": "task14_vision_response3_saved.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 14,
+      "path": "备赛工作台/sources/platform/live_20261022/task14_vision_response4_saved.png",
+      "title": "task14_vision_response4_saved.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 14,
+      "path": "备赛工作台/sources/platform/live_20261022/task14_wakeup_saved.png",
+      "title": "task14_wakeup_saved.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 2,
+      "path": "备赛工作台/sources/platform/live_20261022/task2_baseline_chart.png",
+      "title": "task2_baseline_chart.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 2,
+      "path": "备赛工作台/sources/platform/live_20261022/task2_baseline_report.png",
+      "title": "task2_baseline_report.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 2,
+      "path": "备赛工作台/sources/platform/live_20261022/task2_baseline_simulation.png",
+      "title": "task2_baseline_simulation.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 2,
+      "path": "备赛工作台/sources/platform/live_20261022/task2_models_complete.png",
+      "title": "task2_models_complete.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 3,
+      "path": "备赛工作台/sources/platform/live_20261022/task3_baseline_report.png",
+      "title": "task3_baseline_report.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 3,
+      "path": "备赛工作台/sources/platform/live_20261022/task3_compare_200M_report_1023.png",
+      "title": "task3_compare_200M_report_1023.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 3,
+      "path": "备赛工作台/sources/platform/live_20261022/task3_models_complete.png",
+      "title": "task3_models_complete.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 4,
+      "path": "备赛工作台/sources/platform/live_20261022/task4_blank_panel.png",
+      "title": "task4_blank_panel.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 4,
+      "path": "备赛工作台/sources/platform/live_20261022/task4_bright_surprise.png",
+      "title": "task4_bright_surprise.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 4,
+      "path": "备赛工作台/sources/platform/live_20261022/task4_dark_angry2.png",
+      "title": "task4_dark_angry2.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 4,
+      "path": "备赛工作台/sources/platform/live_20261022/task4_dark_missing_first_link.png",
+      "title": "task4_dark_missing_first_link.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 4,
+      "path": "备赛工作台/sources/platform/live_20261022/task4_dataset27.png",
+      "title": "task4_dataset27.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 4,
+      "path": "备赛工作台/sources/platform/live_20261022/task4_first_inference_low_conf.png",
+      "title": "task4_first_inference_low_conf.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 4,
+      "path": "备赛工作台/sources/platform/live_20261022/task4_model_accuracy.png",
+      "title": "task4_model_accuracy.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 4,
+      "path": "备赛工作台/sources/platform/live_20261022/task4_simulation_report_baseline.png",
+      "title": "task4_simulation_report_baseline.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 5,
+      "path": "备赛工作台/sources/platform/live_20261022/task5_augmentation_selected.png",
+      "title": "task5_augmentation_selected.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 5,
+      "path": "备赛工作台/sources/platform/live_20261022/task5_dataset20.png",
+      "title": "task5_dataset20.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 5,
+      "path": "备赛工作台/sources/platform/live_20261022/task5_face_test14_threshold04.png",
+      "title": "task5_face_test14_threshold04.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 5,
+      "path": "备赛工作台/sources/platform/live_20261022/task5_knife_test1.png",
+      "title": "task5_knife_test1.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 5,
+      "path": "备赛工作台/sources/platform/live_20261022/task5_model_metrics.png",
+      "title": "task5_model_metrics.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 5,
+      "path": "备赛工作台/sources/platform/live_20261022/task5_ocr_flow_connected.png",
+      "title": "task5_ocr_flow_connected.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 5,
+      "path": "备赛工作台/sources/platform/live_20261022/task5_ocr_test16.png",
+      "title": "task5_ocr_test16.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 5,
+      "path": "备赛工作台/sources/platform/live_20261022/task5_pill_test6.png",
+      "title": "task5_pill_test6.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 5,
+      "path": "备赛工作台/sources/platform/live_20261022/task5_simulation_report_baseline.png",
+      "title": "task5_simulation_report_baseline.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 5,
+      "path": "备赛工作台/sources/platform/live_20261022/task5_simulation_report_threshold042_resize640.png",
+      "title": "task5_simulation_report_threshold042_resize640.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 6,
+      "path": "备赛工作台/sources/platform/live_20261022/task6_augmentation_selected.png",
+      "title": "task6_augmentation_selected.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 6,
+      "path": "备赛工作台/sources/platform/live_20261022/task6_dataset20.png",
+      "title": "task6_dataset20.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 6,
+      "path": "备赛工作台/sources/platform/live_20261022/task6_model_accuracy.png",
+      "title": "task6_model_accuracy.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 6,
+      "path": "备赛工作台/sources/platform/live_20261022/task6_pose_angle_rule.png",
+      "title": "task6_pose_angle_rule.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 6,
+      "path": "备赛工作台/sources/platform/live_20261022/task6_pose_climb1.png",
+      "title": "task6_pose_climb1.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 6,
+      "path": "备赛工作台/sources/platform/live_20261022/task6_pose_climb2.png",
+      "title": "task6_pose_climb2.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 6,
+      "path": "备赛工作台/sources/platform/live_20261022/task6_pose_distance_rules.png",
+      "title": "task6_pose_distance_rules.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 6,
+      "path": "备赛工作台/sources/platform/live_20261022/task6_pose_type1_negative.png",
+      "title": "task6_pose_type1_negative.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 6,
+      "path": "备赛工作台/sources/platform/live_20261022/task6_simulation_report_baseline.png",
+      "title": "task6_simulation_report_baseline.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 6,
+      "path": "备赛工作台/sources/platform/live_20261022/task6_tsm_fallfloor1.png",
+      "title": "task6_tsm_fallfloor1.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 6,
+      "path": "备赛工作台/sources/platform/live_20261022/task6_tsm_jumprope1.png",
+      "title": "task6_tsm_jumprope1.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 6,
+      "path": "备赛工作台/sources/platform/live_20261022/task6_tsm_pushup1.png",
+      "title": "task6_tsm_pushup1.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 6,
+      "path": "备赛工作台/sources/platform/live_20261022/task6_tsm_type1.png",
+      "title": "task6_tsm_type1.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 7,
+      "path": "备赛工作台/sources/platform/live_20261022/task7-9/task7_blank_strategy_panel.png",
+      "title": "task7_blank_strategy_panel.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 7,
+      "path": "备赛工作台/sources/platform/live_20261022/task7-9/task7_c1_karto.png",
+      "title": "task7_c1_karto.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 7,
+      "path": "备赛工作台/sources/platform/live_20261022/task7-9/task7_c1_report_86p6.png",
+      "title": "task7_c1_report_86p6.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 7,
+      "path": "备赛工作台/sources/platform/live_20261022/task7-9/task7_c1_route.png",
+      "title": "task7_c1_route.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 7,
+      "path": "备赛工作台/sources/platform/live_20261022/task7-9/task7_c2_gmapping.png",
+      "title": "task7_c2_gmapping.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 7,
+      "path": "备赛工作台/sources/platform/live_20261022/task7-9/task7_c2_route.png",
+      "title": "task7_c2_route.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 7,
+      "path": "备赛工作台/sources/platform/live_20261022/task7-9/task7_hardware.png",
+      "title": "task7_hardware.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 8,
+      "path": "备赛工作台/sources/platform/live_20261022/task7-9/task8_c1_costmap.png",
+      "title": "task8_c1_costmap.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 8,
+      "path": "备赛工作台/sources/platform/live_20261022/task7-9/task8_c1_global.png",
+      "title": "task8_c1_global.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 8,
+      "path": "备赛工作台/sources/platform/live_20261022/task7-9/task8_c1_local.png",
+      "title": "task8_c1_local.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 8,
+      "path": "备赛工作台/sources/platform/live_20261022/task7-9/task8_c2_costmap.png",
+      "title": "task8_c2_costmap.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 8,
+      "path": "备赛工作台/sources/platform/live_20261022/task7-9/task8_c2_global.png",
+      "title": "task8_c2_global.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 8,
+      "path": "备赛工作台/sources/platform/live_20261022/task7-9/task8_c2_local.png",
+      "title": "task8_c2_local.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 8,
+      "path": "备赛工作台/sources/platform/live_20261022/task7-9/task8_customer1_requirements.png",
+      "title": "task8_customer1_requirements.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 8,
+      "path": "备赛工作台/sources/platform/live_20261022/task7-9/task8_customer2_requirements.png",
+      "title": "task8_customer2_requirements.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 8,
+      "path": "备赛工作台/sources/platform/live_20261022/task7-9/task8_one_waypoint_draft.png",
+      "title": "task8_one_waypoint_draft.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 7,
+      "path": "备赛工作台/sources/platform/live_20261022/task7_c2_karto_route3_config.png",
+      "title": "task7_c2_karto_route3_config.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 7,
+      "path": "备赛工作台/sources/platform/live_20261022/task7_customer2_route3_selected.png",
+      "title": "task7_customer2_route3_selected.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 7,
+      "path": "备赛工作台/sources/platform/live_20261022/task7_customer2_stalled99.png",
+      "title": "task7_customer2_stalled99.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 7,
+      "path": "备赛工作台/sources/platform/live_20261022/task7_karto_route3_99pct.png",
+      "title": "task7_karto_route3_99pct.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 7,
+      "path": "备赛工作台/sources/platform/live_20261022/task7_karto_route3_final_stalled99.png",
+      "title": "task7_karto_route3_final_stalled99.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 7,
+      "path": "备赛工作台/sources/platform/live_20261022/task7_route3_report.png",
+      "title": "task7_route3_report.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 8,
+      "path": "备赛工作台/sources/platform/live_20261022/task8_c2_local_reopened_verified.png",
+      "title": "task8_c2_local_reopened_verified.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 8,
+      "path": "备赛工作台/sources/platform/live_20261022/task8_longpress_drag_camera_only.png",
+      "title": "task8_longpress_drag_camera_only.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 9,
+      "path": "备赛工作台/sources/platform/live_20261022/task9_navigation_started.png",
+      "title": "task9_navigation_started.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 9,
+      "path": "备赛工作台/sources/platform/live_20261022/task9_pcd_preview.png",
+      "title": "task9_pcd_preview.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 9,
+      "path": "备赛工作台/sources/platform/live_20261022/task9_pgm_conversion_config.png",
+      "title": "task9_pgm_conversion_config.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 9,
+      "path": "备赛工作台/sources/platform/live_20261022/task9_pgm_preview.png",
+      "title": "task9_pgm_preview.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 9,
+      "path": "备赛工作台/sources/platform/live_20261022/task9_route1_description.png",
+      "title": "task9_route1_description.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 9,
+      "path": "备赛工作台/sources/platform/live_20261022/task9_route1_selected.png",
+      "title": "task9_route1_selected.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 9,
+      "path": "备赛工作台/sources/platform/live_20261022/task9_simulation_report_baseline.png",
+      "title": "task9_simulation_report_baseline.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 9,
+      "path": "备赛工作台/sources/platform/live_20261022/task9_strategy_readback.png",
+      "title": "task9_strategy_readback.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 9,
+      "path": "备赛工作台/sources/platform/live_20261022/task9_ten_waypoints_orientation_adjusted.png",
+      "title": "task9_ten_waypoints_orientation_adjusted.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 9,
+      "path": "备赛工作台/sources/platform/live_20261022/task9_ten_waypoints_saved.png",
+      "title": "task9_ten_waypoints_saved.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 13,
+      "path": "备赛工作台/sources/platform/任务13_未发布.png",
+      "title": "任务13_未发布.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 1,
+      "path": "备赛工作台/sources/platform/任务1_walk_baseline_训练参数.png",
+      "title": "任务1_walk_baseline_训练参数.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 1,
+      "path": "备赛工作台/sources/platform/任务1_walk_baseline_训练完成.png",
+      "title": "任务1_walk_baseline_训练完成.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 1,
+      "path": "备赛工作台/sources/platform/任务1_walk_baseline_训练曲线.png",
+      "title": "任务1_walk_baseline_训练曲线.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 1,
+      "path": "备赛工作台/sources/platform/任务1_三模型训练完成.png",
+      "title": "任务1_三模型训练完成.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 1,
+      "path": "备赛工作台/sources/platform/任务1_六模型完成且已查看.png",
+      "title": "任务1_六模型完成且已查看.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 1,
+      "path": "备赛工作台/sources/platform/任务1_官方评分页.png",
+      "title": "任务1_官方评分页.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 1,
+      "path": "备赛工作台/sources/platform/任务1_行走仿真.png",
+      "title": "任务1_行走仿真.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 1,
+      "path": "备赛工作台/sources/platform/任务1_行走旋转仿真.png",
+      "title": "任务1_行走旋转仿真.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 1,
+      "path": "备赛工作台/sources/platform/任务1_训练面板加载停滞.png",
+      "title": "任务1_训练面板加载停滞.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 1,
+      "path": "备赛工作台/sources/platform/任务1_评分提交会锁定实验.png",
+      "title": "任务1_评分提交会锁定实验.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 1,
+      "path": "备赛工作台/sources/platform/任务1_跑步仿真.png",
+      "title": "任务1_跑步仿真.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 1,
+      "path": "备赛工作台/sources/platform/任务1_跳跃仿真.png",
+      "title": "任务1_跳跃仿真.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": 1,
+      "path": "备赛工作台/sources/platform/任务1_首次仿真报告.png",
+      "title": "任务1_首次仿真报告.png",
+      "kind": "本账号历史实测"
+    },
+    {
+      "task": null,
+      "path": "备赛工作台/sources/platform/实验白屏.png",
+      "title": "实验白屏.png",
+      "kind": "本账号历史实测"
+    }
+  ]
+}

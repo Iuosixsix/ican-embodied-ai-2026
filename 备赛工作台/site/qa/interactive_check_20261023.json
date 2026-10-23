@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-23",
+  "mode": "local HTTP preview in Chrome, no platform operations",
+  "task14": {
+    "nodes_answer": true,
+    "chain_8_cards": true,
+    "wrong_failure_repeat_guard": true,
+    "vision_wait_guard": true,
+    "reload_persists": true,
+    "reset_test_data_only": true
+  },
+  "mock": {
+    "empty_xyz_rejected": true,
+    "correct_xyz_6_of_6": true,
+    "model_constraints": true,
+    "map_click_updates_point": true,
+    "obstacle_rejected": true,
+    "safe_return_pass": true,
+    "direct_return_rejected": true,
+    "changed_answer_clears_pass": true
+  },
+  "gallery": {
+    "task14_archive": 43,
+    "task14_curated": 12,
+    "enlarged_image_natural_width": 1920
+  },
+  "responsive": {
+    "font_percent": 180,
+    "mobile_client_scroll": [
+      360,
+      360
+    ],
+    "tablet_client_scroll": [
+      753,
+      753
+    ],
+    "checked": [
+      "mock navigation",
+      "task14",
+      "task14 repairs"
+    ]
+  },
+  "file_protocol_test": "blocked by browser URL policy; not bypassed",
+  "limitations": [
+    "not full platform emulator",
+    "not physics or robot inference",
+    "not all archived images browser-loaded"
+  ],
+  "html_sha256": "2001f2b72b1883d3d3ce6acb5127ff442a5577521b0b1184d9a3fea9667f0341"
+}

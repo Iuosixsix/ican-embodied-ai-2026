@@ -39,17 +39,21 @@ def main():
     audit=ContentAudit()
     for record in [*content['tasks'],*content['articles']]:
         audit.feed(record.get('html',''))
+    for item in [*content['offlineEvidence']['items'],*content['offlineEvidence']['archive']]:
+        audit.images.append(item['path'])
     if audit.errors: raise ValueError('\n'.join(audit.errors))
     missing=[]
+    image_targets=set()
     for src in sorted(set(audit.images)):
         parsed=urlparse(src)
         if parsed.scheme or parsed.netloc: raise ValueError('Offline images must be local: '+src)
         target=(ROOT/unquote(parsed.path)).resolve()
+        image_targets.add(target)
         if not target.is_relative_to(ROOT): raise ValueError('Image outside workspace: '+src)
         if not target.is_file(): missing.append(src)
     if missing: raise FileNotFoundError('Missing evidence images: '+repr(missing))
-    css=(HERE/'style.css').read_text(encoding='utf-8')
-    app=(HERE/'app.js').read_text(encoding='utf-8')
+    css='\n'.join((HERE/n).read_text(encoding='utf-8') for n in ['style.css','task14-lab.css','mock-lab.css','offline-lab.css'])
+    app='\n'.join((HERE/n).read_text(encoding='utf-8') for n in ['task14-lab.js','mock-lab.js','offline-lab.js','app.js'])
     template=(HERE/'template.html').read_text(encoding='utf-8')
     if re.search(r'\bfetch\s*\(|XMLHttpRequest|https?://[^\s\"\']+\.(?:js|css)',app):
         raise ValueError('Unexpected network dependency in app')
@@ -57,7 +61,7 @@ def main():
     html=template.replace('/*__STYLE__*/',css).replace('/*__DATA__*/',payload).replace('/*__APP__*/',app)
     if '/*__' in html: raise ValueError('Unresolved build marker')
     OUTPUT.write_text(html,encoding='utf-8')
-    manifest={'output':str(OUTPUT),'bytes':OUTPUT.stat().st_size,'sha256':hashlib.sha256(OUTPUT.read_bytes()).hexdigest(),'tasks':len(content['tasks']),'articles':len(content['articles']),'quizzes':len(content['quizzes']),'meetings':len(content['meetings']),'segments':sum(len(m.get('segments',[])) for m in content['meetings']),'unique_local_images':len(set(audit.images)),'image_links':len(audit.images),'network_dependencies':0}
+    manifest={'output':str(OUTPUT),'bytes':OUTPUT.stat().st_size,'sha256':hashlib.sha256(OUTPUT.read_bytes()).hexdigest(),'tasks':len(content['tasks']),'articles':len(content['articles']),'quizzes':len(content['quizzes']),'meetings':len(content['meetings']),'segments':sum(len(m.get('segments',[])) for m in content['meetings']),'unique_local_images':len(image_targets),'image_links':len(audit.images),'network_dependencies':0}
     (HERE/'build_manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2),encoding='utf-8')
     print(json.dumps(manifest,ensure_ascii=False,indent=2))
 

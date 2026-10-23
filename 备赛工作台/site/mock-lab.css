@@ -1,0 +1,97 @@
+/* Scope every rule to the offline module; inherit the site's font preference. */
+.ican-mock-lab{--iml-teal:#176c66;--iml-ink:#193b49;--iml-line:#d8e3e4;--iml-amber:#8c5d20;--iml-violet:#674697;max-width:1120px;margin:0 auto;color:var(--iml-ink);font-size:calc(14px * var(--font-scale,1.2));line-height:1.75;overflow-wrap:anywhere}
+.ican-mock-lab *{box-sizing:border-box;min-width:0}
+.ican-mock-lab h2{font-size:calc(25px * var(--font-scale,1.2));margin:7px 0 12px;line-height:1.45}
+.ican-mock-lab h3{font-size:calc(19px * var(--font-scale,1.2));margin:7px 0 12px;line-height:1.5}
+.ican-mock-lab p{margin:9px 0 16px}
+.ican-mock-lab button,.ican-mock-lab input,.ican-mock-lab select{font:inherit;max-width:100%}
+.ican-mock-lab button{border:1px solid var(--iml-teal);border-radius:9px;background:var(--iml-teal);color:#fff;padding:9px 15px;min-height:43px;white-space:normal;line-height:1.5;text-align:center;cursor:pointer}
+.ican-mock-lab button:hover{filter:brightness(.96)}
+.ican-mock-lab button:focus-visible,.ican-mock-lab input:focus-visible,.ican-mock-lab select:focus-visible,.ican-mock-lab summary:focus-visible,.ican-mock-lab a:focus-visible{outline:3px solid #59a797;outline-offset:3px}
+.ican-mock-lab .iml-secondary{background:#fff;color:var(--iml-teal);border-color:#bdd3ce}
+.ican-mock-lab .iml-active{background:#e6f2ed!important;border-color:var(--iml-teal)!important;color:#105a54!important;box-shadow:inset 0 -3px 0 var(--iml-teal)}
+.ican-mock-lab .iml-intro{border:1px solid #ded5ec;border-left:5px solid var(--iml-violet);border-radius:13px;padding:24px 27px;background:linear-gradient(110deg,#f7f2fc,#fff)}
+.ican-mock-lab .iml-label{display:inline-block;font-size:calc(11px * var(--font-scale,1.2));font-weight:700;letter-spacing:.8px;color:var(--iml-violet)}
+.ican-mock-lab .iml-links{display:flex;gap:10px 21px;flex-wrap:wrap;font-size:calc(12px * var(--font-scale,1.2))}
+.ican-mock-lab .iml-links a{color:var(--iml-teal);font-weight:600}
+.ican-mock-lab .iml-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:23px 0}
+.ican-mock-lab .iml-tabs button{background:#fff;color:#4e6672;border:1px solid var(--iml-line);padding:13px 12px;text-align:left}
+.ican-mock-lab .iml-tabs button>span{display:block;font-size:calc(10px * var(--font-scale,1.2));letter-spacing:1px;margin-bottom:3px;opacity:.8}
+.ican-mock-lab .iml-stack{display:grid;gap:23px}
+.ican-mock-lab .iml-card{border:1px solid var(--iml-line);background:#fff;border-radius:14px;padding:26px}
+.ican-mock-lab .iml-card-heading{border-bottom:1px solid #edf1f2;margin-bottom:17px}
+.ican-mock-lab .iml-choice-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.ican-mock-lab fieldset{border:0;padding:0;margin:17px 0}
+.ican-mock-lab legend{display:block;font-size:calc(12px * var(--font-scale,1.2));color:#617380;margin-bottom:10px;font-weight:600}
+.ican-mock-lab .iml-choice{display:flex;align-items:flex-start;gap:10px;border:1px solid var(--iml-line);border-radius:10px;padding:15px 12px;cursor:pointer;min-width:0;background:#fafcfc}
+.ican-mock-lab .iml-choice:has(input:checked){background:#eaf6f0;border-color:var(--iml-teal)}
+.ican-mock-lab .iml-choice input{accent-color:var(--iml-teal);margin:6px 0 0;width:17px;height:17px;flex-shrink:0}
+.ican-mock-lab .iml-choice strong{display:block;margin-bottom:6px}
+.ican-mock-lab .iml-choice small{display:block;font-size:calc(11px * var(--font-scale,1.2));color:#526a76;line-height:1.9}
+.ican-mock-lab .iml-two,.ican-mock-lab .iml-three{display:grid;gap:14px}
+.ican-mock-lab .iml-two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.ican-mock-lab .iml-three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.ican-mock-lab .iml-field{display:flex;flex-direction:column;gap:7px;margin:13px 0;font-size:calc(12px * var(--font-scale,1.2));min-width:0}
+.ican-mock-lab .iml-field>span{font-weight:600;color:#385562}
+.ican-mock-lab .iml-field input,.ican-mock-lab .iml-field select{border:1px solid #bacfd1;border-radius:8px;padding:10px 11px;width:100%;min-height:43px;background:#fff;color:var(--iml-ink);min-width:0}
+.ican-mock-lab .iml-field select{white-space:normal;text-overflow:ellipsis}
+.ican-mock-lab .iml-actions{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin:17px 0}
+.ican-mock-lab .iml-actions>span{font-size:calc(12px * var(--font-scale,1.2));color:#5b7481}
+.ican-mock-lab .iml-answer{border-top:1px solid var(--iml-line);margin-top:20px;padding-top:13px;font-size:calc(12px * var(--font-scale,1.2));line-height:1.9}
+.ican-mock-lab .iml-answer summary{cursor:pointer;color:var(--iml-teal);font-weight:700;padding:5px 0;user-select:none}
+.ican-mock-lab .iml-answer[open] summary{margin-bottom:15px}
+.ican-mock-lab .iml-feedback{padding:16px 19px;border-radius:9px;margin:17px 0;border:1px solid;font-size:calc(12px * var(--font-scale,1.2))}
+.ican-mock-lab .iml-feedback p{margin:7px 0 0}
+.ican-mock-lab .iml-good{background:#edf7f0;color:#205e48;border-color:#b7d8c6}
+.ican-mock-lab .iml-review{background:#fff5e6;color:#7c551d;border-color:#e9d2a9}
+.ican-mock-lab .iml-hint{font-size:calc(12px * var(--font-scale,1.2));color:#5a7280;background:#f1f6f7;padding:13px 15px;border-radius:8px}
+.ican-mock-lab .iml-formula{padding:16px 18px;background:#f2f5fa;border:1px solid #dce5ef;border-radius:9px;font:calc(13px * var(--font-scale,1.2))/1.9 Consolas,"Microsoft YaHei",monospace;overflow-wrap:anywhere}
+.ican-mock-lab .iml-flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:18px 0}
+.ican-mock-lab .iml-flow span{padding:6px 9px;border-radius:6px;border:1px solid #d0e4dc;background:#eef7f3;color:#375e52;font-size:calc(11px * var(--font-scale,1.2))}
+.ican-mock-lab .iml-flow b{color:#8a9da2;font-weight:400}
+.ican-mock-lab .iml-map-legend{display:flex;gap:8px 18px;flex-wrap:wrap;font-size:calc(11px * var(--font-scale,1.2));color:#607581;margin:15px 0}
+.ican-mock-lab .iml-map-legend span{display:flex;align-items:center;gap:7px}
+.ican-mock-lab .iml-swatch{display:inline-block;flex:0 0 13px;width:13px;height:13px;border:1px solid #8d413c;border-radius:3px}
+.ican-mock-lab .iml-swatch-solid{background:#c67366}
+.ican-mock-lab .iml-swatch-inflate{background:#f9dfb4;border-color:#c29152;border-style:dashed}
+.ican-mock-lab .iml-point-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin:17px 0}
+.ican-mock-lab .iml-point-tabs button{padding:9px 7px;overflow-wrap:anywhere}
+.ican-mock-lab .iml-point-tabs small{display:block;font-size:calc(10px * var(--font-scale,1.2));font-weight:400;opacity:.8}
+.ican-mock-lab .iml-map-frame{border:1px solid var(--iml-line);border-radius:11px;padding:8px;background:#f8fbfc;overflow:hidden}
+.ican-mock-lab .iml-map{width:100%;height:auto;display:block;cursor:crosshair;touch-action:manipulation;font-family:"Segoe UI","Microsoft YaHei",sans-serif}
+.ican-mock-lab .iml-map text{pointer-events:none}
+.ican-mock-lab .iml-map-floor{fill:white;stroke:#a8bfc6;stroke-width:1.5}
+.ican-mock-lab .iml-grid line{stroke:#dde7e9;stroke-width:1}
+.ican-mock-lab .iml-grid text{fill:#677e8a;stroke:none;font-size:calc(10px * var(--font-scale,1.2));text-anchor:middle}
+.ican-mock-lab .iml-inflation{fill:#f9dfb499;stroke:#bf8e4d;stroke-width:2;stroke-dasharray:6 4}
+.ican-mock-lab .iml-obstacle{fill:#c67366;stroke:#94554d;stroke-width:1.5}
+.ican-mock-lab .iml-obstacle-label{fill:#fff;text-anchor:middle;font-size:calc(11px * var(--font-scale,1.2));font-weight:600}
+.ican-mock-lab .iml-route{stroke:#728da7;stroke-width:3;stroke-dasharray:8 5;fill:none;opacity:.9}
+.ican-mock-lab .iml-route-good{stroke:#287c67;stroke-dasharray:0}
+.ican-mock-lab .iml-route-bad{stroke:#ba3948;stroke-width:4;stroke-dasharray:8 4}
+.ican-mock-lab .iml-point>circle{fill:#325e86;stroke:#fff;stroke-width:2}
+.ican-mock-lab .iml-point.iml-selected-point>circle{fill:#176c66;stroke:#183e36;stroke-width:2}
+.ican-mock-lab .iml-point text{fill:#1c3f4b;font-size:calc(11px * var(--font-scale,1.2));font-weight:700;stroke:#fff;stroke-width:4px;paint-order:stroke}
+.ican-mock-lab .iml-heading{stroke:#176c66;stroke-width:3.5;stroke-linecap:round}
+.ican-mock-lab .iml-point .iml-arrow-tip{fill:#176c66;stroke:none}
+.ican-mock-lab .iml-axis{fill:#4d6b79;font-size:calc(10px * var(--font-scale,1.2));font-weight:600}
+.ican-mock-lab .iml-axis[x="633"]{text-anchor:end}
+.ican-mock-lab .iml-via{fill:#79559b;stroke:#fff;stroke-width:2}
+.ican-mock-lab .iml-via-label{fill:#5e427a;font-size:calc(10px * var(--font-scale,1.2));font-weight:600;stroke:#fff;stroke-width:4px;paint-order:stroke}
+.ican-mock-lab .iml-target-hint{background:#edf5f2;padding:14px 17px;border-left:4px solid #4a927a;border-radius:7px;font-size:calc(12px * var(--font-scale,1.2))}
+.ican-mock-lab .iml-route-controls{border-top:1px solid var(--iml-line);margin-top:19px;padding-top:8px}
+.ican-mock-lab .iml-check-list{padding-left:23px;font-size:calc(12px * var(--font-scale,1.2));line-height:1.95}
+.ican-mock-lab .iml-text-good{color:#23634d}
+.ican-mock-lab .iml-text-review{color:#955136}
+.ican-mock-lab .iml-example-note{background:#f4effa;color:#644886;padding:12px 16px;border-radius:8px;font-size:calc(12px * var(--font-scale,1.2))}
+.ican-mock-lab .iml-fault-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:20px 0}
+.ican-mock-lab .iml-fault-tabs button{text-align:left;font-size:calc(12px * var(--font-scale,1.2));padding:12px 14px}
+.ican-mock-lab .iml-log{background:#1b3745;color:#e7f1f5;padding:20px 22px;border-radius:11px;margin:20px 0}
+.ican-mock-lab .iml-log>span{font-size:calc(10px * var(--font-scale,1.2));color:#9fc9c5;letter-spacing:1px}
+.ican-mock-lab .iml-log p{font:calc(13px * var(--font-scale,1.2))/1.9 Consolas,"Microsoft YaHei",monospace;margin:10px 0 0;overflow-wrap:anywhere}
+.ican-mock-lab .iml-historical{padding:13px 17px;background:#eef4fa;border-left:4px solid #5c87aa;border-radius:7px;color:#35566f;margin:16px 0}
+.ican-mock-lab .iml-historical p{margin:5px 0 0}
+.ican-mock-lab .iml-save-status{color:#6f828c;font-size:calc(11px * var(--font-scale,1.2));text-align:center;margin:22px 0}
+@media(max-width:900px){.ican-mock-lab .iml-choice-grid{grid-template-columns:1fr}.ican-mock-lab .iml-choice{padding:14px 17px}.ican-mock-lab .iml-choice>span{flex:1}.ican-mock-lab .iml-choice small{display:inline-block;margin-right:12px}.ican-mock-lab .iml-card{padding:21px}.ican-mock-lab .iml-two{grid-template-columns:1fr}}
+@media(max-width:570px){.ican-mock-lab .iml-intro{padding:20px 18px}.ican-mock-lab .iml-card{padding:18px 14px}.ican-mock-lab .iml-tabs{gap:6px}.ican-mock-lab .iml-tabs button{padding:10px 8px;font-size:calc(11px * var(--font-scale,1.2))}.ican-mock-lab .iml-three{grid-template-columns:1fr;gap:0}.ican-mock-lab .iml-point-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}.ican-mock-lab .iml-fault-tabs{grid-template-columns:1fr}.ican-mock-lab .iml-actions>button{flex:1 1 130px}.ican-mock-lab .iml-directions>button{flex:1 1 70px}.ican-mock-lab .iml-directions>span{flex-basis:100%}.ican-mock-lab .iml-map-frame{padding:0}.ican-mock-lab .iml-field{margin:10px 0}.ican-mock-lab .iml-log{padding:16px}.ican-mock-lab .iml-feedback{padding:13px 14px}}
+@media print{.ican-mock-lab .iml-tabs,.ican-mock-lab .iml-actions,.ican-mock-lab .iml-save-status{display:none}.ican-mock-lab .iml-card{break-inside:avoid}.ican-mock-lab .iml-answer:not([open]){display:none}}
