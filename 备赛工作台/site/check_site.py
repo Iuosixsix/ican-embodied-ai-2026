@@ -57,11 +57,11 @@ embedded=json.loads(next(x['text'] for x in audit.script_records if x['id']=='si
 assert embedded==content, 'HTML data differs from content.json'
 app=(site/'app.js').read_text(encoding='utf-8')
 embedded_app=next(x['text'] for x in audit.script_records if x['id']!='site-data')
-combined_app='\n'.join((site/n).read_text(encoding='utf-8') for n in ['task14-lab.js','mock-lab.js','offline-lab.js','sprint-blocks.js','sprint-board.js','app.js'])
+combined_app='\n'.join((site/n).read_text(encoding='utf-8') for n in ['task14-lab.js','mock-lab.js','offline-lab.js','sprint-blocks.js','sprint-visuals.js','sprint-board.js','app.js'])
 assert embedded_app==combined_app, 'HTML app differs from app.js'
 articles={a['id']:a for a in content['articles']}
 tasks={t['id']:t for t in content['tasks']}
-assert len(articles)==21 and len(tasks)==14
+assert len(articles)==22 and len(tasks)==14
 assert set(tasks)==set(range(1,15))
 assert {'fast-track','live-lab','source-code','exam-forecast','mock-exam','mock-answers','mock-variants'}<=articles.keys()
 assert '11_' in articles['fast-track']['source'] and '12_' in articles['live-lab']['source']
@@ -142,7 +142,7 @@ syntax_checked=False
 if args.node:
     subprocess.run([args.node,'--check',str(site/'app.js')],check=True,capture_output=True,text=True)
     subprocess.run([args.node,'--check'],input=embedded_app,check=True,capture_output=True,text=True,encoding='utf-8')
-    for test in ('check_mock_lab.cjs','check_task14_lab.cjs','check_sprint_blocks.cjs','check_sprint_board.cjs'):
+    for test in ('check_mock_lab.cjs','check_task14_lab.cjs','check_sprint_blocks.cjs','check_sprint_board.cjs','check_sprint_visuals.cjs'):
         subprocess.run([args.node,str(site/test)],check=True,capture_output=True,text=True,encoding='utf-8')
     syntax_checked=True
 result.update({'meta_updated':content['meta']['updated'],'tasks':len(tasks),'articles':len(articles),

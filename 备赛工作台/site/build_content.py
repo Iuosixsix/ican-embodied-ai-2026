@@ -32,6 +32,7 @@ ARTICLE_DEFS = [
     ('17_', 'offline-practice', '离线交互与截图'),
     ('18_', 'super-sprint', '全能超级速通'),
     ('19_', 'sprint-chat', 'Chat配套辅导'),
+    ('20_', 'visual-sprint', '图像与动画速通'),
     ('12_', 'live-lab', '全任务实测'),
     ('01_', 'rules', '赛制规则'),
     ('07_', 'primer', '基础概念'),

@@ -52,8 +52,8 @@ def main():
         if not target.is_relative_to(ROOT): raise ValueError('Image outside workspace: '+src)
         if not target.is_file(): missing.append(src)
     if missing: raise FileNotFoundError('Missing evidence images: '+repr(missing))
-    css='\n'.join((HERE/n).read_text(encoding='utf-8') for n in ['style.css','task14-lab.css','mock-lab.css','offline-lab.css','sprint-blocks.css','sprint-board.css'])
-    app='\n'.join((HERE/n).read_text(encoding='utf-8') for n in ['task14-lab.js','mock-lab.js','offline-lab.js','sprint-blocks.js','sprint-board.js','app.js'])
+    css='\n'.join((HERE/n).read_text(encoding='utf-8') for n in ['style.css','task14-lab.css','mock-lab.css','offline-lab.css','sprint-blocks.css','sprint-visuals.css','sprint-board.css'])
+    app='\n'.join((HERE/n).read_text(encoding='utf-8') for n in ['task14-lab.js','mock-lab.js','offline-lab.js','sprint-blocks.js','sprint-visuals.js','sprint-board.js','app.js'])
     template=(HERE/'template.html').read_text(encoding='utf-8')
     if re.search(r'\bfetch\s*\(|XMLHttpRequest|https?://[^\s\"\']+\.(?:js|css)',app):
         raise ValueError('Unexpected network dependency in app')

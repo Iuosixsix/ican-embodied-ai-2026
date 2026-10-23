@@ -1,7 +1,7 @@
 {
   "output": "备赛工作台/site/content.json",
   "tasks": 14,
-  "articles": 21,
+  "articles": 22,
   "quizzes": 30,
   "meetings": 4,
   "segments": 337,
@@ -53,8 +53,8 @@
     13,
     14
   ],
-  "local_links_checked": 685,
-  "content_sha256": "b725ba586ea16e16ac8e8b803132cfcca273876a717898b10335b1b5c62bdb1c",
+  "local_links_checked": 686,
+  "content_sha256": "a12fd7bfe4060001ad0d494a8236ac86de50b8898188e5f6f52bd5447043a70b",
   "sprint_curriculum_sha256": "fa403462c100f97377cc0e25ab8eef8dbefe9a5c5cc7f23665342054edd017fa",
   "evidence_index_sha256": "8d573ac760acf19134b7f2f39a4e1e479e19ebeb04cb6596eb0191ba540c3709",
   "input_markdown": [
@@ -93,6 +93,10 @@
     {
       "path": "备赛工作台/19_超级速通_Chat辅导手册.md",
       "sha256": "ce0633c77001eee2f333617bc8aef01f65a04ff4094da7c0f1cf0a181b7efe4f"
+    },
+    {
+      "path": "备赛工作台/20_图像与动画速通导读.md",
+      "sha256": "0b1e81cc475070cbd2826925fc4267a2af6f6d1f41c0481b414db91bae93c4df"
     },
     {
       "path": "备赛工作台/12_全任务实测与排错手册.md",
