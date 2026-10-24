@@ -262,12 +262,12 @@
   {
     "Path": "备赛工作台/site/portable_check.json",
     "Bytes": 1058,
-    "SHA256": "4d11c3056c29f09363db35fc28eead15078cce479c8cf5bf070817cf421fce80"
+    "SHA256": "b4acc506956a8a770a12ad88d5f5bf3e9b8375a8076851fd756a29f286e364af"
   },
   {
     "Path": "备赛工作台/site/portable_manifest.json",
     "Bytes": 288972,
-    "SHA256": "5d8810a71b3a17151e14cd2494e55e939772ec4c357e89affe0bf80abcc0109b"
+    "SHA256": "4b34bfba73aa5fe77b59b19bb5db5313e44c9afafa0e7f5fc2a1c82294ad3251"
   },
   {
     "Path": "备赛工作台/site/qa/interactive_check_20261023.json",
@@ -286,8 +286,8 @@
   },
   {
     "Path": "备赛工作台/site/qa/portable_browser_check_20261024.json",
-    "Bytes": 920,
-    "SHA256": "e6056a7ba3331665237a2ba9deaeddb731fe3e63a1e79076062c04037f44d3b2"
+    "Bytes": 1067,
+    "SHA256": "411b4d97026c114ae639b06d700a61be97802d434a46434bfff308fe942e36be"
   },
   {
     "Path": "备赛工作台/site/qa/portable_mobile_20261024.png",

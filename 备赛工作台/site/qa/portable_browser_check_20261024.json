@@ -1,6 +1,6 @@
 {
   "date": "2026-10-24",
-  "output_sha256": "5c148b165607aeb3b849b926de1ac42324619deceb60943df87f13f6c5bc1949",
+  "output_sha256": "858ea87fa85d515db1f33bd2d6a4760133038bd5e330c8c4c2f8f967a9bd4b5b",
   "isolated_directory_contains_only": "index.html",
   "viewport": {
     "requested_width": 390,
@@ -23,5 +23,6 @@
   ],
   "real_phone_tested": false,
   "local_file_scheme_tested": false,
-  "screenshot": "备赛工作台/site/qa/portable_mobile_20261024.png"
+  "screenshot": "备赛工作台/site/qa/portable_mobile_20261024.png",
+  "final_rebuild_change": "Only embedded documentation source text changed after the full UI pass; runtime, lessons, images and movie unchanged."
 }
