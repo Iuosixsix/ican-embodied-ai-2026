@@ -1,0 +1,43 @@
+{
+  "name": "video",
+  "version": "1.0.0",
+  "description": "Offline ICAN all-role study film and interactive Remotion Player",
+  "repository": {},
+  "license": "UNLICENSED",
+  "engines": {
+    "node": "^20.19.0 || ^22.13.0 || >=24"
+  },
+  "private": true,
+  "dependencies": {
+    "@remotion/captions": "4.0.538",
+    "@remotion/cli": "4.0.538",
+    "@remotion/player": "4.0.538",
+    "esbuild": "0.25.5",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "remotion": "4.0.538"
+  },
+  "devDependencies": {
+    "@remotion/eslint-config-flat": "4.0.538",
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3",
+    "@types/web": "0.0.166",
+    "eslint": "10.12.0",
+    "prettier": "3.8.1",
+    "typescript": "5.9.3"
+  },
+  "scripts": {
+    "dev": "node build-voice.mjs && remotion studio",
+    "build": "node build-voice.mjs && remotion bundle",
+    "upgrade": "remotion upgrade",
+    "lint": "node build-voice.mjs && eslint src && tsc",
+    "studio": "node build-voice.mjs && remotion studio --no-open",
+    "typecheck": "node build-voice.mjs && tsc --noEmit",
+    "player:build": "node build-player.mjs",
+    "verify": "python verify_video.py",
+    "voice:embed": "node build-voice.mjs"
+  },
+  "allowScripts": {
+    "esbuild": false
+  }
+}

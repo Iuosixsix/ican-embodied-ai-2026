@@ -20,3 +20,9 @@ Thumbs.db
 /备赛工作台/site/qa/progress-export.json
 /备赛工作台/site/qa-responsive.html
 /赛前说明暨培训会/腾讯会议链接.md
+node_modules/
+/备赛工作台/video/.cache/
+/备赛工作台/video/build/
+/备赛工作台/video/out/
+/备赛工作台/video/public/voice/S??-??.json
+/备赛工作台/video/public/voice/*.partial.mp3

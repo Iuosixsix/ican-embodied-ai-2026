@@ -1,0 +1,63 @@
+{
+  "date": "2026-10-24",
+  "scope": "offline diagrams and Remotion animation; platform operations remain paused",
+  "visuals": {
+    "modules_mounted_in_browser": 12,
+    "focused_explanation_layers": 36,
+    "reviewed_historical_images": 12,
+    "layer_switch_recall_reveal": "PASS",
+    "image_hotspot_zoom_escape": "PASS",
+    "original_image_width": 1920,
+    "keyboard_image_scroll": true,
+    "phone_375_font_180": {
+      "client": 360,
+      "scroll": 360,
+      "diagram_client": 266,
+      "diagram_scroll": 975
+    },
+    "font_restored": "120%",
+    "source_kind": "original teaching SVG + historical account screenshots"
+  },
+  "movie": {
+    "duration_seconds": 472,
+    "chapters": 12,
+    "narration_segments": 72,
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "audio_seconds": 445.56,
+    "full_audio_decode_passed": 72,
+    "chapter_views_checked": 12,
+    "seek_replay_and_1_5x": "PASS with embedded audio",
+    "caption_voice_toggles": "PASS",
+    "studio_main_composition_loaded": true,
+    "phone_375": {
+      "client": 360,
+      "scroll": 360
+    },
+    "tablet_768": {
+      "client": 753,
+      "scroll": 753
+    },
+    "packaging": "single HTML with inline JS CSS and 72 data audio sources",
+    "html_bytes": 4214558,
+    "html_sha256": "6bce27a618f42b42bdac2866333f746b4f4776f27ecc09859a38dbf313be86e3"
+  },
+  "fixes": [
+    "SVG min-width was overridden by later board rule; increased selector specificity and rechecked at 180%",
+    "Segmentation mask follows object outline, not bounding rectangle",
+    "Grasp release shows open gripper and object in box; separated overlapping labels",
+    "S09 visual callback transition aligned with narration",
+    "Replay buttons now seek and play; ended clears external play state",
+    "External-audio seek errors on basic HTTP were eliminated by embedding all MP3s"
+  ],
+  "limitations": [
+    "Browser verification uses local HTTP, not file URL; no browser-security bypass attempted",
+    "All 72 audio files decoded; no claim of human listening to every sentence or watching every frame",
+    "Not a physics simulator or verified official paper",
+    "Remotion license notice remains informational in console",
+    "No MP4 export; delivered playable Remotion animation"
+  ],
+  "screenshots": [
+    "visual_sprint_coordinates_20261024.png",
+    "sprint_movie_20261024.png"
+  ]
+}

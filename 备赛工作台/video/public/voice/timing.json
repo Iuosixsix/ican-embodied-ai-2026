@@ -1,0 +1,659 @@
+{
+  "voice": "zh-CN-XiaoxiaoNeural",
+  "rate": "-2%",
+  "provider": "Microsoft speech via edge-tts",
+  "synthetic": true,
+  "narrationSha256": "09aa7b2dd99cc9e945df5c76a989478a70906fa47f28583886e2d8009b2758f5",
+  "note": "Authored teaching script; synthetic Mandarin voice, not an organizer recording.",
+  "segments": [
+    {
+      "id": "S00-01",
+      "durationSeconds": 5.304,
+      "bytes": 31824,
+      "sha256": "7fb249b61d64fcd6d6dee3c0bdd9d5a60162f50c253c87ad07c4f3bc50b3ce9b",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S00-02",
+      "durationSeconds": 5.064,
+      "bytes": 30384,
+      "sha256": "8b9ab9634c7925713f0d74d99756c5e477ffd3a494c2d059bf900d7c54a6cd37",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S00-03",
+      "durationSeconds": 5.664,
+      "bytes": 33984,
+      "sha256": "cc65d4d4397ad3246dd30ec2927164288eeddfdd709c36abb3882b4e85dc702a",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S00-04",
+      "durationSeconds": 4.608,
+      "bytes": 27648,
+      "sha256": "2e2773a87acb8dd01d275da85f2a519bd118612f34ef77270a0f3b01e81bc9db",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S00-05",
+      "durationSeconds": 6.624,
+      "bytes": 39744,
+      "sha256": "59a392dcb9dd14e33534c44a8b23d4713e28a88dc5239ee064920514b7561b18",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S00-06",
+      "durationSeconds": 6.672,
+      "bytes": 40032,
+      "sha256": "82df624b74cacc3c28d8f4ef9c90a37ba31c881744e51dd15004fef9da430eae",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S01-01",
+      "durationSeconds": 5.88,
+      "bytes": 35280,
+      "sha256": "cd6aee71e0dc8ab9435079698a0cf16dfa7d021b673eb183dddb71aa13e846ef",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S01-02",
+      "durationSeconds": 4.992,
+      "bytes": 29952,
+      "sha256": "a874a8b29d50957735171c959b840e1c5cba897383741e75c0a15c926cecada8",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S01-03",
+      "durationSeconds": 6.72,
+      "bytes": 40320,
+      "sha256": "b20747e6157e01d1ca967a624798ee3eaad4699d9ff48d837b05b44048f56d14",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S01-04",
+      "durationSeconds": 4.824,
+      "bytes": 28944,
+      "sha256": "f7a43bd5288d5f580420cadba8403a153082192aa56dd8e1cddf3833b3e83dc3",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S01-05",
+      "durationSeconds": 6.216,
+      "bytes": 37296,
+      "sha256": "aec198e487af76d1a50ad4c3c2f761fb643b88f6f8a9ba4e4f4ee499f6cef350",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S01-06",
+      "durationSeconds": 7.224,
+      "bytes": 43344,
+      "sha256": "67377eb5fc887d5225ea51504b58cb2ceeffdd0b9dc9d58fd40d2400d7d2dd50",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S02-01",
+      "durationSeconds": 5.712,
+      "bytes": 34272,
+      "sha256": "aef3d07eca0f705109af95f6453cf0d6cf57cf7041203af70f48cdf154ff6673",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S02-02",
+      "durationSeconds": 5.904,
+      "bytes": 35424,
+      "sha256": "f3e17d73754292964a377eda893bca59fd0fd1a25fed03042385f47a6395de12",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S02-03",
+      "durationSeconds": 6.504,
+      "bytes": 39024,
+      "sha256": "f42cee62020cacbfcd505e79674229d3b7b61b4d628bb6399bdeb3ba1e70b838",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S02-04",
+      "durationSeconds": 5.136,
+      "bytes": 30816,
+      "sha256": "9d112c9204367795d12bf7164cc60b723668875f98b24a5f58125763480e545f",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S02-05",
+      "durationSeconds": 7.824,
+      "bytes": 46944,
+      "sha256": "b5db9e611994c6928ce839573e5b04e64be99ccff9a3b1eea2b607eec555a2cb",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S02-06",
+      "durationSeconds": 7.392,
+      "bytes": 44352,
+      "sha256": "46cec9a45263f73c82321649c287996c136d8ab3600ef75564a911f64663e1c4",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S03-01",
+      "durationSeconds": 5.376,
+      "bytes": 32256,
+      "sha256": "cc746ff8ba9403ddda41ff965235f3dae7e48c91cc9fa4ea009edd979d16cdfb",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S03-02",
+      "durationSeconds": 4.44,
+      "bytes": 26640,
+      "sha256": "d20d323c1f97fc54cd0e479c79165b24ab0eb9affee68e09858753b8a162b080",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S03-03",
+      "durationSeconds": 6.456,
+      "bytes": 38736,
+      "sha256": "1f9bc4c799ed4ded53766d069aec43642496c1daea3ea59e5028866722a19a16",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S03-04",
+      "durationSeconds": 5.256,
+      "bytes": 31536,
+      "sha256": "d735ef46e162bd44a4527ca38f37dc21bc0f593c9b6c36de7d2787d2ed654b6f",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S03-05",
+      "durationSeconds": 6.24,
+      "bytes": 37440,
+      "sha256": "54477031f3e2fd1edc1493d8ad37da791a16af681f22250eec9186960d17c6af",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S03-06",
+      "durationSeconds": 7.848,
+      "bytes": 47088,
+      "sha256": "1275e3fb8b73b38d9fc9d7315324fe1030e5d26445b50b89a5a2f4109316c8db",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S04-01",
+      "durationSeconds": 6.12,
+      "bytes": 36720,
+      "sha256": "6c13f0634076ef60f65693bd926c40a36dfffa8fce1e536cb24b7282baa1f51b",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S04-02",
+      "durationSeconds": 6.504,
+      "bytes": 39024,
+      "sha256": "b9b1f431153bd98590ef07a69986c851b76d51a3f63cecad3ee22b432693dd75",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S04-03",
+      "durationSeconds": 4.152,
+      "bytes": 24912,
+      "sha256": "d152bbeea8eb217eb17d981f10fdcedc9b87f5aaa8d6a8a4ad3952e24ac4d3db",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S04-04",
+      "durationSeconds": 5.208,
+      "bytes": 31248,
+      "sha256": "318e720dab35b75cda3def98beb17dbd668f2700963eaf5a3bcbc9b4a1b07532",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S04-05",
+      "durationSeconds": 5.736,
+      "bytes": 34416,
+      "sha256": "ab0bb539cca79fc1c18bf57e0477bd3b3fc2851d03cae50532c61541cdabbc55",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S04-06",
+      "durationSeconds": 5.184,
+      "bytes": 31104,
+      "sha256": "c2c7efa739a89dd0b3fc42723d0cb606b45c3aec7bff7a2f81b7197807022256",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S05-01",
+      "durationSeconds": 7.344,
+      "bytes": 44064,
+      "sha256": "d4578f6d4236ae703e28cf578c8d7f088aaf7b892b3ae9850d84d75303760081",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S05-02",
+      "durationSeconds": 6.264,
+      "bytes": 37584,
+      "sha256": "cb09d5e098d907a4d283c7caf1642d070d4c77c90300109c07878f164d4917bc",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S05-03",
+      "durationSeconds": 5.376,
+      "bytes": 32256,
+      "sha256": "c2fbd6c70003893474af149793ba13c83deb228f0af14373741b37c747b98221",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S05-04",
+      "durationSeconds": 6.096,
+      "bytes": 36576,
+      "sha256": "28d2b5609ca6bcb55e6d4984eecb11d7294ab2be75aab9594b2cecabc16a5f28",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S05-05",
+      "durationSeconds": 5.808,
+      "bytes": 34848,
+      "sha256": "3d1f002a6835a5c4d6618c6adac050fe6a3bdb21b9395c775d30f48a3a7d8e34",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S05-06",
+      "durationSeconds": 6.12,
+      "bytes": 36720,
+      "sha256": "56384acbfc15a2796869f4fa09aab1836c413377a2b51b2cbd83d8fca719ad4d",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S06-01",
+      "durationSeconds": 5.976,
+      "bytes": 35856,
+      "sha256": "d9530297ca672906e9177fd51b14e0830ee309cb2ccb56a8e0a15d183cdcba9c",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S06-02",
+      "durationSeconds": 6.912,
+      "bytes": 41472,
+      "sha256": "18b694d41400c8a5e75e00084a1f2e1ea9ece59d30eb9f40367ce4d49736d592",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S06-03",
+      "durationSeconds": 6.528,
+      "bytes": 39168,
+      "sha256": "2e2be07fc53537a6458b792d427d7a1346d0bd517c561e35d97f6cf7432b7877",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S06-04",
+      "durationSeconds": 6.864,
+      "bytes": 41184,
+      "sha256": "316d90a068e6e911768e2917d056fc42be2a737927549d31aea441817e6896b5",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S06-05",
+      "durationSeconds": 5.784,
+      "bytes": 34704,
+      "sha256": "483722ed7fbcba905b13b238d646b0e171952f4d74681ff736fae899a7190bd9",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S06-06",
+      "durationSeconds": 6.984,
+      "bytes": 41904,
+      "sha256": "b18076757f4beccc35dcd691c91c374deea66b14878d927c07c08ce86afc751e",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S07-01",
+      "durationSeconds": 5.208,
+      "bytes": 31248,
+      "sha256": "0ed1b9da38760dbdb3006f7049af3fba0f7b5ed4d3887ac2eed4bd75f7e21f34",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S07-02",
+      "durationSeconds": 6.264,
+      "bytes": 37584,
+      "sha256": "7c32a30acd5555d03e60904fec1fa6ee14a80102ee17907adff235a7e7576d9b",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S07-03",
+      "durationSeconds": 5.472,
+      "bytes": 32832,
+      "sha256": "a862baacf5575e73c5487d3770b3e93a00e5494f91ec55b681bee6e4bd7ec5ca",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S07-04",
+      "durationSeconds": 5.784,
+      "bytes": 34704,
+      "sha256": "a58784749f3d3231d2ec0d4f8a8eb38502dc91194a665847002e8fdda9a23b5e",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S07-05",
+      "durationSeconds": 5.112,
+      "bytes": 30672,
+      "sha256": "39df92bbad8f4e8126a3ed0e01795434ffaeded31443e3162c4aa021f1ef5b6d",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S07-06",
+      "durationSeconds": 6.744,
+      "bytes": 40464,
+      "sha256": "883dda9190cc258498024568ffc6b00d214fb770c6b636c93e99bb3f56ce6ae7",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S08-01",
+      "durationSeconds": 4.632,
+      "bytes": 27792,
+      "sha256": "87d2072dbf9c5fa9ba31e396b906d3412181f744cd96572e56c7356b32840b69",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S08-02",
+      "durationSeconds": 7.152,
+      "bytes": 42912,
+      "sha256": "4062e5d4ca0cdb66bfff5341e0af9fd36b6a264fc3de002a8753c2804c3a55b4",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S08-03",
+      "durationSeconds": 6.12,
+      "bytes": 36720,
+      "sha256": "5c0cb250810e0a033faecb47829074142505519e7ed43a070ce2b335a616cbea",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S08-04",
+      "durationSeconds": 6.048,
+      "bytes": 36288,
+      "sha256": "e6003ee1c6d3784f493b0343cbb4d8adddc251030d2c79717350629503ec32a3",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S08-05",
+      "durationSeconds": 7.152,
+      "bytes": 42912,
+      "sha256": "a930b21fc11d86710e1a1bef7658253e61930f436cacab958dff548209a9bf38",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S08-06",
+      "durationSeconds": 6.504,
+      "bytes": 39024,
+      "sha256": "4090ff662163225a00598c4d95e7185128b7a511f8637ba0d0520a687b46d364",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S09-01",
+      "durationSeconds": 7.032,
+      "bytes": 42192,
+      "sha256": "850746843fe1b53aa7d9a844ea560b8eabd6d398dd5b3d912b9450d96ef0fda9",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S09-02",
+      "durationSeconds": 4.944,
+      "bytes": 29664,
+      "sha256": "f288313fc08f9bd2deb68d376644275ceb482582ef906141cadd9b98c1f1cb27",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S09-03",
+      "durationSeconds": 6.024,
+      "bytes": 36144,
+      "sha256": "b920af25e27b205be93f342c0cc2b8b11e6ddf24052e53669da83e4d39c4512d",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S09-04",
+      "durationSeconds": 7.536,
+      "bytes": 45216,
+      "sha256": "cb8e90d6a14aee41b4091ecf01bec172dbc7ab71231bbf33339df04af44c5c6e",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S09-05",
+      "durationSeconds": 5.52,
+      "bytes": 33120,
+      "sha256": "e6b6d3201c294ad386d10d5c9480ad8c92556fb5356722def84a9a8bbe99c4e1",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S09-06",
+      "durationSeconds": 4.944,
+      "bytes": 29664,
+      "sha256": "9892ffb6ed3b16dd068e8033a0933413996427e327e693f9e83479ac3abf1f50",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S10-01",
+      "durationSeconds": 6.48,
+      "bytes": 38880,
+      "sha256": "51daa3a8a03aa00b7c7c675d29ab0111aea6b5669efacfd935607dd01318e29d",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S10-02",
+      "durationSeconds": 7.248,
+      "bytes": 43488,
+      "sha256": "972153818af7a7f0ac300745401e3bf3123c276f49cf679f8d35626a84e548ef",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S10-03",
+      "durationSeconds": 7.824,
+      "bytes": 46944,
+      "sha256": "99dbbe426b410892179d349dc3cf41152b4135d526cc9d5ec5acbd8d6dec39a4",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S10-04",
+      "durationSeconds": 5.568,
+      "bytes": 33408,
+      "sha256": "3bc71828f572b09500e6236133d40cc212c0dbc1265213a36f665de7538c4cda",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S10-05",
+      "durationSeconds": 6.288,
+      "bytes": 37728,
+      "sha256": "32dc6de7a28a12cdfe962745b33e39b0f0adb4f432deae1cc6974690f75d9c0e",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S10-06",
+      "durationSeconds": 7.608,
+      "bytes": 45648,
+      "sha256": "62aebcab40740f61c77e14c58dfdaf56d8431d4d0dc426b9a0eac4fa09fdf5c9",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S11-01",
+      "durationSeconds": 6.24,
+      "bytes": 37440,
+      "sha256": "8eee060f86902d37cd5d0134c006a42ddc125cc732f691e8a6f1c017e074c9aa",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S11-02",
+      "durationSeconds": 6.552,
+      "bytes": 39312,
+      "sha256": "15764b0b939f0473e57922aee621775f67fa0f07549c0ce1da999113d0cd1e56",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S11-03",
+      "durationSeconds": 7.608,
+      "bytes": 45648,
+      "sha256": "d338c8184ee4a534a3c4db8f079ceaf5d77147452ba9e4c20c1b46a673132fac",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S11-04",
+      "durationSeconds": 7.296,
+      "bytes": 43776,
+      "sha256": "2425cd06e5e224390bebc6228260d6f32e68d39b317ebc5fc5b72a2356158637",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S11-05",
+      "durationSeconds": 7.632,
+      "bytes": 45792,
+      "sha256": "f3e6fbb5e0ed9f4f478be7cfa2c795bc725e2bd51b28ce40160723cbb0bc2b8a",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    },
+    {
+      "id": "S11-06",
+      "durationSeconds": 8.184,
+      "bytes": 49104,
+      "sha256": "47d6a416146bda30a53e8e861fa3e684f607bd7e32a8b40b591cb95d546e27d8",
+      "sampleRate": 24000,
+      "channels": 1,
+      "fullDecode": true
+    }
+  ],
+  "audioDurationSeconds": 445.56
+}

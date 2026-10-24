@@ -1,0 +1,585 @@
+{
+  "version": 1,
+  "language": "zh-CN",
+  "note": "原创赛前教学；示意动画，不是官方赛卷或平台仿真。任务14旧记录为重置前历史。",
+  "chapters": [
+    {
+      "lesson": "S00",
+      "title": "先记住一条任务链",
+      "role": "共同",
+      "scene": "chain"
+    },
+    {
+      "lesson": "S01",
+      "title": "积木有两条看不见的线",
+      "role": "共同",
+      "scene": "blocks"
+    },
+    {
+      "lesson": "S02",
+      "title": "运动：目标与奖励",
+      "role": "A 运动与视觉",
+      "scene": "motion"
+    },
+    {
+      "lesson": "S03",
+      "title": "视觉：认出什么，还要在哪里",
+      "role": "A 运动与视觉",
+      "scene": "vision"
+    },
+    {
+      "lesson": "S04",
+      "title": "地图和定位不是一回事",
+      "role": "B 建图与导航",
+      "scene": "mapping"
+    },
+    {
+      "lesson": "S05",
+      "title": "导航：到点，还要朝对方向",
+      "role": "B 建图与导航",
+      "scene": "navigation"
+    },
+    {
+      "lesson": "S06",
+      "title": "坐标系：同一个点，三种说法",
+      "role": "C 抓取与集成",
+      "scene": "coordinates"
+    },
+    {
+      "lesson": "S07",
+      "title": "抓取：看见、够到、拿稳",
+      "role": "C 抓取与集成",
+      "scene": "grasp"
+    },
+    {
+      "lesson": "S08",
+      "title": "四个节点，四份职责",
+      "role": "C 抓取与集成",
+      "scene": "ros"
+    },
+    {
+      "lesson": "S09",
+      "title": "状态机：等对消息才往下走",
+      "role": "C 抓取与集成",
+      "scene": "callback"
+    },
+    {
+      "lesson": "S10",
+      "title": "排错：沿数据链找第一个断点",
+      "role": "共同",
+      "scene": "diagnosis"
+    },
+    {
+      "lesson": "S11",
+      "title": "三人协作，每个人都懂整条链",
+      "role": "共同",
+      "scene": "team"
+    }
+  ],
+  "segments": [
+    {
+      "id": "S00-01",
+      "lesson": "S00",
+      "scene": "chain",
+      "text": "先别背参数。把机器人想成一支会合作的服务队。",
+      "suggestedDuration": 4.49
+    },
+    {
+      "id": "S00-02",
+      "lesson": "S00",
+      "scene": "chain",
+      "text": "它先接到任务，再走到展示区，确认位置和朝向。",
+      "suggestedDuration": 4.49
+    },
+    {
+      "id": "S00-03",
+      "lesson": "S00",
+      "scene": "chain",
+      "text": "接着表演，或者识别物体、抓取、放置，最后返回。",
+      "suggestedDuration": 4.69
+    },
+    {
+      "id": "S00-04",
+      "lesson": "S00",
+      "scene": "chain",
+      "text": "这是一条教学示例链，不是已经公开的正式赛题。",
+      "suggestedDuration": 4.49
+    },
+    {
+      "id": "S00-05",
+      "lesson": "S00",
+      "scene": "chain",
+      "text": "每一步只问四件事：输入是什么，做什么，输出什么，等什么反馈。",
+      "suggestedDuration": 6.12
+    },
+    {
+      "id": "S00-06",
+      "lesson": "S00",
+      "scene": "chain",
+      "text": "正式四模块、练习十四的四节点、三个人的分工，是三个不同层级。",
+      "suggestedDuration": 6.12
+    },
+    {
+      "id": "S01-01",
+      "lesson": "S01",
+      "scene": "blocks",
+      "text": "图形化编程不是把积木摆整齐，而是把依赖关系接正确。",
+      "suggestedDuration": 5.1
+    },
+    {
+      "id": "S01-02",
+      "lesson": "S01",
+      "scene": "blocks",
+      "text": "执行关系决定什么时候做，数据关系决定拿什么做。",
+      "suggestedDuration": 4.69
+    },
+    {
+      "id": "S01-03",
+      "lesson": "S01",
+      "scene": "blocks",
+      "text": "变量像贴了名字的盒子。点云、位姿、布尔值不能随便混装。",
+      "suggestedDuration": 5.51
+    },
+    {
+      "id": "S01-04",
+      "lesson": "S01",
+      "scene": "blocks",
+      "text": "赋值是放进盒子，比较是检查盒子里现在的值。",
+      "suggestedDuration": 4.29
+    },
+    {
+      "id": "S01-05",
+      "lesson": "S01",
+      "scene": "blocks",
+      "text": "发出移动命令以后，要等完成反馈，才能进入需要它完成的下一步。",
+      "suggestedDuration": 6.12
+    },
+    {
+      "id": "S01-06",
+      "lesson": "S01",
+      "scene": "blocks",
+      "text": "最后连接的一条线也要保存，再重开核查。画布有线，不等于保存成功。",
+      "suggestedDuration": 6.53
+    },
+    {
+      "id": "S02-01",
+      "lesson": "S02",
+      "scene": "motion",
+      "text": "运动模型负责让身体完成走、跑、跳或舞蹈等动作。",
+      "suggestedDuration": 4.69
+    },
+    {
+      "id": "S02-02",
+      "lesson": "S02",
+      "scene": "motion",
+      "text": "先读目标速度和场景，再选择匹配的机器人与动作资源。",
+      "suggestedDuration": 5.1
+    },
+    {
+      "id": "S02-03",
+      "lesson": "S02",
+      "scene": "motion",
+      "text": "强化学习像练动作。奖励告诉模型，哪些行为值得重复。",
+      "suggestedDuration": 5.1
+    },
+    {
+      "id": "S02-04",
+      "lesson": "S02",
+      "scene": "motion",
+      "text": "速度跟踪、保持稳定、节省能量，可能彼此拉扯。",
+      "suggestedDuration": 4.49
+    },
+    {
+      "id": "S02-05",
+      "lesson": "S02",
+      "scene": "motion",
+      "text": "学习率影响更新幅度，批量与训练轮次影响训练过程。不要见大就填大。",
+      "suggestedDuration": 6.53
+    },
+    {
+      "id": "S02-06",
+      "lesson": "S02",
+      "scene": "motion",
+      "text": "训练结束只说明得到模型。还要看实际动作、偏差与失败场景。",
+      "suggestedDuration": 5.71
+    },
+    {
+      "id": "S03-01",
+      "lesson": "S03",
+      "scene": "vision",
+      "text": "分类回答这张图是什么，检测回答哪些目标在哪里。",
+      "suggestedDuration": 4.69
+    },
+    {
+      "id": "S03-02",
+      "lesson": "S03",
+      "scene": "vision",
+      "text": "实例分割进一步分清每个物体的像素轮廓。",
+      "suggestedDuration": 4.0
+    },
+    {
+      "id": "S03-03",
+      "lesson": "S03",
+      "scene": "vision",
+      "text": "如果任务要水壶，就筛水壶，而不是只选置信度最高的任意物体。",
+      "suggestedDuration": 5.92
+    },
+    {
+      "id": "S03-04",
+      "lesson": "S03",
+      "scene": "vision",
+      "text": "置信度阈值太高会漏掉目标，太低可能留下误检。",
+      "suggestedDuration": 4.49
+    },
+    {
+      "id": "S03-05",
+      "lesson": "S03",
+      "scene": "vision",
+      "text": "对齐的深度与相机内参，把目标像素还原成三维点或点云。",
+      "suggestedDuration": 5.31
+    },
+    {
+      "id": "S03-06",
+      "lesson": "S03",
+      "scene": "vision",
+      "text": "识别正确还不等于抓到。下游要的类别、坐标系和数据类型都要对齐。",
+      "suggestedDuration": 6.33
+    },
+    {
+      "id": "S04-01",
+      "lesson": "S04",
+      "scene": "mapping",
+      "text": "建图是画出环境。定位是回答机器人现在在地图的哪里。",
+      "suggestedDuration": 5.1
+    },
+    {
+      "id": "S04-02",
+      "lesson": "S04",
+      "scene": "mapping",
+      "text": "激光或点云不断观察，里程计和惯性信息帮助理解自身运动。",
+      "suggestedDuration": 5.51
+    },
+    {
+      "id": "S04-03",
+      "lesson": "S04",
+      "scene": "mapping",
+      "text": "地图看起来完整，不代表定位已经可靠。",
+      "suggestedDuration": 4.0
+    },
+    {
+      "id": "S04-04",
+      "lesson": "S04",
+      "scene": "mapping",
+      "text": "遇到重复走廊、遮挡或运动过快，估计可能漂移。",
+      "suggestedDuration": 4.49
+    },
+    {
+      "id": "S04-05",
+      "lesson": "S04",
+      "scene": "mapping",
+      "text": "已有合适地图时，先按题目使用资源，不一定要重新建图。",
+      "suggestedDuration": 5.31
+    },
+    {
+      "id": "S04-06",
+      "lesson": "S04",
+      "scene": "mapping",
+      "text": "先核对地图、机器人和定位，再把目标交给导航。",
+      "suggestedDuration": 4.49
+    },
+    {
+      "id": "S05-01",
+      "lesson": "S05",
+      "scene": "navigation",
+      "text": "一个航点包含位置，也包含朝向。走到桌边却背对桌子仍可能失败。",
+      "suggestedDuration": 6.12
+    },
+    {
+      "id": "S05-02",
+      "lesson": "S05",
+      "scene": "navigation",
+      "text": "全局规划像选整条路线，局部规划像边走边避开眼前障碍。",
+      "suggestedDuration": 5.31
+    },
+    {
+      "id": "S05-03",
+      "lesson": "S05",
+      "scene": "navigation",
+      "text": "代价地图不只记录墙，还给障碍附近留出安全空间。",
+      "suggestedDuration": 4.69
+    },
+    {
+      "id": "S05-04",
+      "lesson": "S05",
+      "scene": "navigation",
+      "text": "速度太快可能来不及调整。容差太松可能提前说到了。",
+      "suggestedDuration": 4.9
+    },
+    {
+      "id": "S05-05",
+      "lesson": "S05",
+      "scene": "navigation",
+      "text": "检查距离误差和朝向误差都满足要求，再发到达反馈。",
+      "suggestedDuration": 4.9
+    },
+    {
+      "id": "S05-06",
+      "lesson": "S05",
+      "scene": "navigation",
+      "text": "历史导航报告的十点到达，是一次练习证据，不是正式赛保证。",
+      "suggestedDuration": 5.71
+    },
+    {
+      "id": "S06-01",
+      "lesson": "S06",
+      "scene": "coordinates",
+      "text": "相机说物体在我前方，机械臂却要知道它在基座的哪里。",
+      "suggestedDuration": 5.1
+    },
+    {
+      "id": "S06-02",
+      "lesson": "S06",
+      "scene": "coordinates",
+      "text": "标定提供坐标系之间的关系。变换是把同一个目标换一种坐标表达。",
+      "suggestedDuration": 6.12
+    },
+    {
+      "id": "S06-03",
+      "lesson": "S06",
+      "scene": "coordinates",
+      "text": "从相机系到基座系，要核对方向、单位，以及输入和输出是什么。",
+      "suggestedDuration": 5.92
+    },
+    {
+      "id": "S06-04",
+      "lesson": "S06",
+      "scene": "coordinates",
+      "text": "正向矩阵和逆向矩阵不能随便交换，同一变换也不能重复做两遍。",
+      "suggestedDuration": 5.92
+    },
+    {
+      "id": "S06-05",
+      "lesson": "S06",
+      "scene": "coordinates",
+      "text": "深度能恢复三维点，但一个点还不是完整的六维抓取姿态。",
+      "suggestedDuration": 5.31
+    },
+    {
+      "id": "S06-06",
+      "lesson": "S06",
+      "scene": "coordinates",
+      "text": "六维姿态除了位置，还描述朝向。抓手必须知道从哪个方向接近。",
+      "suggestedDuration": 5.92
+    },
+    {
+      "id": "S07-01",
+      "lesson": "S07",
+      "scene": "grasp",
+      "text": "抓取先筛目标点云，再生成合适的抓取候选姿态。",
+      "suggestedDuration": 4.49
+    },
+    {
+      "id": "S07-02",
+      "lesson": "S07",
+      "scene": "grasp",
+      "text": "候选为空，先查感知和候选生成，不要立刻乱改机械臂速度。",
+      "suggestedDuration": 5.51
+    },
+    {
+      "id": "S07-03",
+      "lesson": "S07",
+      "scene": "grasp",
+      "text": "有候选以后，仍要检查工作空间、碰撞和运动规划。",
+      "suggestedDuration": 4.69
+    },
+    {
+      "id": "S07-04",
+      "lesson": "S07",
+      "scene": "grasp",
+      "text": "选对手臂，接近目标，闭爪，抬起，再移动到放置点。",
+      "suggestedDuration": 4.9
+    },
+    {
+      "id": "S07-05",
+      "lesson": "S07",
+      "scene": "grasp",
+      "text": "放置后张开夹爪，并检查物体真的到了指定区域。",
+      "suggestedDuration": 4.49
+    },
+    {
+      "id": "S07-06",
+      "lesson": "S07",
+      "scene": "grasp",
+      "text": "函数执行过，不等于物体拿到了。动作结果和结束信号必须一致。",
+      "suggestedDuration": 5.92
+    },
+    {
+      "id": "S08-01",
+      "lesson": "S08",
+      "scene": "ros",
+      "text": "练习十四可以理解成四个人通过消息协作。",
+      "suggestedDuration": 4.0
+    },
+    {
+      "id": "S08-02",
+      "lesson": "S08",
+      "scene": "ros",
+      "text": "主控负责调度，导航负责到达，视觉负责目标信息，机械臂负责抓放。",
+      "suggestedDuration": 6.33
+    },
+    {
+      "id": "S08-03",
+      "lesson": "S08",
+      "scene": "ros",
+      "text": "话题适合持续发布消息。服务是提出请求并取得响应。",
+      "suggestedDuration": 4.9
+    },
+    {
+      "id": "S08-04",
+      "lesson": "S08",
+      "scene": "ros",
+      "text": "长任务要根据平台的完成回调继续，不能只看命令已经发出。",
+      "suggestedDuration": 5.51
+    },
+    {
+      "id": "S08-05",
+      "lesson": "S08",
+      "scene": "ros",
+      "text": "双方约好字段名、数据类型、单位、坐标系和目标，才算接口接上。",
+      "suggestedDuration": 6.12
+    },
+    {
+      "id": "S08-06",
+      "lesson": "S08",
+      "scene": "ros",
+      "text": "同名字段也要确认语义。一个完成消息，必须属于当前这一步。",
+      "suggestedDuration": 5.71
+    },
+    {
+      "id": "S09-01",
+      "lesson": "S09",
+      "scene": "callback",
+      "text": "状态机像一张进度单：现在做哪步，下一步是什么，什么条件才能翻页。",
+      "suggestedDuration": 6.53
+    },
+    {
+      "id": "S09-02",
+      "lesson": "S09",
+      "scene": "callback",
+      "text": "主控发出导航命令后，停在等待导航完成的状态。",
+      "suggestedDuration": 4.49
+    },
+    {
+      "id": "S09-03",
+      "lesson": "S09",
+      "scene": "callback",
+      "text": "此时来了视觉结果，不能当导航成功，也不能跳到抓取结束。",
+      "suggestedDuration": 5.51
+    },
+    {
+      "id": "S09-04",
+      "lesson": "S09",
+      "scene": "callback",
+      "text": "匹配的到达反馈来了，才请求视觉。有效视觉结果来了，才交给机械臂。",
+      "suggestedDuration": 6.53
+    },
+    {
+      "id": "S09-05",
+      "lesson": "S09",
+      "scene": "callback",
+      "text": "重复或过期的回调，需要防止重复执行和错误推进。",
+      "suggestedDuration": 4.69
+    },
+    {
+      "id": "S09-06",
+      "lesson": "S09",
+      "scene": "callback",
+      "text": "最终完成信号只能在所有要求的阶段结束后发出。",
+      "suggestedDuration": 4.49
+    },
+    {
+      "id": "S10-01",
+      "lesson": "S10",
+      "scene": "diagnosis",
+      "text": "机器人没动，不要同时改十个参数。先找到最早失效的那一步。",
+      "suggestedDuration": 5.71
+    },
+    {
+      "id": "S10-02",
+      "lesson": "S10",
+      "scene": "diagnosis",
+      "text": "没有目标，查图片、类别和阈值。空点云，查深度对齐与裁剪。",
+      "suggestedDuration": 5.71
+    },
+    {
+      "id": "S10-03",
+      "lesson": "S10",
+      "scene": "diagnosis",
+      "text": "没有抓取候选，查候选模型和输入。规划失败，再查坐标、可达与碰撞。",
+      "suggestedDuration": 6.53
+    },
+    {
+      "id": "S10-04",
+      "lesson": "S10",
+      "scene": "diagnosis",
+      "text": "配置保存成功，不能证明运行时一定绑定了这份资源。",
+      "suggestedDuration": 4.9
+    },
+    {
+      "id": "S10-05",
+      "lesson": "S10",
+      "scene": "diagnosis",
+      "text": "一次只改变一个有理由的因素，记录修改前后和完整分项结果。",
+      "suggestedDuration": 5.71
+    },
+    {
+      "id": "S10-06",
+      "lesson": "S10",
+      "scene": "diagnosis",
+      "text": "历史截图只帮你认界面。任务十四已由用户重置，旧图不是当前状态。",
+      "suggestedDuration": 6.33
+    },
+    {
+      "id": "S11-01",
+      "lesson": "S11",
+      "scene": "team",
+      "text": "A熟悉运动和视觉，B熟悉建图导航，C熟悉抓取和集成。",
+      "suggestedDuration": 5.31
+    },
+    {
+      "id": "S11-02",
+      "lesson": "S11",
+      "scene": "team",
+      "text": "但每个人都必须知道上下游需要什么，以及失败时该先检查哪里。",
+      "suggestedDuration": 5.92
+    },
+    {
+      "id": "S11-03",
+      "lesson": "S11",
+      "scene": "team",
+      "text": "开题先读资源和验收条件，分工时明确接口、保存状态和验证负责人。",
+      "suggestedDuration": 6.33
+    },
+    {
+      "id": "S11-04",
+      "lesson": "S11",
+      "scene": "team",
+      "text": "练习十四历史提供部分资源，不能因此推定正式赛一定提供相同内容。",
+      "suggestedDuration": 6.33
+    },
+    {
+      "id": "S11-05",
+      "lesson": "S11",
+      "scene": "team",
+      "text": "现在暂停视频，口述去桌边、找杯子、抓起、放入盒子、返回的完整链。",
+      "suggestedDuration": 6.53
+    },
+    {
+      "id": "S11-06",
+      "lesson": "S11",
+      "scene": "team",
+      "text": "再回超级速通看板，做十二站判断和三条积木演练。不会的按课号带去问。",
+      "suggestedDuration": 6.73
+    }
+  ]
+}

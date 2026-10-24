@@ -1,0 +1,49 @@
+{
+  "chapters": 12,
+  "segments": 72,
+  "fps": 30,
+  "durationFrames": 14160,
+  "durationSeconds": 472.0,
+  "audioFilesHashVerified": 72,
+  "offlineEntry": "player.html",
+  "captionSource": "Remotion BasicCaptions",
+  "audioEngine": "Remotion Html5Audio with 72 embedded MP3 data URLs",
+  "portableSingleFile": true,
+  "externalPlaybackDependencies": 0,
+  "typecheck": "PASS (2026-10-24)",
+  "playerBundle": "PASS (2026-10-24)",
+  "studioBundle": "PASS (2026-10-24)",
+  "boundaries": [
+    "No platform operations",
+    "No official-paper claim",
+    "No MP4 render requested or performed",
+    "file URL not browser-verified; all playback assets embedded"
+  ],
+  "files": [
+    {
+      "path": "player.html",
+      "bytes": 4214558,
+      "sha256": "6bce27a618f42b42bdac2866333f746b4f4776f27ecc09859a38dbf313be86e3"
+    },
+    {
+      "path": "player.js",
+      "bytes": 4210655,
+      "sha256": "ba28283b17fc0f4ba1292a66fdf377bc46957d01fd17039fd712d692840bf711"
+    },
+    {
+      "path": "player.css",
+      "bytes": 3532,
+      "sha256": "3c4cba6321ec6657d5a4a05ca3e2c4399fc69a5d29c68b1cc2c847f8765d6313"
+    },
+    {
+      "path": "narration.json",
+      "bytes": 17798,
+      "sha256": "09aa7b2dd99cc9e945df5c76a989478a70906fa47f28583886e2d8009b2758f5"
+    },
+    {
+      "path": "src/timeline.json",
+      "bytes": 27749,
+      "sha256": "77a1f72eb288a093a8a5f423b128c6b531de18b7d55667a9763b6fe6542666d5"
+    }
+  ]
+}

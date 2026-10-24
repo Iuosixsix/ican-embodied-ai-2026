@@ -1,33 +1,38 @@
 [
   {
-    "Path": "ICAN备赛学习站.html",
-    "Bytes": 2092303,
-    "SHA256": "2001f2b72b1883d3d3ce6acb5127ff442a5577521b0b1184d9a3fea9667f0341"
-  },
-  {
-    "Path": "README.md",
-    "Bytes": 5880,
-    "SHA256": "80cd01b053d09d346ad97b1769777c7361d3035824e66ed4bcd20437922df4f7"
+    "Path": "AGENTS.md",
+    "Bytes": 5660,
+    "SHA256": "11872c81023e9f62b46f888c9b1568492e2841200520addd119a49e8a4873c41"
   },
   {
     "Path": "CHAT_CONTEXT.md",
-    "Bytes": 13722,
-    "SHA256": "ea53de7a9330209b285853e1ce6e35f5aa9db5b7dd64562ee505a70c5e5dc0e6"
+    "Bytes": 16866,
+    "SHA256": "e1f0c777afe5880a9153a59a29e9e5893949df72625015c13c05d1a45a603a70"
+  },
+  {
+    "Path": "CHAT_SUPER_START.md",
+    "Bytes": 10619,
+    "SHA256": "d7c6a3989e9e50a3f9db0deb9765ace89752e954bcaec78c5e214c606f794744"
   },
   {
     "Path": "HANDOFF.md",
-    "Bytes": 8287,
-    "SHA256": "8ff0314d4fd54037f43a6c3eea3557a664d9ca1f3fe714c53a414f808d3baae9"
+    "Bytes": 11431,
+    "SHA256": "fc918cd0d741903547b371f21ace096991ea53d3d6f654af963310ada3af01bf"
   },
   {
-    "Path": "AGENTS.md",
-    "Bytes": 3729,
-    "SHA256": "3ef9fd1e06e615436833038b9a551314676ad86617147a17515a93b48a7181a3"
+    "Path": "ICAN备赛学习站.html",
+    "Bytes": 2512166,
+    "SHA256": "993003730c955662a44ebcf08720e946bde87fea03e05ec0d118138c95604146"
+  },
+  {
+    "Path": "README.md",
+    "Bytes": 9044,
+    "SHA256": "13b9553d1e5590d6ed9c8c9114cecb76d9080f7bf101b2850be973ac7b4a9e31"
   },
   {
     "Path": "UPLOAD_POLICY.md",
-    "Bytes": 2724,
-    "SHA256": "f900071d448f8b514ef3d29f34479164fbf3ed9ba19431881186bba131029899"
+    "Bytes": 3263,
+    "SHA256": "c5b8f9e41064c22a58cbaa6fab5686459510850fc50616d742b809017e720c98"
   },
   {
     "Path": "备赛工作台/00_从这里开始.md",
@@ -76,8 +81,8 @@
   },
   {
     "Path": "备赛工作台/09_学习站使用与续接说明.md",
-    "Bytes": 17831,
-    "SHA256": "7f13e937182901fe906a07c92a5a16d07f4b72fe73abd96d5385090e29318cec"
+    "Bytes": 19129,
+    "SHA256": "367883bc7cc86af1769de704f92034bbedee9ba2dcc5f1eb92c8039068804214"
   },
   {
     "Path": "备赛工作台/10_官方任务要求与评分.md",
@@ -100,61 +105,6 @@
     "SHA256": "f469341d53b780309065e1e727d368fdcd68e6b4dd0bf441c74c6c2d56f23978"
   },
   {
-    "Path": "备赛工作台/site/build_content.py",
-    "Bytes": 23097,
-    "SHA256": "65c34772655672d4ccc20cbc4a7fbc595b840c76e630f9a9e9b957222c391e0c"
-  },
-  {
-    "Path": "备赛工作台/site/build_site.py",
-    "Bytes": 3837,
-    "SHA256": "3ec0574557cbe06b400dcb8e60fd53c585fae35bccc0ffb095edca54af395f41"
-  },
-  {
-    "Path": "备赛工作台/site/check_site.py",
-    "Bytes": 8507,
-    "SHA256": "e6c3964e84332c52b6ad62069d4d925d0914934b2530d248d2b124dca6c1cbc9"
-  },
-  {
-    "Path": "备赛工作台/site/check_upload.py",
-    "Bytes": 4781,
-    "SHA256": "6c3883de25c9fae09fa1e7b78eb873fdc36478f1509d151e149cf1f1b1404473"
-  },
-  {
-    "Path": "备赛工作台/site/app.js",
-    "Bytes": 50752,
-    "SHA256": "63f78885f2613df53a959c280fa5118521f1064e6989e8012c2fdc8beb71a456"
-  },
-  {
-    "Path": "备赛工作台/site/style.css",
-    "Bytes": 30307,
-    "SHA256": "28f6467ea2d41ce87f9964c7ee15b40a394c511795600acbb6702d520a93c8b6"
-  },
-  {
-    "Path": "备赛工作台/site/template.html",
-    "Bytes": 3996,
-    "SHA256": "27c07617467f406a3160495364bdd35f064d20b03d76155d752185874853b7b9"
-  },
-  {
-    "Path": "备赛工作台/site/content.json",
-    "Bytes": 1623670,
-    "SHA256": "5a764ce14e9e490d46b6671197138ace86279fdef162df53009a922056d219c9"
-  },
-  {
-    "Path": "备赛工作台/site/content_manifest.json",
-    "Bytes": 3851,
-    "SHA256": "dfd9b22aa7b11064fd558b8aa9d2080ee7942052401750e844724c1450133216"
-  },
-  {
-    "Path": "备赛工作台/site/build_manifest.json",
-    "Bytes": 357,
-    "SHA256": "b71b510967f2e263d2879711c61d367d8f3ffc1cb15696f07b24aa48d8bcfa95"
-  },
-  {
-    "Path": "备赛工作台/site/QA_REPORT.md",
-    "Bytes": 16433,
-    "SHA256": "33a7129f22931aec14e18b27c2e772e9db06b58fe7f4f4d9a272417ad8b1c42f"
-  },
-  {
     "Path": "备赛工作台/14_省赛模拟卷A_机器人展会表演.md",
     "Bytes": 15217,
     "SHA256": "52f9b92e2006e89607a4083b8be727c6df996a21f60f878456543aa8f7c9ea73"
@@ -168,6 +118,256 @@
     "Path": "备赛工作台/16_换题变体与故障诊断模拟.md",
     "Bytes": 18362,
     "SHA256": "a30578538b4fe6a3000390f1015e3115daae580ef65ee7dfca95ea9d9daf8413"
+  },
+  {
+    "Path": "备赛工作台/17_离线交互演练与截图使用.md",
+    "Bytes": 6122,
+    "SHA256": "6c86376d2aac5ae36e1e168ef568d4641b5ae5d40cd52e6bcb48e536f8fc3182"
+  },
+  {
+    "Path": "备赛工作台/18_超级速通_全能图形化任务链.md",
+    "Bytes": 64514,
+    "SHA256": "3b369c622285b385a84512508172742e1a1f90d10b7b70456cb28c0c56079e26"
+  },
+  {
+    "Path": "备赛工作台/19_超级速通_Chat辅导手册.md",
+    "Bytes": 23358,
+    "SHA256": "ce0633c77001eee2f333617bc8aef01f65a04ff4094da7c0f1cf0a181b7efe4f"
+  },
+  {
+    "Path": "备赛工作台/20_图像与动画速通导读.md",
+    "Bytes": 18668,
+    "SHA256": "0b1e81cc475070cbd2826925fc4267a2af6f6d1f41c0481b414db91bae93c4df"
+  },
+  {
+    "Path": "备赛工作台/21_赛前速通_看懂界面与解题步骤.md",
+    "Bytes": 15318,
+    "SHA256": "3c74e90955e59c8bd57f4c86746b48d9bb0e184aa81ecc0cd5867309358b3ac0"
+  },
+  {
+    "Path": "备赛工作台/site/QA_REPORT.md",
+    "Bytes": 22671,
+    "SHA256": "d089270ce14f387c59961c9c9326e4e31f5652511381bc7274f6269bbbe98389"
+  },
+  {
+    "Path": "备赛工作台/site/app.js",
+    "Bytes": 52529,
+    "SHA256": "4d6a442c7c02becd8d5ce66e7c88bd1f4a25a1d7039b7acdb853d628a3a94e9b"
+  },
+  {
+    "Path": "备赛工作台/site/build_content.py",
+    "Bytes": 23598,
+    "SHA256": "f8787c0da03e154b8728b3164d96b82d06ccf8f317c53d4f4af0486b59508d0f"
+  },
+  {
+    "Path": "备赛工作台/site/build_manifest.json",
+    "Bytes": 357,
+    "SHA256": "725cb854ecbc1bf3795fc8a888fc1c2f7fbed1cce7e85e2d0399d2b997ea2fdd"
+  },
+  {
+    "Path": "备赛工作台/site/build_site.py",
+    "Bytes": 3954,
+    "SHA256": "ce4022e3b8054782f213b86dae056ceb4622dc0badc09e73c78be58623b47a28"
+  },
+  {
+    "Path": "备赛工作台/site/check_mock_lab.cjs",
+    "Bytes": 1932,
+    "SHA256": "65732dbaba32164950c3a090bee9a298a64bfd7e253f8200750fca9fe22d369e"
+  },
+  {
+    "Path": "备赛工作台/site/check_site.py",
+    "Bytes": 9702,
+    "SHA256": "bd72a1c7f4a45cd6d41d0341080a2d1a2151319830f594e161932c5234799133"
+  },
+  {
+    "Path": "备赛工作台/site/check_sprint_blocks.cjs",
+    "Bytes": 8958,
+    "SHA256": "ad6663def52a0a6aa5a3b2cb142eaea6c59244216fc7f7ca26c283c8d892837b"
+  },
+  {
+    "Path": "备赛工作台/site/check_sprint_board.cjs",
+    "Bytes": 4709,
+    "SHA256": "23ef3d820043dee724968144fa832e38bbf57a2cc5a6ac6f5f789226f73fa33b"
+  },
+  {
+    "Path": "备赛工作台/site/check_sprint_visuals.cjs",
+    "Bytes": 2778,
+    "SHA256": "3419fd6b88ee09ccc04d1ae19531a87bcde0e2943b562380ac8aa35866c49954"
+  },
+  {
+    "Path": "备赛工作台/site/check_task14_lab.cjs",
+    "Bytes": 7779,
+    "SHA256": "afaf413161a0009aec0e5c4508575ba6407d26996bb7714eca23e4fdd07e40a1"
+  },
+  {
+    "Path": "备赛工作台/site/check_upload.py",
+    "Bytes": 4822,
+    "SHA256": "19942e4ee864f02fae5954efb5992a25f1dfe66a3443a8f08ca8b8efba903053"
+  },
+  {
+    "Path": "备赛工作台/site/content.json",
+    "Bytes": 1896047,
+    "SHA256": "808939c65146fd65558a94542277f02e4938a38d4525a86420be294a04414b03"
+  },
+  {
+    "Path": "备赛工作台/site/content_manifest.json",
+    "Bytes": 4643,
+    "SHA256": "1bf79380e96dca79b49abda1bf0fff1ee1ab893eac4e64c84e3baa985617bebd"
+  },
+  {
+    "Path": "备赛工作台/site/mock-lab.css",
+    "Bytes": 11334,
+    "SHA256": "8c6e0064d1abfb61042868f3f31a00fdbeef9256f4a4b22ab6ff26404df62692"
+  },
+  {
+    "Path": "备赛工作台/site/mock-lab.js",
+    "Bytes": 38703,
+    "SHA256": "a1c8c741b8d964677585cda2ac167fca492c420faa4aabdcf12aabe9b05c4a41"
+  },
+  {
+    "Path": "备赛工作台/site/offline-lab.css",
+    "Bytes": 3504,
+    "SHA256": "b546fb600ffd150f01d5c6d32bf2c195874af5ecc1eefff2997c8f3ca8a28144"
+  },
+  {
+    "Path": "备赛工作台/site/offline-lab.js",
+    "Bytes": 5271,
+    "SHA256": "1898807677c4e521d47db4d5ecfda8f4952e0d41e975aa482a963e8473b1a0d5"
+  },
+  {
+    "Path": "备赛工作台/site/offline_evidence.json",
+    "Bytes": 74783,
+    "SHA256": "8d573ac760acf19134b7f2f39a4e1e479e19ebeb04cb6596eb0191ba540c3709"
+  },
+  {
+    "Path": "备赛工作台/site/qa/interactive_check_20261023.json",
+    "Bytes": 1294,
+    "SHA256": "cd7c8295bf9c453958676a63e2d109178dc0b0a4efb566022afffbd8a4226e6a"
+  },
+  {
+    "Path": "备赛工作台/site/qa/interactive_map_20261023.png",
+    "Bytes": 113781,
+    "SHA256": "088ae9c6486d9291e8be6cdbfb2bdaa29a5ccf26914901ee41853a8cd06ecf03"
+  },
+  {
+    "Path": "备赛工作台/site/qa/mock_exam_20261023.png",
+    "Bytes": 183404,
+    "SHA256": "84ab43434d1d0c27d1f13c57c43243042f4c7d8690a1e44b70fdcb7e26193fc3"
+  },
+  {
+    "Path": "备赛工作台/site/qa/pre_race_20261024.png",
+    "Bytes": 164333,
+    "SHA256": "3062bd795a987c2c2b0dcb321fe75f86e4349a33e6597c29be0ccdb5bea65f87"
+  },
+  {
+    "Path": "备赛工作台/site/qa/pre_race_check_20261024.json",
+    "Bytes": 2041,
+    "SHA256": "4be5981a8dad796c61edea6da52c8dd8d34d1b0b673f0a202b9e55c23f45e4fa"
+  },
+  {
+    "Path": "备赛工作台/site/qa/sprint_check_20261024.json",
+    "Bytes": 1425,
+    "SHA256": "4506b2ffce45a5f814a3b406f328e4f6976d356639c7ef61a1e256c5e9008d35"
+  },
+  {
+    "Path": "备赛工作台/site/qa/sprint_movie_20261024.png",
+    "Bytes": 83230,
+    "SHA256": "0a79efeac727481720a358d0b6e3e9358f2682f6bc86fcc05e0388c365df1950"
+  },
+  {
+    "Path": "备赛工作台/site/qa/static_check_20261023.json",
+    "Bytes": 1989,
+    "SHA256": "4968526dabc647883a236284eed461dbd8fecd41927829409396d4ca4d0ecca4"
+  },
+  {
+    "Path": "备赛工作台/site/qa/static_check_20261024.json",
+    "Bytes": 2041,
+    "SHA256": "3b559bcb83545d0c39b274c061412af50d6e5cc7d8d9b48c94c435f278a58186"
+  },
+  {
+    "Path": "备赛工作台/site/qa/static_visual_check_20261024.json",
+    "Bytes": 2041,
+    "SHA256": "bc022764c3430c9fdff13592d364eb682adc512ae2fb111a7e8a0b93a977c3f4"
+  },
+  {
+    "Path": "备赛工作台/site/qa/super_sprint_20261024.png",
+    "Bytes": 151510,
+    "SHA256": "10746d453f88e43133752f4604873d5aeec7e725a8ab2c4c952d6e446951ff49"
+  },
+  {
+    "Path": "备赛工作台/site/qa/super_sprint_roles_20261024.png",
+    "Bytes": 163100,
+    "SHA256": "1c360f5de185856856e09700dea2df893d8115583892117fbb8681cf18f26191"
+  },
+  {
+    "Path": "备赛工作台/site/qa/task14_interactive_20261023.png",
+    "Bytes": 174346,
+    "SHA256": "56b94460f6f566dd5b41aa852ae65d745fc2404552d6730df6c4b76795d784cd"
+  },
+  {
+    "Path": "备赛工作台/site/qa/visual_movie_check_20261024.json",
+    "Bytes": 2414,
+    "SHA256": "077c61a7f84fbc60c99906a559bbb34a4ca41c2e3cc11bd7029a5d627239cbd8"
+  },
+  {
+    "Path": "备赛工作台/site/qa/visual_sprint_coordinates_20261024.png",
+    "Bytes": 89219,
+    "SHA256": "0cb6c2c3bdb3681fa35ba479ac8aa7d8b0868228a80a183b261f656ab9a79975"
+  },
+  {
+    "Path": "备赛工作台/site/sprint-blocks.css",
+    "Bytes": 7492,
+    "SHA256": "99e37b97351cb86026da0f2cc02f21ac778284fcecb6843e89db128876b05b02"
+  },
+  {
+    "Path": "备赛工作台/site/sprint-blocks.js",
+    "Bytes": 33833,
+    "SHA256": "f9aa1cf527e8ce9a572117b01b7edd84106069828c5a9ceac16043e24e3a1efc"
+  },
+  {
+    "Path": "备赛工作台/site/sprint-board.css",
+    "Bytes": 11997,
+    "SHA256": "0dccc3a619a132bab8bdf87364ee7b08e43803969c968ce2bc660a89e5d72353"
+  },
+  {
+    "Path": "备赛工作台/site/sprint-board.js",
+    "Bytes": 26933,
+    "SHA256": "7d7184a1e6760e2d350837f07b9ab5751992a269719704bb1ce8e6af40980e28"
+  },
+  {
+    "Path": "备赛工作台/site/sprint-visuals.css",
+    "Bytes": 5582,
+    "SHA256": "01d98b1d90b23b3f6ac3f17f4df3de50007c851b88300bf2900b02898b4f343a"
+  },
+  {
+    "Path": "备赛工作台/site/sprint-visuals.js",
+    "Bytes": 36128,
+    "SHA256": "c3a8c49a680dff79a0e214f3836d858926888cfae105b67ce02cb8353acbbb28"
+  },
+  {
+    "Path": "备赛工作台/site/sprint_curriculum.json",
+    "Bytes": 96623,
+    "SHA256": "fa403462c100f97377cc0e25ab8eef8dbefe9a5c5cc7f23665342054edd017fa"
+  },
+  {
+    "Path": "备赛工作台/site/style.css",
+    "Bytes": 31101,
+    "SHA256": "78baf8848c309e9c1400efe7ff155afa804de7dad439bb009529cb72d025df03"
+  },
+  {
+    "Path": "备赛工作台/site/task14-lab.css",
+    "Bytes": 6462,
+    "SHA256": "ee07f607041d7cd9925f291b99daa3da5ff9daf288f9be050c2a1104d2f699c9"
+  },
+  {
+    "Path": "备赛工作台/site/task14-lab.js",
+    "Bytes": 28243,
+    "SHA256": "f6c0e3c7925d6070e32285df6f1baaad0ae005dedfb0554d86adfb55bb345504"
+  },
+  {
+    "Path": "备赛工作台/site/template.html",
+    "Bytes": 3996,
+    "SHA256": "27c07617467f406a3160495364bdd35f064d20b03d76155d752185874853b7b9"
   },
   {
     "Path": "备赛工作台/sources/mock_20261023/exam_a_fixture.json",
@@ -205,78 +405,83 @@
     "SHA256": "2cc57fb3691ce665df46a741005e6be23e8c278316bacd78011a05ecc4450518"
   },
   {
-    "Path": "备赛工作台/site/qa/mock_exam_20261023.png",
-    "Bytes": 183404,
-    "SHA256": "84ab43434d1d0c27d1f13c57c43243042f4c7d8690a1e44b70fdcb7e26193fc3"
+    "Path": "备赛工作台/video/QA.json",
+    "Bytes": 1471,
+    "SHA256": "dffcd1213f58f69fc54bd952dfbb4ae8c9ac8f3accb527373965ccaed906fe23"
   },
   {
-    "Path": "备赛工作台/17_离线交互演练与截图使用.md",
-    "Bytes": 6122,
-    "SHA256": "6c86376d2aac5ae36e1e168ef568d4641b5ae5d40cd52e6bcb48e536f8fc3182"
+    "Path": "备赛工作台/video/README.md",
+    "Bytes": 5711,
+    "SHA256": "903d88c63fd1b7b195a4fc0982763dc359b56d45b941020f4b63fa66ecf0a72b"
   },
   {
-    "Path": "备赛工作台/site/offline-lab.js",
-    "Bytes": 5271,
-    "SHA256": "1898807677c4e521d47db4d5ecfda8f4952e0d41e975aa482a963e8473b1a0d5"
+    "Path": "备赛工作台/video/build-player.mjs",
+    "Bytes": 1024,
+    "SHA256": "24552cb19b77826ac4e2e5cc04969ed52daa87a889ce722f83ffe38752811493"
   },
   {
-    "Path": "备赛工作台/site/offline-lab.css",
-    "Bytes": 3504,
-    "SHA256": "b546fb600ffd150f01d5c6d32bf2c195874af5ecc1eefff2997c8f3ca8a28144"
+    "Path": "备赛工作台/video/build-voice.mjs",
+    "Bytes": 907,
+    "SHA256": "7a836574b44772704071f42f8a20a3d8ef03b92525d18bd3c398070f3b46ec74"
   },
   {
-    "Path": "备赛工作台/site/task14-lab.js",
-    "Bytes": 28243,
-    "SHA256": "f6c0e3c7925d6070e32285df6f1baaad0ae005dedfb0554d86adfb55bb345504"
+    "Path": "备赛工作台/video/generate_voice.py",
+    "Bytes": 3830,
+    "SHA256": "9693eede0b33faeb3169dc264aa67e90ab7b6e3ccaef429f3d419b1e496fe76f"
   },
   {
-    "Path": "备赛工作台/site/task14-lab.css",
-    "Bytes": 6462,
-    "SHA256": "ee07f607041d7cd9925f291b99daa3da5ff9daf288f9be050c2a1104d2f699c9"
+    "Path": "备赛工作台/video/narration.json",
+    "Bytes": 17798,
+    "SHA256": "09aa7b2dd99cc9e945df5c76a989478a70906fa47f28583886e2d8009b2758f5"
   },
   {
-    "Path": "备赛工作台/site/mock-lab.js",
-    "Bytes": 38703,
-    "SHA256": "a1c8c741b8d964677585cda2ac167fca492c420faa4aabdcf12aabe9b05c4a41"
+    "Path": "备赛工作台/video/package-lock.json",
+    "Bytes": 205434,
+    "SHA256": "6112acf8355af0abaa0813de5934099a0358dfb50a6e45c0960a5ce0a79b654a"
   },
   {
-    "Path": "备赛工作台/site/mock-lab.css",
-    "Bytes": 11334,
-    "SHA256": "8c6e0064d1abfb61042868f3f31a00fdbeef9256f4a4b22ab6ff26404df62692"
+    "Path": "备赛工作台/video/package.json",
+    "Bytes": 1292,
+    "SHA256": "25a4e1c775225d5f12fa661080fde94f33d7ac2f0183608a8f073790e6910dd0"
   },
   {
-    "Path": "备赛工作台/site/offline_evidence.json",
-    "Bytes": 74783,
-    "SHA256": "8d573ac760acf19134b7f2f39a4e1e479e19ebeb04cb6596eb0191ba540c3709"
+    "Path": "备赛工作台/video/player.css",
+    "Bytes": 3532,
+    "SHA256": "3c4cba6321ec6657d5a4a05ca3e2c4399fc69a5d29c68b1cc2c847f8765d6313"
   },
   {
-    "Path": "备赛工作台/site/check_mock_lab.cjs",
-    "Bytes": 1932,
-    "SHA256": "65732dbaba32164950c3a090bee9a298a64bfd7e253f8200750fca9fe22d369e"
+    "Path": "备赛工作台/video/player.html",
+    "Bytes": 4214558,
+    "SHA256": "6bce27a618f42b42bdac2866333f746b4f4776f27ecc09859a38dbf313be86e3"
   },
   {
-    "Path": "备赛工作台/site/check_task14_lab.cjs",
-    "Bytes": 7779,
-    "SHA256": "afaf413161a0009aec0e5c4508575ba6407d26996bb7714eca23e4fdd07e40a1"
+    "Path": "备赛工作台/video/player.js",
+    "Bytes": 4210655,
+    "SHA256": "ba28283b17fc0f4ba1292a66fdf377bc46957d01fd17039fd712d692840bf711"
   },
   {
-    "Path": "备赛工作台/site/qa/static_check_20261023.json",
-    "Bytes": 1989,
-    "SHA256": "4968526dabc647883a236284eed461dbd8fecd41927829409396d4ca4d0ecca4"
+    "Path": "备赛工作台/video/prepare_timeline.py",
+    "Bytes": 3795,
+    "SHA256": "86cf0a7997ef896053fe9fc9e3d9664be07f3cef3a50cbdc24ed1e7fc0ae8d43"
   },
   {
-    "Path": "备赛工作台/site/qa/interactive_check_20261023.json",
-    "Bytes": 1294,
-    "SHA256": "cd7c8295bf9c453958676a63e2d109178dc0b0a4efb566022afffbd8a4226e6a"
+    "Path": "备赛工作台/video/public/voice/timing.json",
+    "Bytes": 18720,
+    "SHA256": "fa953c3a8e0a4e599471d7231f3e464b0c568ad5f39cd6620da6624dd0370322"
   },
   {
-    "Path": "备赛工作台/site/qa/interactive_map_20261023.png",
-    "Bytes": 113781,
-    "SHA256": "088ae9c6486d9291e8be6cdbfb2bdaa29a5ccf26914901ee41853a8cd06ecf03"
+    "Path": "备赛工作台/video/src/Diagram.tsx",
+    "Bytes": 13907,
+    "SHA256": "a535a1ba47bd4943ee1c03c9345c8386c83e6986e71759b4dbac7cb8c013812e"
   },
   {
-    "Path": "备赛工作台/site/qa/task14_interactive_20261023.png",
-    "Bytes": 174346,
-    "SHA256": "56b94460f6f566dd5b41aa852ae65d745fc2404552d6730df6c4b76795d784cd"
+    "Path": "备赛工作台/video/src/player.tsx",
+    "Bytes": 5032,
+    "SHA256": "deff94cb50375bbef7307afb854252cf1a787155bf785c7f86c9baf906717f83"
+  },
+  {
+    "Path": "备赛工作台/video/src/timeline.json",
+    "Bytes": 27749,
+    "SHA256": "77a1f72eb288a093a8a5f423b128c6b531de18b7d55667a9763b6fe6542666d5"
   }
 ]

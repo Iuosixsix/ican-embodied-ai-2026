@@ -57,13 +57,15 @@ embedded=json.loads(next(x['text'] for x in audit.script_records if x['id']=='si
 assert embedded==content, 'HTML data differs from content.json'
 app=(site/'app.js').read_text(encoding='utf-8')
 embedded_app=next(x['text'] for x in audit.script_records if x['id']!='site-data')
-combined_app='\n'.join((site/n).read_text(encoding='utf-8') for n in ['task14-lab.js','mock-lab.js','offline-lab.js','app.js'])
+combined_app='\n'.join((site/n).read_text(encoding='utf-8') for n in ['task14-lab.js','mock-lab.js','offline-lab.js','sprint-blocks.js','sprint-visuals.js','sprint-board.js','app.js'])
 assert embedded_app==combined_app, 'HTML app differs from app.js'
 articles={a['id']:a for a in content['articles']}
 tasks={t['id']:t for t in content['tasks']}
-assert len(articles)==19 and len(tasks)==14
+assert len(articles)==23 and len(tasks)==14
 assert set(tasks)==set(range(1,15))
 assert {'fast-track','live-lab','source-code','exam-forecast','mock-exam','mock-answers','mock-variants'}<=articles.keys()
+assert '21_' in articles['pre-race']['source']
+assert "'#article/pre-race'" in app
 assert '11_' in articles['fast-track']['source'] and '12_' in articles['live-lab']['source']
 duplicate_leading_titles=[]
 for item in articles.values():
@@ -72,7 +74,7 @@ for item in articles.values():
         visible=unescape(re.sub(r'<[^>]+>','',first.group(1)))
         if ' '.join(visible.split())==' '.join(item['title'].split()): duplicate_leading_titles.append(item['id'])
 assert not duplicate_leading_titles, 'Duplicate article page/body h1'
-for article_id in ('fast-track','live-lab','exam-forecast','mock-exam','mock-answers','mock-variants'):
+for article_id in ('pre-race','fast-track','live-lab','exam-forecast','mock-exam','mock-answers','mock-variants'):
     source=(root/articles[article_id]['source']).read_text(encoding='utf-8-sig')
     source_h2=len(re.findall(r'(?m)^##\s+',source))
     assert len(re.findall(r'<h2\b',articles[article_id]['html']))==source_h2, 'Section heading lost'
@@ -118,7 +120,20 @@ content_manifest=json.loads((site/'content_manifest.json').read_text(encoding='u
 build_manifest=json.loads((site/'build_manifest.json').read_text(encoding='utf-8-sig'))
 digest=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
 assert digest(site/'offline_evidence.json')==content_manifest['evidence_index_sha256']
-assert 'offline-practice' in articles
+assert {'offline-practice','super-sprint','sprint-chat'}<=articles.keys()
+assert digest(site/'sprint_curriculum.json')==content_manifest['sprint_curriculum_sha256']
+assert len(content['sprint']['modules'])==12
+assert [m['id'] for m in content['sprint']['modules']]==[f'S{i:02}' for i in range(12)]
+assert len(content['sprint']['glossary'])>=24
+for m in content['sprint']['modules']:
+    assert len(m['quiz'])==2 and len(m['flow'])==len(m['blocks'])
+    assert m['role'] in ['共同','A','B','C']
+    for q in m['quiz']:
+        assert len(q['options'])==3 and isinstance(q['answer'],int) and 0<=q['answer']<3
+    for link in m['sources']:
+        parts=link['href'].lstrip('#').split('/')
+        assert (parts[0]=='article' and parts[1] in articles) or (parts[0]=='task' and int(parts[1]) in tasks)
+assert "case 'sprint':sprintController=window.IcanSprint.mount" in app
 assert "case 'lab':window.IcanOffline.mount" in app
 assert digest(site/'content.json')==content_manifest['content_sha256']
 assert digest(root/'ICAN备赛学习站.html')==build_manifest['sha256']
@@ -129,11 +144,12 @@ syntax_checked=False
 if args.node:
     subprocess.run([args.node,'--check',str(site/'app.js')],check=True,capture_output=True,text=True)
     subprocess.run([args.node,'--check'],input=embedded_app,check=True,capture_output=True,text=True,encoding='utf-8')
-    for test in ('check_mock_lab.cjs','check_task14_lab.cjs'):
+    for test in ('check_mock_lab.cjs','check_task14_lab.cjs','check_sprint_blocks.cjs','check_sprint_board.cjs','check_sprint_visuals.cjs'):
         subprocess.run([args.node,str(site/test)],check=True,capture_output=True,text=True,encoding='utf-8')
     syntax_checked=True
 result.update({'meta_updated':content['meta']['updated'],'tasks':len(tasks),'articles':len(articles),
     'quizzes':len(content['quizzes']),'meeting_segments':337,
+    'sprint_modules':len(content['sprint']['modules']),'sprint_questions':sum(len(m['quiz']) for m in content['sprint']['modules']),
     'offline_screenshots':len(content['offlineEvidence']['archive']),'curated_screenshots':len(content['offlineEvidence']['items']),
     'fast_track_entry':True,'live_lab_entry':True,'exam_forecast_entry':True,'task_statuses_match_source':True,
     'duplicate_leading_article_titles':duplicate_leading_titles,
