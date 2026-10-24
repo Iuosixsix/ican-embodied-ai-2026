@@ -1,23 +1,23 @@
 [
   {
     "Path": "AGENTS.md",
-    "Bytes": 5660,
-    "SHA256": "11872c81023e9f62b46f888c9b1568492e2841200520addd119a49e8a4873c41"
+    "Bytes": 6218,
+    "SHA256": "f3a023d6bfeef2f97efd76bc83ddeb260587e83d1efd4093fb7d503995bcf343"
   },
   {
     "Path": "CHAT_CONTEXT.md",
-    "Bytes": 16866,
-    "SHA256": "e1f0c777afe5880a9153a59a29e9e5893949df72625015c13c05d1a45a603a70"
+    "Bytes": 18419,
+    "SHA256": "8676dfd4fae5e72e67c75ace3494c67224ab854a8fd4708bf44841e8c4f426fa"
   },
   {
     "Path": "CHAT_SUPER_START.md",
-    "Bytes": 10619,
-    "SHA256": "d7c6a3989e9e50a3f9db0deb9765ace89752e954bcaec78c5e214c606f794744"
+    "Bytes": 12172,
+    "SHA256": "05bd12d53dfccf259079db95790094c3081a274cc4bf7c5a2dbadf35506bf269"
   },
   {
     "Path": "HANDOFF.md",
-    "Bytes": 11431,
-    "SHA256": "fc918cd0d741903547b371f21ace096991ea53d3d6f654af963310ada3af01bf"
+    "Bytes": 12984,
+    "SHA256": "d776781b2a6d4d9c9c5d9e7a4537909766ba14687b99ad469b44845124896052"
   },
   {
     "Path": "ICAN备赛学习站.html",
@@ -26,13 +26,13 @@
   },
   {
     "Path": "README.md",
-    "Bytes": 9044,
-    "SHA256": "13b9553d1e5590d6ed9c8c9114cecb76d9080f7bf101b2850be973ac7b4a9e31"
+    "Bytes": 10608,
+    "SHA256": "09807e1b11c0b08adb0955f8b7ce3b31a77c685b2cb953e169a76e912e4cf416"
   },
   {
     "Path": "UPLOAD_POLICY.md",
-    "Bytes": 3263,
-    "SHA256": "c5b8f9e41064c22a58cbaa6fab5686459510850fc50616d742b809017e720c98"
+    "Bytes": 3633,
+    "SHA256": "f8a9aad7236ed9c00aba5c906bbcfb62ceb19100fedda9688949c8b2cc4a20ea"
   },
   {
     "Path": "备赛工作台/00_从这里开始.md",
@@ -146,8 +146,8 @@
   },
   {
     "Path": "备赛工作台/site/QA_REPORT.md",
-    "Bytes": 22671,
-    "SHA256": "d089270ce14f387c59961c9c9326e4e31f5652511381bc7274f6269bbbe98389"
+    "Bytes": 23461,
+    "SHA256": "b7f51d1fcc249fc5887161d06337665464f9be6781153cac70320e1a557c5bbf"
   },
   {
     "Path": "备赛工作台/site/app.js",
@@ -165,6 +165,11 @@
     "SHA256": "725cb854ecbc1bf3795fc8a888fc1c2f7fbed1cce7e85e2d0399d2b997ea2fdd"
   },
   {
+    "Path": "备赛工作台/site/build_portable.py",
+    "Bytes": 9604,
+    "SHA256": "7e4b6f9c62da8406c8dc8b94a1574923a1f10f007cdea836f9793bc8124010cf"
+  },
+  {
     "Path": "备赛工作台/site/build_site.py",
     "Bytes": 3954,
     "SHA256": "ce4022e3b8054782f213b86dae056ceb4622dc0badc09e73c78be58623b47a28"
@@ -173,6 +178,11 @@
     "Path": "备赛工作台/site/check_mock_lab.cjs",
     "Bytes": 1932,
     "SHA256": "65732dbaba32164950c3a090bee9a298a64bfd7e253f8200750fca9fe22d369e"
+  },
+  {
+    "Path": "备赛工作台/site/check_portable.py",
+    "Bytes": 15641,
+    "SHA256": "84f7d558118a7897bf746e7bd54f5a497ee9e5d77f716e274c046eb6071a8797"
   },
   {
     "Path": "备赛工作台/site/check_site.py",
@@ -240,6 +250,26 @@
     "SHA256": "8d573ac760acf19134b7f2f39a4e1e479e19ebeb04cb6596eb0191ba540c3709"
   },
   {
+    "Path": "备赛工作台/site/portable-runtime.js",
+    "Bytes": 11227,
+    "SHA256": "44e25c334988127eb801127a2a08a30e93e9751eaccf4cdea96ca78167ab7403"
+  },
+  {
+    "Path": "备赛工作台/site/portable.css",
+    "Bytes": 3288,
+    "SHA256": "1dd109d8127ab3e2849f1b6145b59bf5ec87d1980c42f3ae5e2bf2d8048f132e"
+  },
+  {
+    "Path": "备赛工作台/site/portable_check.json",
+    "Bytes": 1058,
+    "SHA256": "4d11c3056c29f09363db35fc28eead15078cce479c8cf5bf070817cf421fce80"
+  },
+  {
+    "Path": "备赛工作台/site/portable_manifest.json",
+    "Bytes": 288972,
+    "SHA256": "5d8810a71b3a17151e14cd2494e55e939772ec4c357e89affe0bf80abcc0109b"
+  },
+  {
     "Path": "备赛工作台/site/qa/interactive_check_20261023.json",
     "Bytes": 1294,
     "SHA256": "cd7c8295bf9c453958676a63e2d109178dc0b0a4efb566022afffbd8a4226e6a"
@@ -253,6 +283,16 @@
     "Path": "备赛工作台/site/qa/mock_exam_20261023.png",
     "Bytes": 183404,
     "SHA256": "84ab43434d1d0c27d1f13c57c43243042f4c7d8690a1e44b70fdcb7e26193fc3"
+  },
+  {
+    "Path": "备赛工作台/site/qa/portable_browser_check_20261024.json",
+    "Bytes": 920,
+    "SHA256": "e6056a7ba3331665237a2ba9deaeddb731fe3e63a1e79076062c04037f44d3b2"
+  },
+  {
+    "Path": "备赛工作台/site/qa/portable_mobile_20261024.png",
+    "Bytes": 23164,
+    "SHA256": "384f56970a007f1028567745a23fe8c4025d9653f9bc7df42ff880fb66f0be19"
   },
   {
     "Path": "备赛工作台/site/qa/pre_race_20261024.png",

@@ -1,0 +1,30 @@
+{
+  "status": "passed",
+  "validation_kind": "independent offline static audit",
+  "output": "ICAN备赛学习站_手机单文件.html",
+  "bytes": 141549251,
+  "sha256": "5c148b165607aeb3b849b926de1ac42324619deceb60943df87f13f6c5bc1949",
+  "manifest_matches": true,
+  "articles": 23,
+  "tasks": 14,
+  "meeting_segments": 337,
+  "aliases": 697,
+  "deduplicated_assets": 689,
+  "asset_base64_and_sha256_verified": true,
+  "source_and_manifest_hashes_verified": true,
+  "original_pdf_files": 17,
+  "original_docx_files": 4,
+  "embedded_movie": true,
+  "movie_audio_embedded": true,
+  "local_references_checked": 697,
+  "self_routes": 5,
+  "dynamic_sprint_screenshots": 12,
+  "external_reference_links": 28,
+  "external_runtime_dependencies": [],
+  "javascript_syntax_checked": true,
+  "lossless_png_checks_from_builder": 423,
+  "limitations": [
+    "Static only; no browser, smartphone or platform operation performed.",
+    "PNG decoded-pixel equality is recorded by the builder; this audit verifies packed/source hashes."
+  ]
+}

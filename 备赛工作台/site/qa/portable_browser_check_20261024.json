@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-24",
+  "output_sha256": "5c148b165607aeb3b849b926de1ac42324619deceb60943df87f13f6c5bc1949",
+  "isolated_directory_contains_only": "index.html",
+  "viewport": {
+    "requested_width": 390,
+    "content_width": 375,
+    "scroll_width": 375
+  },
+  "checked": [
+    "default pre-race route",
+    "two inline article images load from blob URLs",
+    "source Markdown preview",
+    "S06 concept SVG and historical image",
+    "original-size screenshot dialog",
+    "dynamic evidence gallery blob URLs",
+    "embedded movie playback with readyState 4 data audio",
+    "movie S06 chapter jump and bridge back to S06",
+    "movie iframe removed on return",
+    "PDF original iframe and download",
+    "Word original download offered",
+    "no browser error logs"
+  ],
+  "real_phone_tested": false,
+  "local_file_scheme_tested": false,
+  "screenshot": "备赛工作台/site/qa/portable_mobile_20261024.png"
+}

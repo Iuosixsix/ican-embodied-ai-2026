@@ -41,3 +41,8 @@ Chat从[CHAT_SUPER_START](CHAT_SUPER_START.md)开始，读取[18 全能图形化
 ## 图解/动画维护（2026-10-24）
 
 `site/sprint-visuals.js/css`为12站概念图与历史截图导读，按现有build顺序在sprint-board之前注入；先改源码再构建。20为图像/动画导读。`video/`为Remotion项目和预打包离线播放器，`narration.json`为72句配音原文、`public/voice/timing.json`为实测音频时长和哈希；变更旁白须重合成对应音频、重新对齐时间线并构建player.js。只看视频、看图、遮标签自测不等于独立操作成功。Chat继续以S00—S11编号续接；平台操作仍暂停。播放器与讲义仅用于赛前。
+
+
+## 手机单HTML构建（2026-10-24）
+
+`site/build_portable.py`在普通站构建后执行，`portable-runtime.js/css`管理资源懒加载、同页附件与影片返回；`check_portable.py`独立检查引用和哈希。成品`ICAN备赛学习站_手机单文件.html`超过100MiB，不进普通Git，上传同一私人仓库Release；manifest/check/QA入PR。PNG转WebP必须无损并验证解码像素一致，不改原图。所有本地原件和影片都内嵌，外链仅显式参考。未真机验证，不承诺聊天软件预览能执行脚本。
