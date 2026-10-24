@@ -1,7 +1,7 @@
 {
   "output": "备赛工作台/site/content.json",
   "tasks": 14,
-  "articles": 22,
+  "articles": 23,
   "quizzes": 30,
   "meetings": 4,
   "segments": 337,
@@ -54,10 +54,14 @@
     14
   ],
   "local_links_checked": 686,
-  "content_sha256": "a12fd7bfe4060001ad0d494a8236ac86de50b8898188e5f6f52bd5447043a70b",
+  "content_sha256": "808939c65146fd65558a94542277f02e4938a38d4525a86420be294a04414b03",
   "sprint_curriculum_sha256": "fa403462c100f97377cc0e25ab8eef8dbefe9a5c5cc7f23665342054edd017fa",
   "evidence_index_sha256": "8d573ac760acf19134b7f2f39a4e1e479e19ebeb04cb6596eb0191ba540c3709",
   "input_markdown": [
+    {
+      "path": "备赛工作台/21_赛前速通_看懂界面与解题步骤.md",
+      "sha256": "3c74e90955e59c8bd57f4c86746b48d9bb0e184aa81ecc0cd5867309358b3ac0"
+    },
     {
       "path": "备赛工作台/00_从这里开始.md",
       "sha256": "514c2d3c33fd7689cd4e5700269d396f9ae71c0d99063cb3059c153d553c41f6"

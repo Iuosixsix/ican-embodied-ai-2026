@@ -23,6 +23,7 @@ if not Path(PANDOC).exists():
     raise RuntimeError('Pandoc is required. No packages are installed by this builder.')
 
 ARTICLE_DEFS = [
+    ('21_', 'pre-race', '赛前速通'),
     ('00_', 'start', '学习路线'),
     ('11_', 'fast-track', '速通版学习'),
     ('13_', 'exam-forecast', '赛题证据与推断'),

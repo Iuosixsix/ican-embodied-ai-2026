@@ -3,12 +3,12 @@
   "visibility": "private",
   "repository": "https://github.com/Iuosixsix/ican-embodied-ai-2026",
   "scope": "Git index candidate bundle; report itself excluded from counts",
-  "tracked_files": 1128,
-  "bytes": 156102030,
-  "text_files_scanned": 354,
+  "tracked_files": 1131,
+  "bytes": 156332022,
+  "text_files_scanned": 356,
   "docx_archives_scanned": 4,
   "binary_privacy_ocr": "not performed; screenshots and PDF not exhaustively OCR reviewed",
-  "local_site_targets_in_git": 697,
+  "local_site_targets_in_git": 698,
   "findings": [],
   "largest_files": [
     {
@@ -37,12 +37,12 @@
     },
     {
       "path": "ICAN备赛学习站.html",
-      "bytes": 2488046
+      "bytes": 2512166
     },
     {
       "path": "备赛工作台/site/content.json",
-      "bytes": 1877365
+      "bytes": 1896047
     }
   ],
-  "html_sha256": "f818fcbf343a5a6be7f9b7b33f72cbeef140b4c4bbeae7f8ee442cec84a2038f"
+  "html_sha256": "993003730c955662a44ebcf08720e946bde87fea03e05ec0d118138c95604146"
 }
